@@ -1,0 +1,106 @@
+﻿@model Exchange.Model.ExPhoneListData
+
+@{
+    Layout = "~/Views/EMail/_EMailBase.cshtml";
+}
+
+@section HeaderContent
+{
+    <title>Telefonliste</title>
+}
+
+
+<!-- body -->
+<table class="body-wrap" bgcolor="#f6f6f6">
+    <tr>
+        <td></td>
+        <td class="container" bgcolor="#FFFFFF">
+
+            <!-- content -->
+            <div class="content">
+                <table>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td style="text-align: right;">
+                                        <p>generiert: @DateTime.UtcNow.ToString("d")</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <br/>
+                            <br/>
+                            <p style="font-size: 20px">
+                                <b>Telefonliste</b>
+                            </p>
+                            <br/>
+                            <p style="color: #61A4D7; font-size: 18px">
+                                <b>Details</b>
+                            </p>
+                            <p>Firmentelefonnummer: @Model.CompanyPhoneNumber</p>
+                            <p>Erzeugungsdatum: @Model.CreationDate</p>
+                            <br/>
+                            <br/>
+
+                            <table id="tblPositions">
+
+                                <tr style="background: #61A4D7; color: white; font-size: 16px;">
+                                    <td style="background: #61A4D7;">
+                                        <p>Name</p>
+                                    </td>
+                                    <td style="background: #61A4D7;">
+                                        <p>Funktion</p>
+                                    </td>
+                                    <td style="background: #61A4D7;">
+                                        <p>Durchwahl</p>
+                                    </td>
+                                    <td style="background: #61A4D7;">
+                                        <p>Handynummer</p>
+                                    </td>
+                                </tr>
+                                @foreach (var tp in Model.PhoneListEntries)
+                                {
+                                    <tr>
+                                        <td>
+                                            <p>@tp.Fullname</p>
+                                        </td>
+                                        <td>
+                                            <p>@tp.Function</p>
+                                        </td>
+                                        <td>
+                                            <p>@tp.Extension</p>
+                                        </td>
+                                        <td>
+                                            <p>@tp.PrivateMobile</p>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                            <br/><br/>
+                            <table class="btn-primary" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td>
+                                        <a href="https://www.fotec.at">Zu FOTEC</a>
+                                    </td>
+                                    <td style="padding-left: 30px;">
+                                        <a href="http://www.fhwn.ac.at">Zu FHWN</a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- /content -->
+
+        </td>
+        <td></td>
+    </tr>
+
+</table>

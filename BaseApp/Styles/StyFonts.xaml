@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ResourceDictionary
+    x:Class="BaseApp.Styles.StyFonts"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <OnPlatform x:Key="DigitalShopping" x:TypeArguments="x:String">
+        <On Platform="Android">DigitalShopping.otf#DigitalShopping</On>
+        <On Platform="iOS">DigitalShopping</On>
+        <On Platform="UWP, WinRT, WinPhone">Fonts/DigitalShopping.ttf#DigitalShopping</On>
+    </OnPlatform>
+
+    <OnPlatform x:Key="Glyphicons" x:TypeArguments="x:String">
+        <On Platform="Android">GLYPHICONS.otf#GLYPHICONS-Regular</On>
+        <On Platform="iOS">GLYPHICONS-Regular</On>
+        <On Platform="UWP, WinRT, WinPhone">Fonts/GLYPHICONS.ttf#GLYPHICONS</On>
+    </OnPlatform>
+
+    <OnPlatform x:Key="StreamLineIconsRegular" x:TypeArguments="x:String">
+        <On Platform="Android">StreamLineIcons.otf#StreamLineIcons</On>
+        <On Platform="iOS">StreamLineIcons</On>
+        <On Platform="UWP, WinRT, WinPhone">Fonts/StreamLineIcons.ttf#StreamLineIcons</On>
+    </OnPlatform>
+    <OnPlatform x:Key="StreamLineIconsLight" x:TypeArguments="x:String">
+        <On Platform="Android">StreamLineIconsLight.otf#StreamLineIconsLight</On>
+        <On Platform="iOS">StreamLineIconsLight</On>
+        <On Platform="UWP, WinRT, WinPhone">Fonts/StreamLineIconsLight.ttf#StreamLineIconsLight</On>
+    </OnPlatform>
+    <OnPlatform x:Key="StreamLineIconsBold" x:TypeArguments="x:String">
+        <On Platform="Android">StreamLineIconsBold.otf#StreamLineIconsBold</On>
+        <On Platform="iOS">StreamLineIconsBold</On>
+        <On Platform="UWP, WinRT, WinPhone">Fonts/StreamLineIconsBold.ttf#StreamLineIconsBold</On>
+    </OnPlatform>
+    <OnPlatform x:Key="StreamLineIcons" x:TypeArguments="x:String">
+        <On Platform="Android" Value="{StaticResource StreamLineIconsLight}" />
+        <On Platform="iOS" Value="{StaticResource StreamLineIconsLight}" />
+        <On Platform="UWP, WinRT, WinPhone" Value="{StaticResource StreamLineIconsLight}" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="MontserratRegular" x:TypeArguments="x:String">
+        <On Platform="Android">Montserrat-Regular.otf#Montserrat</On>
+        <On Platform="iOS">Montserrat-Regular</On>
+        <On Platform="UWP, WinRT, WinPhone">Fonts/Montserrat-Regular.ttf#Montserrat</On>
+    </OnPlatform>
+
+    <OnPlatform x:Key="MontserratSemiBold" x:TypeArguments="x:String">
+        <On Platform="Android">Montserrat-SemiBold.otf#Montserrat Semi Bold</On>
+        <On Platform="iOS">Montserrat Semi Bold</On>
+        <On Platform="UWP, WinRT, WinPhone">Fonts/Montserrat-SemiBold.ttf#Montserrat Semi Bold</On>
+    </OnPlatform>
+
+    <OnPlatform x:Key="MontserratBold" x:TypeArguments="x:String">
+        <On Platform="Android">Montserrat-Bold.otf#Montserrat-Bold</On>
+        <On Platform="iOS">Montserrat-Bold</On>
+        <On Platform="UWP, WinRT, WinPhone">Fonts/Montserrat-Bold.ttf#Montserrat-Bold</On>
+    </OnPlatform>
+
+    <OnPlatform x:Key="SourceSansProRegular" x:TypeArguments="x:String">
+        <On Platform="Android">SourceSansPro-Regular.otf#Source Sans Pro</On>
+        <On Platform="iOS">Source Sans Pro</On>
+        <On Platform="UWP, WinRT, WinPhone">Fonts/SourceSansPro-Regular.ttf#Source Sans Pro</On>
+    </OnPlatform>
+
+    <OnPlatform x:Key="TwCenMt" x:TypeArguments="x:String">
+        <On Platform="Android">tw-cen-mt.otf#Tw Cen MT</On>
+        <On Platform="iOS">Tw Cen MT</On>
+        <On Platform="UWP, WinRT, WinPhone">Fonts/tw-cen-mt.ttf#Tw Cen MT</On>
+    </OnPlatform>
+
+    <OnPlatform x:Key="BaseButtonFontAttributes" x:TypeArguments="FontAttributes">
+        <On Platform="Android" Value="None" />
+        <On Platform="iOS" Value="Bold" />
+        <On Platform="UWP, WinRT, WinPhone" Value="None" />
+    </OnPlatform>
+
+</ResourceDictionary>

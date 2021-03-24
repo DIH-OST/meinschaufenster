@@ -1,0 +1,30 @@
+﻿@model RegisterShopViewModel
+
+@{
+    ViewData["Title"] = "Registrierung";
+}
+<div class="container">
+    <h2>Registrierung als Geschäftsbetreiber</h2>
+
+    <h4>Bitte gib deine E-Mail Adresse an</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="RegisterShop">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label">E-Mail</label>
+                    <input asp-for="UserName" placeholder="E-Mail: beispiel@email.at" class="form-control"/>
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Registrieren" class="k-button k-primary"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

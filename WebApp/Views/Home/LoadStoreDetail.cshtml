@@ -1,0 +1,108 @@
+﻿@model ExShopViewModel
+
+
+@{
+    var items = Model.AllHours.Split(",").ToList();
+    var sunday = items[0];
+    items.Add(sunday);
+    items.RemoveAt(0);
+}
+
+<div class="modal-header accentColor">
+    <h5 class="modal-title" id="exampleModalLongTitle">@Model.Shop.LocationName</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6">
+            <img id="img" class="productImg" style="background-color: white;" src="@Model.Shop.ImageUrl"/>
+        </div>
+        <div class="col-md-6">
+            <div class="col-sm-12"> &nbsp;</div>
+            <div class="col-sm-12 mb">
+                <a id="aPhonenumber" class="k-button k-primary accentColor" href="tel:+@Model.Shop.PhoneNumber">
+                    <b class="mr">Telefonieren</b>
+                    <span class="sl-icon" style="font-size: 24px;" ;">&#xe948</span>
+                </a>
+            </div>
+            <div class="col-sm-12 mb">
+                <a id="aVideonumber" class="k-button  k-primary accentColor" onclick="openmodal(@Model.Shop.Employees.FirstOrDefault()?.WhatsappContact)" href="#">
+                    <b class="mr">Videoberatung</b>
+                    <span class="sl-icon" style="color: white; font-size: 24px;">&#xe93c</span>
+                </a>
+            </div>
+            <div class="col-sm-12">
+                <b id="openclosedlabel" class="mr">@(Model.Shop.IsOpen ? "Geöffnet" : "Geschlossen")</b>
+                <span id="mydot" class="dot @(Model.Shop.IsOpen ? "dotOpen" : "dotClosed")"></span>
+            </div>
+            <div class="col-sm-12"> &nbsp;</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mt mb">
+            @if (User.FindFirst(ClaimTypes.Role)?.Value == "Shop" || User.FindFirst(ClaimTypes.Role)?.Value == "Admin")
+            {
+                <a id="aAppointment2" href="Account/LoginUser?ReturnUrl=/ChooseAppointment/?storeId=@Model.Shop.Id" type="button" class="k-button k-primary accentColor btn-block">für Termin vereinbaren als Benutzer einloggen</a>
+            }
+            else
+            {
+                <a id="aAppointment" href="ChooseAppointment/?storeId=@Model.Shop.Id" type="button" class="k-button k-primary accentColor btn-block">Termin vereinbaren</a>
+            }
+        </div>
+    </div>
+    <p>
+        <b>
+            @Model.Shop.Address <br/>
+            @Model.Shop.PostCode @Model.Shop.City
+        </b>
+    </p>
+    <p>
+        <b>Webseite:</b>
+        <a id="astoreweb" class="" href="@Model.Shop.WebLink" target="_blank">
+            <span id="storeweb">@Model.Shop.WebLink</span>
+        </a>
+    </p>
+    <p>
+        <b>Öffnungszeiten:</b><br/>
+        @foreach (var item in items)
+        {
+            @if (item == Model.HoursToday)
+            {
+                <span>
+                    <b> @item </b>
+                </span>
+                <br/>
+            }
+            else
+            {
+                <span> @item </span>
+                <br/>
+            }
+        }
+
+    </p>
+    <p>
+        <b>Produkte:</b> <span id="products">@String.Join(", ", Model.Shop.Categories.Select(a => a.Name))</span>
+    </p>
+    <p>
+        <b>Bezahlmöglichkeiten:</b> <span id="payment">@String.Join(", ", Model.Shop.PaymentMethods.Select(a => a.Name))</span>
+    </p>
+
+    <p>
+        <span id="description">@Model.Shop.Description</span>
+    </p>
+</div>
+<div class="modal-footer accentColor">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+</div>
+
+
+<script type="text/javascript">
+    function openmodal(phone) {
+        $("#exampleModalCenterContent").load("/Modal/WhatsApp?style=2&phone=" + phone);
+
+        $("#exampleModalCenter").modal("show");
+    }
+</script>

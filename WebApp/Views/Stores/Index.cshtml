@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Geschäfte";
+}
+<script src="/lib/kendo-ui/js/messages/kendo.messages.de-AT.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.min.js"></script>
+<div class="container-fluid">
+    <h1>Geschäfte</h1>
+
+    <kendo-grid name="TblStoresGrid" height="550" on-change="handleChange" selectable="true">
+        <columns>
+            <column field="Id" title="Einloggen" template="#= linkToShopTemp(Id) #"/>
+            <column field="Activated" title="Freigeschalten" template="#= Activated ? 'Ja' : 'Nein' #"/>
+            <column field="CompanyName" title="Firmenname"/>
+            <column field="Description" title="Was verkaufst du?"/>
+            <column field="EMail" title="E-Mail"/>
+            <column field="Website" title="Website" width="250"/>
+            <column field="Telephonenumber" title="Telefonnummer"/>
+            <column field="CreatedAt" title="Erstellt am" format="{0: dd-MM-yyyy}"/>
+            <column field="PostCode" title="Postleitzahl"/>
+            <column field="City" title="Ort"/>
+            <column field="Address" title="Adresse"/>
+            <column field="Country" title="Land"/>
+            <column field="FederalState" title="Bundesland"/>
+        </columns>
+        <toolbar>
+            <toolbar-button name="excel"/>
+            <toolbar-button name="pdf"/>
+            <toolbar-button name="create" template="tbCreate"/>
+            <toolbar-button name="edit" template="tbEdit"/>
+            <toolbar-button name="delete" template="tbDelete"/>
+        </toolbar>
+        <excel all-pages="true" file-name="Geschäfte.xlsx"/>
+        <groupable enabled="false"/>
+        <sortable enabled="true"/>
+        <pageable button-count="5" refresh="true"/>
+        <filterable enabled="true"/>
+        <datasource type="DataSourceTagHelperType.Ajax" page-size="20">
+            <schema>
+                <model>
+                    <fields>
+                        <field name="Activated" type="string"/>
+                        <field name="CompanyName" type="string"/>
+                        <field name="Description" type="string"/>
+                        <field name="EMail" type="string"/>
+                        <field name="Website" type="string"/>
+                        <field name="Telephonenumber" type="string"/>
+                        <field name="CreatedAt" type="date"/>
+                        <field name="PostCode" type="string"/>
+                        <field name="City" type="string"/>
+                        <field name="Address" type="string"/>
+                        <field name="Country" type="string"/>
+                        <field name="FederalState" type="string"/>
+                    </fields>
+                </model>
+            </schema>
+            <transport>
+                <read url="@Url.Action("TblStores_Read")"/>
+            </transport>
+        </datasource>
+    </kendo-grid>
+</div>
+<script>
+    function linkToShopTemp(data) {
+        return `<a id='tbCreate' href='${location.pathname}/SignInAsShop/?shopId=${data}'><span class='sl-icon'>&#xe932;</span></a>`;
+    };
+
+    function tbCreate(data) {
+        return `<a id='tbCreate' href='${location.pathname}/create' class='k-button'>Hinzufügen</a>`;
+    };
+
+    function tbEdit(data) {
+        return `<a id='tbEdit'>Bearbeiten</a>`;
+    };
+
+    function tbDelete(data) {
+        return `<a id='tbDelete'>Löschen</a>`;
+    };
+
+    function handleChange(args) {
+        let enabled = this.select().length != 0;
+        toolBar.edit.enable(enabled);
+        toolBar.del.enable(enabled);
+        if (enabled) {
+            let selectedId = this.dataItem(this.select()).Id;
+            toolBar.edit.wrapper.attr("href", `${location.pathname}/edit/${selectedId}`);
+            toolBar.del.wrapper.attr("href", `${location.pathname}/delete/${selectedId}`);
+        } else {
+            toolBar.edit.wrapper.attr("href", "#");
+        }
+    };
+
+    let toolBar;
+    $(function() {
+        // references to UI elements
+        toolBar = {
+            create: $("#tbCreate").kendoButton().data("kendoButton"),
+            edit: $("#tbEdit").kendoButton({ enable: false }).data("kendoButton"),
+            del: $("#tbDelete").kendoButton({ enable: false }).data("kendoButton")
+        };
+    });
+</script>

@@ -1,0 +1,206 @@
+﻿@using Exchange
+@model Database.Tables.TableStore
+@{
+    ViewData["Title"] = "Stammdaten";
+}
+
+<div class="container">
+
+    <partial name="_StoreSettingsHeader"/>
+    <script type="text/javascript">
+        $("#storeData").addClass("active");
+    </script>
+
+
+    <div class="tab-border">
+        <h4 class="tab-title">Stammdaten</h4>
+        <hr class="tab-line"/>
+
+        <div class="col-12">
+            <form asp-action="StoreData" id="TableStoreForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id"/>
+                <input type="hidden" asp-for="Activated"/>
+                <input type="hidden" asp-for="CreatedAt"/>
+
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="CompanyName" class="admin-label">Firmenname</label>
+                            <input asp-for="CompanyName" class="k-textbox"/>
+                            <span asp-validation-for="CompanyName" class="text-danger k-invalid-msg" data-for="CompanyName"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="Description" class="admin-label">Was verkauftst du?</label>
+                            <input asp-for="Description" class="k-textbox"/>
+                            <span asp-validation-for="Description" class="text-danger k-invalid-msg" data-for="Description"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="EMail" class="admin-label">E-Mail</label>
+                            <input asp-for="EMail" class="k-textbox"/>
+                            <span asp-validation-for="EMail" class="text-danger k-invalid-msg" data-for="EMail"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="Country" class="admin-label">Land</label>
+                            <input asp-for="Country" class="k-textbox"/>
+                            <span asp-validation-for="Country" class="text-danger k-invalid-msg" data-for="Country"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="FederalState" class="admin-label">Bundesland</label>
+                            <input asp-for="FederalState" class="k-textbox"/>
+                            <span asp-validation-for="FederalState" class="text-danger k-invalid-msg" data-for="FederalState"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="PostCode" class="admin-label">Postleitzahl</label>
+                            <input asp-for="PostCode" class="k-textbox"/>
+                            <span asp-validation-for="PostCode" class="text-danger k-invalid-msg" data-for="PostCode"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="City" class="admin-label">Ort</label>
+                            <input asp-for="City" class="k-textbox"/>
+                            <span asp-validation-for="City" class="text-danger k-invalid-msg" data-for="City"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="Address" class="admin-label">Adresse</label>
+                            <input asp-for="Address" class="k-textbox"/>
+                            <span asp-validation-for="Address" class="text-danger k-invalid-msg" data-for="Address"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="Website" class="admin-label">Website</label>
+                            <input asp-for="Website" class="k-textbox"/>
+                            <span asp-validation-for="Website" class="text-danger k-invalid-msg" data-for="Website"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="Telephonenumber" class="admin-label">Telefonnummer</label>
+                            <input asp-for="Telephonenumber" class="k-textbox"/>
+                            <span asp-validation-for="Telephonenumber" class="text-danger k-invalid-msg" data-for="Telephonenumber"></span>
+                        </div>
+                    </div>
+
+                    @*<div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Password" class="admin-label">Passwort</label>
+                                <input asp-for="Password" class="k-textbox" type="password" />
+                                <span asp-validation-for="Password" class="text-danger k-invalid-msg" data-for="Password"></span>
+                            </div>
+                        </div>*@
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <label class="admin-label">Momentanes Logo:</label>
+                        <img id="img" class="productImg" style="background-color: white; height: 70pt;" src="@Constants.ServiceClientEndPointWithApiPrefix/GetStoreImage/@Model.Id"/>
+                    </div>
+
+                    <div style="float: left; max-width: 110pt;">
+                        <kendo-upload name="logoFile" multiple="false" for="logoFile">
+                            <localization select="Logo ändern" invalid-file-extension="Nur .jpg, .jpeg und .png Dateien sind erlaubt"/>
+                            <validation allowed-extensions='@new string[] { ".jpg",".png",".jpeg" }'/>
+                        </kendo-upload>
+                    </div>
+                </div>
+
+                <div class="form-group text-right">
+                    <kendo-button type="submit" name="confirmEdit" icon="check" class="k-primary">Speichern</kendo-button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <form asp-action="DeleteStore" id="DeleteStoreForm">
+    </form>
+
+    <div class="tab-border mt">
+        <h4 class="tab-title">Geschäft löschen</h4>
+        <hr class="tab-line"/>
+
+        <div class="col-12">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <p>Willst du das Geschäft wirklich löschen?</p>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 mb">
+                    <kendo-button type="button" id="openConfirmDialog" name="openConfirmDialog" class="k-button k-primary accentColor"><span class="k-icon k-i-delete"></span>&nbsp;Geschäft löschen</kendo-button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<form asp-action="DeleteStore" id="DeleteStoreForm">
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header accentColor">
+                <h5 class="modal-title" id="exampleModalLabel">ACHTUNG!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="exampleModalCenterContent" class="modal-body">
+                <p>Möchtest du wirklich das Geschäft unwideruflich löschen? </p>
+            </div>
+            <div class="modal-footer accentColor">
+                <button id="confirmDelete" type="button" class="btn btn-secondary" data-dismiss="modal">Ja</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Nein</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+
+        $('#openConfirmDialog').on('click',
+            function(ev) {
+                console.log("click");
+                $('#exampleModal').modal({
+                    show: true
+                });
+            });
+
+
+        $("#confirmDelete").on('click',
+            function(ev) {
+                $('#DeleteStoreForm').submit();
+            });
+    });
+</script>

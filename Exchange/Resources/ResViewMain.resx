@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BusyContentFinished" xml:space="preserve">
+    <value>Fertig!</value>
+  </data>
+  <data name="BusyContentLoading" xml:space="preserve">
+    <value>Lade {0}%</value>
+  </data>
+  <data name="CmdQuit" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="CmdRequestPermission" xml:space="preserve">
+    <value>Berechtigung erteilen</value>
+  </data>
+  <data name="CmdSendEmail" xml:space="preserve">
+    <value>E-Mail senden</value>
+  </data>
+  <data name="CmdSendEmailTooltip" xml:space="preserve">
+    <value>E-Mail an biss@fotec.at senden</value>
+  </data>
+  <data name="CmdSubMenu" xml:space="preserve">
+    <value>SubMenu</value>
+  </data>
+  <data name="CmdTestIsBusy" xml:space="preserve">
+    <value>BusyTest</value>
+  </data>
+  <data name="LblBasic" xml:space="preserve">
+    <value>Viel Spaß beim Testen der Basis Möglichkeiten!</value>
+  </data>
+  <data name="LbLClose" xml:space="preserve">
+    <value>Geschlossen</value>
+  </data>
+  <data name="LblConsulting" xml:space="preserve">
+    <value>Beratungstermin:</value>
+  </data>
+  <data name="LblConsultingAvailable" xml:space="preserve">
+    <value>Verfügbar</value>
+  </data>
+  <data name="LblDays" xml:space="preserve">
+    <value>Tagen</value>
+  </data>
+  <data name="LblDemoApp" xml:space="preserve">
+    <value>Basis DEMO App der FOTEC Forschungs- und Technologietransfer GMBH des Bereichs Innovative Software Systems (BISS)</value>
+  </data>
+  <data name="LblDueIn" xml:space="preserve">
+    <value>in</value>
+  </data>
+  <data name="LblFotec" xml:space="preserve">
+    <value>Die FOTEC ist das Forschungsunternehmen der Fachhochschule Wiener Neustadt</value>
+  </data>
+  <data name="LblHint" xml:space="preserve">
+    <value>Hinweis</value>
+  </data>
+  <data name="LblHours" xml:space="preserve">
+    <value>Stunden</value>
+  </data>
+  <data name="LblInfo" xml:space="preserve">
+    <value>Infos per E-Mail unter biss@fotec.at</value>
+  </data>
+  <data name="LblMaintenance" xml:space="preserve">
+    <value>Wartung</value>
+  </data>
+  <data name="LblMinutes" xml:space="preserve">
+    <value>Minuten</value>
+  </data>
+  <data name="LblNoAccess" xml:space="preserve">
+    <value>Deine Position kann nicht abgerufen werden. Bitte überprüfe ob du GPS aktiviert hast!</value>
+  </data>
+  <data name="LblNoAccessPermissions" xml:space="preserve">
+    <value>Wenn du GPS aktiviert hast, überprüfe bitte ob die App die notwendigen Berechtigungen hat. Das kannst du auch mit dem Button machen:</value>
+  </data>
+  <data name="LblNoConsulting" xml:space="preserve">
+    <value>Das Geschäft hat derzeit leider keine freien Beratungstermine.</value>
+  </data>
+  <data name="LbLOpen" xml:space="preserve">
+    <value>Geöffnet</value>
+  </data>
+  <data name="LblOpeningHours" xml:space="preserve">
+    <value>Öffnungszeiten:</value>
+  </data>
+  <data name="LblOutsideOpeningHours" xml:space="preserve">
+    <value>Das Geschäft hat derzeit nicht geöffnet. 
+Willst du trotzdem anrufen?</value>
+  </data>
+  <data name="LblPaymentOptions" xml:space="preserve">
+    <value>Bezahlmöglichkeiten:</value>
+  </data>
+  <data name="LblProducts" xml:space="preserve">
+    <value>Kategorie:</value>
+  </data>
+  <data name="LblScheduleAppointment" xml:space="preserve">
+    <value>Termin vereinbaren</value>
+  </data>
+  <data name="LblSoon" xml:space="preserve">
+    <value>gleich</value>
+  </data>
+  <data name="LblUpdateSearch" xml:space="preserve">
+    <value>In diesem Bereich suchen</value>
+  </data>
+  <data name="LblWhatsAppNotAvailable" xml:space="preserve">
+    <value>Das Geschäft ist derzeit nicht für eine Videoberatung verfügbar. 
+Willst du es trotzdem versuchen?
+Hinweis: Das funktioniert nur wenn du WhatsApp installiert hast.</value>
+  </data>
+  <data name="MsgBoxHello" xml:space="preserve">
+    <value>Hallo!</value>
+  </data>
+  <data name="MsgBoxLoadError" xml:space="preserve">
+    <value>Es gab ein Problem beim Abruf der Geschäftsdaten. Bitte versuche es später nocheinmal.</value>
+  </data>
+  <data name="MsgBoxLoadErrorCaption" xml:space="preserve">
+    <value>Problem</value>
+  </data>
+  <data name="MsgBoxOpenWhatsApp" xml:space="preserve">
+    <value>Möchtest du Whatsapp öffnen?
+Hinweis: Das funktioniert nur wenn du WhatsApp installiert hast.</value>
+  </data>
+  <data name="MsgBoxOpenWhatsAppCaption" xml:space="preserve">
+    <value>WhatsApp</value>
+  </data>
+  <data name="MsgBoxWhatsAppContactUnavailable" xml:space="preserve">
+    <value>Das Geschäft ist derzeit nicht für eine Videoberatung verfügbar.</value>
+  </data>
+  <data name="MsgBoxWhatsAppContactUnavailableTitle" xml:space="preserve">
+    <value>Videoberatung nicht verfügbar</value>
+  </data>
+  <data name="PlaceholderSearch" xml:space="preserve">
+    <value>Geschäftsname</value>
+  </data>
+  <data name="Subtitle" xml:space="preserve">
+    <value>FOTEC Demo App</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Info</value>
+  </data>
+</root>

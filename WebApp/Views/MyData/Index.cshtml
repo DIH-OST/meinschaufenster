@@ -1,0 +1,151 @@
+﻿@model Database.Tables.TableUser
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    <hr/>
+
+    <div class="tab-border">
+        <h4 class="tab-title">Meine Daten</h4>
+        <hr class="tab-line"/>
+
+        <div class="col-12">
+            <form asp-action="Edit" id="TableStoreForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id"/>
+                <input type="hidden" asp-for="Password"/>
+                <input type="hidden" asp-for="RestPasswort"/>
+                <input type="hidden" asp-for="PhoneChecked"/>
+                <input type="hidden" asp-for="CreatedAtUtc"/>
+                <input type="hidden" asp-for="IsDemoUser"/>
+                <input type="hidden" asp-for="IsAdmin"/>
+                <input type="hidden" asp-for="Locked"/>
+                <input type="hidden" asp-for="DefaultUserLanguage"/>
+                <input type="hidden" asp-for="PhoneNumber"/>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="Firstname" class="admin-label">Vorname</label>
+                            <input asp-for="Firstname" class="k-textbox"/>
+                            <span asp-validation-for="Firstname" class="text-danger k-invalid-msg" data-for="Firstname"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="Lastname" class="admin-label">Nachname</label>
+                            <input asp-for="Lastname" class="k-textbox"/>
+                            <span asp-validation-for="Lastname" class="text-danger k-invalid-msg" data-for="Lastname"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="Street" class="admin-label">Straße</label>
+                            <input asp-for="Street" class="k-textbox"/>
+                            <span asp-validation-for="Street" class="text-danger k-invalid-msg" data-for="Street"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="PostalCode" class="admin-label">Postleitzahl</label>
+                            <input asp-for="PostalCode" class="k-textbox"/>
+                            <span asp-validation-for="PostalCode" class="text-danger k-invalid-msg" data-for="PostalCode"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="City" class="admin-label">Ort</label>
+                            <input asp-for="City" class="k-textbox"/>
+                            <span asp-validation-for="City" class="text-danger k-invalid-msg" data-for="City"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="PhoneNumber" class="admin-label">Telefonnummer</label>
+                            <input asp-for="PhoneNumber" class="k-textbox k-state-disabled" disabled="true"/>
+                            <span asp-validation-for="PhoneNumber" class="text-danger k-invalid-msg" data-for="PhoneNumber"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group text-right">
+
+                    <kendo-button type="submit" name="confirmEdit" icon="check" class="k-primary accentColor">Speichern</kendo-button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="tab-border mt">
+        <h4 class="tab-title">Account löschen</h4>
+        <hr class="tab-line"/>
+
+        <div class="col-12">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <p>Wollen Sie ihren Account wirklich löschen?</p>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 mb">
+                    <kendo-button type="button" id="openConfirmDialog" name="openConfirmDialog" class="k-button k-primary accentColor"><span class="k-icon k-i-delete"></span>&nbsp;Account löschen</kendo-button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <form asp-action="DeleteUser" id="DeleteUserForm">
+    </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header accentColor">
+                    <h5 class="modal-title" id="exampleModalLabel">ACHTUNG!!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="exampleModalCenterContent" class="modal-body">
+                    <p>Möchtest du wirklich deinen Account unwideruflich löschen? </p>
+                </div>
+                <div class="modal-footer accentColor">
+                    <button id="confirmDelete" type="button" class="btn btn-secondary" data-dismiss="modal">Ja</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nein</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('#openConfirmDialog').on('click',
+            function(ev) {
+                console.log("click");
+                $('#exampleModal').modal({
+                    show: true
+                });
+            });
+
+
+        $("#confirmDelete").on('click',
+            function(ev) {
+                $('#DeleteUserForm').submit();
+            });
+    });
+</script>

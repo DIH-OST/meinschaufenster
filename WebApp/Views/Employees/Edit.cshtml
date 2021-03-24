@@ -1,0 +1,101 @@
+﻿@using Exchange
+@model Database.Tables.TableEmployee
+
+<div class="container">
+
+    <partial name="_StoreSettingsHeader"/>
+    <script type="text/javascript">
+        $("#employees").addClass("active");
+    </script>
+
+
+    <div class="tab-border">
+        <h4 class="tab-title">Mitarbeiter bearbeiten</h4>
+        <hr class="tab-line"/>
+
+        <div class="col-12">
+            <form asp-action="Edit" id="TableEmployeeForm">
+                <div class="row">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id"/>
+                    <input type="hidden" asp-for="StoreId"/>
+                    <input type="hidden" asp-for="Image"/>
+
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Ist Aktiv?</label>
+                            @Html.Kendo().CheckBoxFor(m => m.Active)
+                            <span asp-validation-for="Active" class="text-danger k-invalid-msg" data-for="Active"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label>Vorname</label>
+                            <input asp-for="FirstName" class="k-textbox"/>
+                            <span asp-validation-for="FirstName" class="text-danger k-invalid-msg" data-for="FirstName"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label>Nachname</label>
+                            <input asp-for="LastName" class="k-textbox"/>
+                            <span asp-validation-for="LastName" class="text-danger k-invalid-msg" data-for="LastName"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label>Telefonnummer</label>
+                            <input asp-for="TelephoneNumber" class="k-textbox"/>
+                            <span asp-validation-for="TelephoneNumber" class="text-danger k-invalid-msg" data-for="TelephoneNumber"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Was willst du für den Termin wissen?</label>
+                            <input style="width: 100%" asp-for="DefaultAnnotation" class="k-textbox"/>
+                            <span asp-validation-for="DefaultAnnotation" class="text-danger k-invalid-msg" data-for="DefaultAnnotation"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <label style="float: left;" class="admin-label">Momentanes Profilbild:</label>
+                        <img id="img" class="productImg" style="background-color: white; float: left; height: 70pt; margin-right: 10pt" src="@Constants.ServiceClientEndPointWithApiPrefix/GetStaffImage/@Model.Id"/>
+
+                        <div style="float: left; max-width: 110pt;">
+                            <kendo-upload name="picture" multiple="false" for="logoFile">
+                                <localization select="Profilbild ändern" invalid-file-extension="Nur .jpg, .jpeg und .png Dateien sind erlaubt"/>
+                                <validation allowed-extensions='@new string[] { ".jpg",".png",".jpeg" }'/>
+                            </kendo-upload>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group text-right">
+                    <a asp-action="Employees" asp-controller="Stores" class="k-button" style="margin-right: 10px"><span class="k-icon k-i-cancel"></span>&nbsp;Abbrechen</a>
+                    <kendo-button type="submit" name="confirmEdit" icon="check" class="k-primary">Speichern</kendo-button>
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#TableEmployeeForm").kendoValidator({
+            // You can define your custom rules here:
+            //rules: {}
+        
+        });
+    })
+</script>

@@ -1,0 +1,198 @@
+﻿@model ChooseAppointmentModel
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <h1>Verfügbare Termine für @ViewData["CompanyName"]</h1>
+    @Html.HiddenFor(model => model.StoreId)
+
+    <h4>Datumsauswahl</h4>
+    <kendo-datepicker id="dpFilterFrom" name='datepicker' for="FilterFrom" on-change="pickerChanged" min="DateTime.Today"/>
+
+    <div class="row mt mb">
+        <h4 class="col-sm-12">Verfügbare Termine</h4>
+        <div id="appointmentList" class="col-md-12">
+
+
+        </div>
+
+        <div id="noAppointments" class="col-md-12">
+            <div class="col-md-6 ">
+                <label class="sl-icon" style="font-size: 120px; margin: 20px 20px 20px 120px;">@Html.Raw(string.Format("&#x{0}", "e915"))</label>
+            </div>
+            <div class="col-md-6 font-weight-bold">
+                An diesem Tag gibt es keine freien Termine.<br/>
+                Versuche es doch an einem anderen Tag.
+            </div>
+        </div>
+
+    </div>
+
+    @*<kendo-grid name="TblAppointmentsGrid" height="550" on-change="handleChange" selectable="true">
+        <columns>
+            <column field="StartTime" title="Beginn" format="{0: dd-MM-yyyy HH:mm}" />
+            <column field="EndTime" title="Ende" format="{0: dd-MM-yyyy HH:mm}" />
+        </columns>
+        <toolbar>
+            <toolbar-button name="edit" template="tbEdit" />
+        </toolbar>
+        <pageable button-count="5" refresh="true" />
+        <filterable enabled="false" />
+        <datasource type="DataSourceTagHelperType.Ajax" page-size="20">
+            <schema>
+                <model>
+                    <fields>
+                        <field name="EmployeeName" type="string" />
+                        <field name="PreviewText" type="string" />
+                        <field name="OptionalText" type="string" />
+                        <field name="ShopId" type="number" />
+                        <field name="StartTime" type="date" />
+                        <field name="EndTime" type="date" />
+                        <field name="StaffId" type="number" />
+                    </fields>
+                </model>
+            </schema>
+            <transport>
+                <read url="@Url.Action("TblAppointments_Read")" data="addStoreId" />
+            </transport>
+        </datasource>
+    </kendo-grid>*@
+</div>
+<script>
+    function addStoreId() {
+        var startPicker = $("#dpFilterFrom").data("kendoDatePicker");
+        var sId = $("#StoreId").prop("value");
+
+        return {
+            storeId: sId,
+            filterFromDate: startPicker.value()
+        };
+    }
+
+    function tbEdit(data) {
+        return `<a id='tbEdit'>Buchen</a>`;
+    };
+
+    function pickerChanged() {
+        //var grid = $("#TblAppointmentsGrid").data("kendoGrid");
+        //grid.dataSource.read();
+
+
+        var startPicker = $("#dpFilterFrom").data("kendoDatePicker");
+        var data = {
+            filterFromDate: null,
+            storeId: $("#StoreId").prop("value")
+        };
+
+        if (startPicker == null) {
+            alert("Parameter ungültig!");
+            return;
+        }
+
+        if (startPicker != null) {
+            data.filterFromDate = startPicker.value().toLocaleDateString();
+        }
+
+
+        $.ajax({
+            url: '@Url.Action("TblAppointments_ReadJson", "ChooseAppointment")',
+            data: data,
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+                if (response == null || response.length == 0) {
+                    $('#appointmentList').hide();
+                    $('#noAppointments').show();
+                } else {
+                    $('#appointmentList').html("");
+
+                    for (var i = 0; i < response.length; i++) {
+
+                        var st = new Date(response[i].StartTime);
+                        var mo = st.getMonth() + 1;
+                        var day = st.getDay();
+                        var t = st.getHours().toString();
+                        var m = st.getMinutes().toString();
+                        if (t.length <= 1) {
+                            t = "0" + t;
+                        }
+                        if (m.length <= 1) {
+                            m = "0" + m;
+                        }
+                        if (mo.length <= 1) {
+                            mo = "0" + mo;
+                        }
+                        if (day.length <= 1) {
+                            day = "0" + day;
+                        }
+                        var date = st.getUTCFullYear() +
+                            "-" +
+                            mo +
+                            "-" +
+                            day +
+                            "T" +
+                            + t +
+                            ":" +
+                            m +
+                            ":00";
+                        $('#appointmentList').append("<div class='appointmentButton appointmentClickable' onclick='selectAppointment(" + @Model.StoreId + "," + response[i].Id + ",\"" + response[i].StartTime + "\");'>" + "<div class='row'>" + "<span class='appointmentId' style='visibility:hidden;'> " + response[i].Id + "</span>" + "<div class='col-md-6'>" + "<span style='font-weight:bold'>" + response[i].EmployeeName + "</span><br/>" + "<span>" + response[i].StartTimeTime + " - " + response[i].EndTimeTime + " </span>" + "</div>" + "<div class='col-md-4' style='margin-top:10px;text-align: right;' >" + "<img style='max-height:50px;background-color:white;padding:5px;' src='" + response[i].ImageUrl + "' />" + "</div>" + "</div>" + "</div>");
+                    }
+
+                    $('#appointmentList').show();
+                    $('#noAppointments').hide();
+                }
+            },
+            fail: function(response) {
+                console.log(response);
+            }
+        });
+
+
+    }
+
+    function handleChange(args) {
+        let enabled = this.select().length != 0;
+        var sId = $("#StoreId").prop("value");
+        toolBar.edit.enable(enabled);
+
+        if (enabled) {
+            let selectedId = this.dataItem(this.select()).Id;
+            let selectedDateFrom = kendo.toString(this.dataItem(this.select()).StartTime, "s");
+            toolBar.edit.wrapper.attr("href", `/edit/?id=${selectedId}` + "&storeId=" + sId + "&selectedDate=" + selectedDateFrom);
+        } else {
+            toolBar.edit.wrapper.attr("href", "#");
+        }
+    };
+
+    let toolBar;
+    $(function() {
+        // references to UI elements
+        toolBar = {
+            create: $("#tbCreate").kendoButton().data("kendoButton"),
+            edit: $("#tbEdit").kendoButton({ enable: false }).data("kendoButton"),
+            details: $("#tbDetails").kendoButton({ enable: false }).data("kendoButton"),
+            del: $("#tbDelete").kendoButton({ enable: false }).data("kendoButton")
+        };
+    });
+
+    $(document).ready(function(r) {
+        $('#appointmentList').hide();
+        $('#noAppointments').hide();
+        pickerChanged();
+    });
+
+    $('#appointmentButton').on('click',
+        function(args) {
+            console.log("Args", args);
+        });
+
+    function selectAppointment(storeId, id, startdate) {
+        console.log(storeId, id, startdate);
+
+        var link = "/chooseAppointment/edit/?id=" + id + "&storeId=" + @Model.StoreId + "&selectedDate=" + startdate;
+        window.location.href = link;
+        console.log(link);
+    }
+
+
+</script>

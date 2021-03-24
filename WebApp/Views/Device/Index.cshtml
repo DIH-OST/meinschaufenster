@@ -1,0 +1,37 @@
+﻿@using Exchange.Model
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+
+    <h2>Geräte</h2>
+
+    @(Html.Kendo().Grid<ExExtendedUserDeviceInfo>()
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.DeviceToken);
+            columns.Bound(c => c.IsAppRunning);
+            columns.Bound(c => c.UserName);
+            columns.Bound(c => c.LastDateTimeUtcOnline);
+            columns.Bound(c => c.Plattform);
+            columns.Command(command => { command.Destroy(); });
+            columns.Bound(c => c.DeviceId).ClientTemplate("<a class='btn btn-primary' href='/Message/Send?id=#:DeviceId#'>Push</a> <a class='btn btn-primary' href='/Message/SendSignalR?id=#:UserId#'>SignalR</a>").Title("Nachricht");
+        })
+        .Scrollable()
+        .Groupable()
+        .Sortable()
+        .Pageable(pageable => pageable
+            .Refresh(true)
+            .PageSizes(true)
+            .ButtonCount(5))
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .Model(model => model.Id(p => p.DeviceId))
+            .Read(read => read.Action("Devices_Read", "Device"))
+            .PageSize(20)
+            .Destroy(destroy => destroy.Action("Device_Destroy", "Device"))
+        )
+        )
+</div>

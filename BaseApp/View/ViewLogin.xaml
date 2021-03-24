@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<view:BissContentPage
+    x:Class="BaseApp.View.ViewLogin"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:input="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:me="clr-namespace:BaseApp.MarkupExtensions"
+    xmlns:primitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+    xmlns:view="clr-namespace:Biss.Apps.View;assembly=Biss.Apps"
+    xmlns:viewmodels="clr-namespace:BaseApp.ViewModel"
+    Title="{Binding PageTitle}"
+    d:DataContext="{d:DesignInstance {x:Type viewmodels:ViewModelLogin},
+                                     IsDesignTimeCreatable=True}"
+    x:TypeArguments="viewmodels:ViewModelLogin"
+    ControlTemplate="{StaticResource BackPageTemplate}"
+    IsBusy="{Binding IsBusy}"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout
+            Margin="10,0"
+            BackgroundColor="{StaticResource BackgroundColor}"
+            WidthRequest="{StaticResource DefaultWidthSize}">
+
+
+            <Image
+                Margin="10,50,0,0"
+                Aspect="AspectFit"
+                HeightRequest="300"
+                HorizontalOptions="CenterAndExpand"
+                Source="{Binding Image, Converter={StaticResource ByteToImageConverter}}"
+                VerticalOptions="Center" />
+
+            <primitives:RadBorder
+                Margin="30,50,30,10"
+                BackgroundColor="{StaticResource EntryColor}"
+                CornerRadius="10">
+                <input:RadEntry
+                    CompletedCommand="{Binding CmdContinue}"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Telephone"
+                    Text="{Binding UserPhone, Mode=TwoWay}"
+                    TextColor="{StaticResource DarkMainColor}"
+                    VerticalTextAlignment="Center"
+                    WatermarkText="{me:Translate ResViewLogin.EntryUserPhonePlaceholder}" />
+            </primitives:RadBorder>
+
+            <primitives:RadBorder
+                Margin="30,30,30,5"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="10">
+                <Button Command="{Binding CmdContinue}" Text="{Binding CmdContinue.DisplayName}" />
+            </primitives:RadBorder>
+
+            <primitives:RadBorder
+                Margin="30,0"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="10">
+                <Button
+                    Command="{Binding CmdResendEmailCheck}"
+                    IsVisible="{Binding CmdResendEmailVisible}"
+                    Text="{Binding CmdResendEmailCheck.DisplayName}" />
+            </primitives:RadBorder>
+        </StackLayout>
+    </ScrollView>
+</view:BissContentPage>

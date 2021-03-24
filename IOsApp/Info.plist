@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"[]>
+<plist version="1.0">
+  <dict>
+    <key>UIAppFonts</key>
+    <array>
+      <string>Fonts/DigitalShopping.ttf</string>
+      <string>Fonts/GLYPHICONS.ttf</string>
+      <string>Fonts/Montserrat-Bold.ttf</string>
+      <string>Fonts/Montserrat-Regular.ttf</string>
+      <string>Fonts/SourceSansPro-Regular.ttf</string>
+      <string>Fonts/Montserrat-SemiBold.ttf</string>
+      <string>Fonts/tw-cen-mt.ttf</string>
+      <string>Fonts/StreamLineIcons.ttf</string>
+      <string>Fonts/StreamLineIconsBold.ttf</string>
+      <string>Fonts/StreamLineIconsLight.ttf</string>
+    </array>
+    <key>CFBundleLocalizations</key>
+    <array>
+      <string>en</string>
+      <string>de</string>
+    </array>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>de</string>
+    <key>UIDeviceFamily</key>
+    <array>
+      <integer>1</integer>
+      <integer>2</integer>
+    </array>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+      <string>UIInterfaceOrientationPortrait</string>
+      <string>UIInterfaceOrientationPortraitUpsideDown</string>
+      <string>UIInterfaceOrientationLandscapeLeft</string>
+      <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+      <string>UIInterfaceOrientationPortrait</string>
+      <string>UIInterfaceOrientationPortraitUpsideDown</string>
+      <string>UIInterfaceOrientationLandscapeLeft</string>
+      <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UIUserInterfaceStyle</key>
+    <string>Light</string>
+    <key>MinimumOSVersion</key>
+    <string>9.0</string>
+    <key>CFBundleDisplayName</key>
+    <string>Schau DEV</string>
+    <key>CFBundleIdentifier</key>
+    <string>at.dihost.digitalesschaufenster.dev</string>
+    <key>CFBundleVersion</key>
+    <string>1.0.1</string>
+    <key>CFBundleIconFiles</key>
+    <array />
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.1</string>
+    <key>UIBackgroundModes</key>
+    <array>
+      <string>fetch</string>
+      <string>remote-notification</string>
+    </array>
+    <key>MobileCenterAppDelegateForwarderEnabled</key>
+    <integer>1</integer>
+    <key>NSCameraUsageDescription</key>
+    <string>This app needs access to the camera to take photos.</string>
+    <key>NSCalendarsUsageDescription</key>
+    <string>This app needs access to the calender.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs access to photos.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app needs access to microphone.</string>
+    <key>XSAppIconAssets</key>
+    <string>Media.xcassets/AppIcons.appiconset</string>
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+    <key>UIRequiresFullScreen</key>
+    <true />
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <false />
+    <key>UIStatusBarStyle</key>
+    <string>UIStatusBarStyleLightContent</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>We use your position to show you shops in your area</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We use your position to show you shops in your area</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We use your position to show you shops in your area</string>
+  </dict>
+</plist>

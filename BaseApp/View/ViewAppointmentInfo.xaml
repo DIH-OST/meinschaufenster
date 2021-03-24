@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<view:BissContentPage
+    x:Class="BaseApp.View.ViewAppointmentInfo"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:input="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+    xmlns:markupExtensions="clr-namespace:BaseApp.MarkupExtensions;assembly=BaseApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:primitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+    xmlns:uiModel="clr-namespace:BaseApp.ViewModel.UiModel;assembly=BaseApp"
+    xmlns:view="clr-namespace:Biss.Apps.View;assembly=Biss.Apps"
+    xmlns:viewmodels="clr-namespace:BaseApp.ViewModel"
+    Title="{Binding PageTitle}"
+    d:DataContext="{d:DesignInstance {x:Type viewmodels:ViewModelAppointmentInfo},
+                                     IsDesignTimeCreatable=True}"
+    x:TypeArguments="viewmodels:ViewModelAppointmentInfo"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    ControlTemplate="{StaticResource BackPageTemplate}"
+    IsBusy="{Binding IsBusy}"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+    <Grid
+        BackgroundColor="{StaticResource BackgroundColor}"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="20,20,20,10"
+            FontSize="{StaticResource BigSize}"
+            Text="Termin:"
+            TextColor="{StaticResource MainColor}" />
+        <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="0,20,20,10"
+            FontSize="{StaticResource BigSize}"
+            Text="{Binding Appointment.Hours}"
+            TextColor="{StaticResource MainColor}" />
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="20,10"
+            FontSize="{StaticResource LargeSize}"
+            Text="{markupExtensions:Translate ResViewAppointmentInfo.LblShopAdditionalInfo}"
+            TextColor="{StaticResource MainColor}" />
+
+        <primitives:RadBorder
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="20,0,20,20"
+            Padding="0,0,0,-10"
+            BackgroundColor="{StaticResource EntryColor}"
+            CornerRadius="10">
+            <Editor
+                Margin="5,0,5,0"
+                BackgroundColor="{StaticResource EntryColor}"
+                HorizontalOptions="FillAndExpand"
+                Placeholder="{Binding Placeholder}"
+                PlaceholderColor="{StaticResource LightMainColor}"
+                Text="{Binding InfoText}"
+                TextColor="{StaticResource DarkMainColor}"
+                VerticalOptions="FillAndExpand" />
+        </primitives:RadBorder>
+
+        <primitives:RadBorder
+            Grid.Row="3"
+            Grid.Column="0"
+            Margin="20,0,10,20"
+            BackgroundColor="Transparent"
+            BorderColor="Transparent"
+            CornerRadius="10"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Button
+                BackgroundColor="{StaticResource LightMainColor}"
+                Command="{Binding CmdAbort}"
+                Text="{markupExtensions:Translate ResViewAppointmentInfo.ButtonAbort}" />
+        </primitives:RadBorder>
+
+        <primitives:RadBorder
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="10,0,20,20"
+            BackgroundColor="Transparent"
+            BorderColor="Transparent"
+            CornerRadius="10">
+            <Button
+                BackgroundColor="{StaticResource LightMainColor}"
+                Command="{Binding CmdScheduleAppointment}"
+                Text="{markupExtensions:Translate ResViewAppointmentInfo.ButtonAccept}" />
+        </primitives:RadBorder>
+
+
+    </Grid>
+
+</view:BissContentPage>

@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Command_Back" xml:space="preserve">
+    <value>Zurück</value>
+    <comment>Standardtext für den Zurück Button in den Apps {6}</comment>
+  </data>
+  <data name="Command_Continue" xml:space="preserve">
+    <value>Weiter</value>
+  </data>
+  <data name="Command_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Command_ResendPassword" xml:space="preserve">
+    <value>Neues PW senden</value>
+  </data>
+  <data name="MsgBoxHeader_DataNotSaved" xml:space="preserve">
+    <value>Achtung</value>
+  </data>
+  <data name="MsgBoxHeader_SaveError" xml:space="preserve">
+    <value>Sichern fehlgeschlagen</value>
+    <comment>Header wenn Daten nicht erfolgreich gesichert wurden</comment>
+  </data>
+  <data name="MsgBoxHeader_SaveSuccess" xml:space="preserve">
+    <value>Sichern</value>
+    <comment>Header wenn Daten erfolgreich gesichert wurden</comment>
+  </data>
+  <data name="MsgBoxHeader_ServerRestError" xml:space="preserve">
+    <value>Communication error</value>
+  </data>
+  <data name="MsgBoxNewUpdate" xml:space="preserve">
+    <value>There is new version {0} available. You are using version {1}. 
+Do you want to update the application now?</value>
+  </data>
+  <data name="MsgBoxNewUpdateError" xml:space="preserve">
+    <value>An error occurs updating the application. Please contact your support. 
+Applikation can not be launched!</value>
+  </data>
+  <data name="MsgBoxNewUpdateMandatory" xml:space="preserve">
+    <value>There is new version {0} available. You are using version {1}. This is required update. 
+Press Ok to begin updating the application.</value>
+  </data>
+  <data name="MsgBoxTitleUpdateAvailable" xml:space="preserve">
+    <value>Update Available</value>
+  </data>
+  <data name="MsgBox_CancelText" xml:space="preserve">
+    <value>Abbrechen</value>
+    <comment>Standardtext Messagebox in den Apps (nicht WPF)</comment>
+  </data>
+  <data name="MsgBox_DataNotSaved" xml:space="preserve">
+    <value>Nicht gespeicherte Daten gehen verloren!
+Wollen Sie fortfahren?</value>
+  </data>
+  <data name="MsgBox_HeaderNoInternet" xml:space="preserve">
+    <value>Verbindungsfehler</value>
+  </data>
+  <data name="MsgBox_NewPasswordSent" xml:space="preserve">
+    <value>Ihnen wurde ein Link zum zurücksetzen zugesand. Überprüfen Sie ihren Posteingang.</value>
+  </data>
+  <data name="MsgBox_NoInternet" xml:space="preserve">
+    <value>Bitte überprüfen sie Ihre Internetverbindung.</value>
+  </data>
+  <data name="MsgBox_NoText" xml:space="preserve">
+    <value>Nein</value>
+    <comment>Standardtext Messagebox in den Apps (nicht WPF)</comment>
+  </data>
+  <data name="MsgBox_OkText" xml:space="preserve">
+    <value>Ok</value>
+    <comment>Standardtext Messagebox in den Apps (nicht WPF)</comment>
+  </data>
+  <data name="MsgBox_SaveError" xml:space="preserve">
+    <value>Daten konnten nicht gesichert werden.</value>
+    <comment>Info wenn Daten nicht erfolgreich gesichert wurden</comment>
+  </data>
+  <data name="MsgBox_SaveSuccess" xml:space="preserve">
+    <value>Daten wurden erfolgreich gesichert.</value>
+    <comment>Info wenn Daten erfolgreich gesichert wurden</comment>
+  </data>
+  <data name="MsgBox_ServerFail" xml:space="preserve">
+    <value>Communication with server not possible!</value>
+  </data>
+  <data name="MsgBox_ServerMultiConnectionFail" xml:space="preserve">
+    <value>Zu viele aktive Verbindungen, bitte versuchen Sie es später erneut!</value>
+  </data>
+  <data name="MsgBox_ServerTimeout" xml:space="preserve">
+    <value>Timeout connecting to server!</value>
+  </data>
+  <data name="MsgBox_ServerTokenFail" xml:space="preserve">
+    <value>User account invalid!</value>
+  </data>
+  <data name="MsgBox_YesText" xml:space="preserve">
+    <value>Ja</value>
+    <comment>Standardtext Messagebox in den Apps (nicht WPF)</comment>
+  </data>
+  <data name="MsgBoxCameraAccess" xml:space="preserve">
+    <value>App benötigt Zugriff auf die Kamera. Möchten sie die Einstellungen öffnen?</value>
+  </data>
+  <data name="MsgBoxCameraAccessInfo" xml:space="preserve">
+    <value>App benötigt Zugriff auf die Kamera</value>
+  </data>
+  <data name="MsgBoxCameraAccessInfoTitle" xml:space="preserve">
+    <value>Benötigt Kamera</value>
+  </data>
+  <data name="MsgBoxCameraAccessTitle" xml:space="preserve">
+    <value>Berechtigung</value>
+  </data>
+  <data name="MsgBoxFileAccess" xml:space="preserve">
+    <value>App benötigt Zugriff auf das Dateisystem. Möchten sie die Einstellungen öffnen?</value>
+  </data>
+  <data name="MsgBoxFileAccessInfo" xml:space="preserve">
+    <value>App benötigt Zugriff auf das Dateisystem</value>
+  </data>
+  <data name="MsgBoxFileAccessInfoTitle" xml:space="preserve">
+    <value>Benötigt Dateisystem</value>
+  </data>
+  <data name="MsgBoxFileAccessTitle" xml:space="preserve">
+    <value>Berechtigung</value>
+  </data>
+  <data name="MsgBoxLocationAccess" xml:space="preserve">
+    <value>App benötigt Zugriff auf die Ortungsdienste. Möchten sie die Einstellungen öffnen?</value>
+  </data>
+  <data name="MsgBoxLocationAccessInfo" xml:space="preserve">
+    <value>App benötigt Zugriff auf die Position</value>
+  </data>
+  <data name="MsgBoxLocationAccessInfoTitle" xml:space="preserve">
+    <value>Benötigt Position</value>
+  </data>
+  <data name="MsgBoxLocationAccessTitle" xml:space="preserve">
+    <value>Berechtigung</value>
+  </data>
+  <data name="CmdOpenWhatsAppUrl" xml:space="preserve">
+    <value>https://wa.me/{0}</value>
+    <comment>0 is the telephone number without special characters. eg: +43 664 12345678 -&gt; 4366412345678</comment>
+  </data>
+  <data name="CmdOpenWhatsAppWithMessageUrl" xml:space="preserve">
+    <value>https://wa.me/{0}?text={1}</value>
+    <comment>1 is the message in urlencoded format</comment>
+  </data>
+  <data name="LblReadyForVideoCall" xml:space="preserve">
+    <value>Ich bin für den Videoanruf bereit.</value>
+  </data>
+  <data name="LblClose" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="LblWhatsAppInfo" xml:space="preserve">
+    <value>Die Beratung wird über einen WhatsApp Videoanruf durchgeführt. Sobald du auf weiter drückst, wird WhatsApp geöffnet. Drücke dann bitte auf das Kamerasymbol oben rechts um den Videoanruf zu starten.</value>
+  </data>
+</root>

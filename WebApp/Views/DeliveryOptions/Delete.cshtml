@@ -1,0 +1,40 @@
+﻿@model Database.Tables.TableDeliveryOption
+<script src="/lib/kendo-ui/js/messages/kendo.messages.de-AT.min.js"></script>
+@{
+    ViewData["Title"] = "Löschen";
+}
+<div class="container">
+    <h1>Löschen</h1>
+
+    <h3>Sind Sie sicher, dass Sie diese Liefermöglichkeit löschen wollen?</h3>
+    <div>
+        <h4>Liefermöglichkeiten</h4>
+        <hr/>
+        <div class="row">
+            <div class="col-md-6">
+                <dl>
+                    <dt>
+                        Bezeichnung
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                    <dt>
+                        Symbol ID
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Icon)
+                    </dd>
+                </dl>
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id"/>
+                    <div class="form-group text-right">
+                        <kendo-button type="submit" name="confirmDelete" icon="delete" class="k-button k-error-colored" style="margin-right: 10px">&nbsp;Löschen</kendo-button>
+                        <a asp-action="Index" class="k-button"><span class="k-icon k-i-cancel"></span>&nbsp;Abbrechen</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

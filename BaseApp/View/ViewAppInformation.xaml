@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<view:BissContentPage
+    x:Class="BaseApp.View.ViewAppInformation"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:input="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+    xmlns:markupExtensions="clr-namespace:BaseApp.MarkupExtensions;assembly=BaseApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:primitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+    xmlns:uiModel="clr-namespace:BaseApp.ViewModel.UiModel;assembly=BaseApp"
+    xmlns:view="clr-namespace:Biss.Apps.View;assembly=Biss.Apps"
+    xmlns:view1="clr-namespace:BaseApp.View;assembly=BaseApp"
+    xmlns:viewmodels="clr-namespace:BaseApp.ViewModel"
+    x:Name="ViewAppointmentList"
+    Title="{Binding PageTitle}"
+    d:DataContext="{d:DesignInstance {x:Type viewmodels:ViewModelAppInformation},
+                                     IsDesignTimeCreatable=True}"
+    x:TypeArguments="viewmodels:ViewModelAppInformation"
+    ControlTemplate="{StaticResource MainPageTemplate}"
+    IsBusy="{Binding IsBusy}"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout
+            HorizontalOptions="FillAndExpand"
+            Spacing="0"
+            VerticalOptions="FillAndExpand">
+            <primitives:RadBorder
+                Margin="10,40,10,20"
+                Padding="5"
+                BackgroundColor="{Binding .IsOpaque, Source={x:Reference Image}, Converter={StaticResource ImageBackgroundConverter}}"
+                BorderColor="{StaticResource BackgroundColor}"
+                CornerRadius="10"
+                HeightRequest="200"
+                HorizontalOptions="CenterAndExpand">
+                <Image
+                    x:Name="Image"
+                    Aspect="AspectFit"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand"
+                    Source="{Binding Logo, Mode=TwoWay}"
+                    VerticalOptions="FillAndExpand" />
+            </primitives:RadBorder>
+
+            <Label
+                Margin="20,0"
+                FontSize="{StaticResource LargerSize}"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="{Binding AppText}"
+                TextColor="{StaticResource MainColor}" />
+
+            <Label
+                Margin="30,10"
+                FontSize="{StaticResource LargerSize}"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="{markupExtensions:Translate ResViewAppInformation.LblCustomerVideo}"
+                TextColor="{StaticResource MainColor}"
+                TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CmdOpenYoutube}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+
+            <primitives:RadBorder
+                Margin="20,30,20,0"
+                Padding="5"
+                BackgroundColor="{StaticResource HalfTransparentLightMainColor}"
+                CornerRadius="20"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End">
+
+                <StackLayout Spacing="0">
+
+
+                    <Label
+                        Margin="30,5"
+                        FontSize="{StaticResource LargeSize}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding AppInfo.EMail}"
+                        TextColor="{StaticResource BackgroundColor}"
+                        TextDecorations="Underline">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CmdOpenEmail}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label
+                        Margin="30,5"
+                        FontSize="{StaticResource LargeSize}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="{markupExtensions:Translate ResViewAppInformation.LblAdditionalInfo}"
+                        TextColor="{StaticResource BackgroundColor}"
+                        TextDecorations="Underline"
+                        VerticalOptions="EndAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CmdOpenAdditionalInfo}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label
+                        Margin="30,5,30,10"
+                        FontSize="{StaticResource LargeSize}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="{markupExtensions:Translate ResViewAppInformation.LblEula}"
+                        TextColor="{StaticResource BackgroundColor}"
+                        TextDecorations="Underline"
+                        VerticalOptions="EndAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CmdOpenEula}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label
+                        Margin="30,5"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Version}"
+                        TextColor="{StaticResource BackgroundColor}" />
+
+                </StackLayout>
+            </primitives:RadBorder>
+
+
+        </StackLayout>
+    </ScrollView>
+
+</view:BissContentPage>

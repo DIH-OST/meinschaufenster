@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    x:Class="BaseApp.ViewMaster"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Biss.Apps.ViewModel;assembly=Biss.Apps"
+    xmlns:constants="clr-namespace:Exchange;assembly=Exchange"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
+    xmlns:iOsSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:listView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:BaseApp.ViewModel"
+    Title="{x:Static constants:Constants.MainTitle}"
+    d:DataContext="{d:DesignInstance {x:Type viewmodels:ViewModelMain},
+                                     IsDesignTimeCreatable=True}"
+    iOsSpecific:Page.UseSafeArea="True"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <Image
+            Grid.Row="0"
+            Margin="20,50"
+            Aspect=" AspectFit"
+            HeightRequest="200"
+            HorizontalOptions="Center"
+            Source="{Binding MainMenu.Image, Converter={StaticResource ByteToImageConverter}}"
+            VerticalOptions="Center" />
+
+
+        <!--  Dynamisches Menü  -->
+        <BoxView
+            Grid.Row="1"
+            BackgroundColor="{StaticResource AccentColor}"
+            HeightRequest="0.5"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Start" />
+        <dataControls:RadListView
+            x:Name="ListViewMenuItems"
+            Grid.Row="1"
+            ItemsSource="{Binding MainMenu.CmdAllMenuCommands}"
+            SelectedItem="{Binding MainMenu.SelectedVmCommand, Mode=TwoWay}"
+            SelectionChanged="ListViewMenuItems_OnSelectionChanged"
+            SelectionMode="Single"
+            VerticalOptions="FillAndExpand">
+            <dataControls:RadListView.ItemStyle>
+                <listView:ListViewItemStyle
+                    BackgroundColor="Transparent"
+                    BorderColor="{StaticResource AccentColor}"
+                    BorderLocation="Bottom"
+                    BorderWidth="2" />
+            </dataControls:RadListView.ItemStyle>
+
+            <dataControls:RadListView.SelectedItemStyle>
+                <listView:ListViewItemStyle
+                    BackgroundColor="Transparent"
+                    BorderColor="{StaticResource AccentColor}"
+                    BorderLocation="Bottom"
+                    BorderWidth="2" />
+            </dataControls:RadListView.SelectedItemStyle>
+
+            <dataControls:RadListView.PressedItemStyle>
+                <listView:ListViewItemStyle
+                    BackgroundColor="{StaticResource GrayColor}"
+                    BorderColor="{StaticResource GrayColor}"
+                    BorderLocation="Bottom"
+                    BorderWidth="2" />
+            </dataControls:RadListView.PressedItemStyle>
+
+            <dataControls:RadListView.ItemTemplate>
+                <DataTemplate>
+                    <listView:ListViewTemplateCell>
+                        <listView:ListViewTemplateCell.View>
+                            <Grid>
+                                <Grid
+                                    Padding="15,10"
+                                    d:DataContext="{d:DesignInstance {x:Type base:VmCommand},
+                                                                     IsDesignTimeCreatable=True}"
+                                    BackgroundColor="Transparent"
+                                    HorizontalOptions="FillAndExpand"
+                                    IsEnabled="{Binding CanExecuteProperty}"
+                                    IsVisible="{Binding CanExecuteProperty}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label
+                                        Grid.Column="0"
+                                        FontFamily="{StaticResource StreamLineIcons}"
+                                        FontSize="24"
+                                        Text="{Binding Glyph}"
+                                        TextColor="{StaticResource MainColor}"
+                                        VerticalOptions="FillAndExpand"
+                                        VerticalTextAlignment="Center" />
+                                    <Label
+                                        Grid.Column="1"
+                                        FontSize="24"
+                                        Text="{Binding DisplayName}"
+                                        TextColor="{StaticResource MainColor}"
+                                        VerticalOptions="FillAndExpand"
+                                        VerticalTextAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </listView:ListViewTemplateCell.View>
+                    </listView:ListViewTemplateCell>
+                </DataTemplate>
+
+            </dataControls:RadListView.ItemTemplate>
+        </dataControls:RadListView>
+    </Grid>
+</ContentPage>

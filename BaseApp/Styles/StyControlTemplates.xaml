@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ResourceDictionary
+    x:Class="BaseApp.Styles.StyControlTemplates"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--#region RadHeaderControlTemplate-->
+
+    <ControlTemplate x:Key="RadHeaderControlTemplate">
+        <Grid BackgroundColor="Transparent">
+            <BoxView
+                BackgroundColor="{StaticResource AccentColor}"
+                HeightRequest="2"
+                IsVisible="{TemplateBinding IsSelected}"
+                VerticalOptions="Start" />
+
+            <Label
+                Margin="0,2,0,6"
+                HorizontalTextAlignment="Center"
+                Text="{TemplateBinding Text}"
+                TextColor="{TemplateBinding IsSelected,
+                                            Converter={StaticResource BooleanHeaderColorConverter}}" />
+        </Grid>
+    </ControlTemplate>
+    <!--#endregion-->
+
+    <!--#region BissRadHeaderTemplate (Glyph in Header) Do not use with normal header, propable crash...-->
+
+
+    <ControlTemplate x:Key="BissRadHeaderControlTemplate">
+        <Grid BackgroundColor="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <BoxView
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                BackgroundColor="{StaticResource AccentColor}"
+                HeightRequest="2"
+                IsVisible="{TemplateBinding IsSelected}"
+                VerticalOptions="Start" />
+
+            <Label
+                Grid.Column="1"
+                FontFamily="{StaticResource StreamLineIcons}"
+                FontSize="{StaticResource LittleSize}"
+                HorizontalTextAlignment="End"
+                Text="{TemplateBinding Glyph}"
+                TextColor="{TemplateBinding IsSelected,
+                                            Converter={StaticResource BooleanHeaderColorConverter}}"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Column="2"
+                Margin="0,2,0,6"
+                HorizontalTextAlignment="Start"
+                Text="{TemplateBinding Text}"
+                TextColor="{TemplateBinding IsSelected,
+                                            Converter={StaticResource BooleanHeaderColorConverter}}" />
+        </Grid>
+    </ControlTemplate>
+    <!--#endregion-->
+
+
+</ResourceDictionary>

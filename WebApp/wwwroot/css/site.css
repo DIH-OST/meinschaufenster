@@ -1,0 +1,209 @@
+﻿@font-face {
+    font-display: block;
+    font-family: 'DigitalShopping';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/DigitalShopping.eot?453ds');
+    src: url('../fonts/DigitalShopping.eot?453ds#iefix') format('embedded-opentype'), url('../fonts/DigitalShopping.ttf?453ds') format('truetype'), url('../fonts/DigitalShopping.woff?453ds') format('woff'), url('../fonts/DigitalShopping.svg?453ds#DigitalShopping') format('svg');
+}
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+
+body { padding-bottom: 20px; }
+
+/* Wrapping element */
+
+/* Set some basic padding to keep content from hitting the edges */
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+
+.carousel-inner .item img[src$=".svg"] { width: 100%; }
+
+/* QR code generator */
+
+#qrCode { margin: 15px; }
+
+/* Hide/rearrange for smaller screens */
+
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption { display: none; }
+
+    #pac-input { margin: 0 !important; }
+}
+
+#grid { height: auto; }
+
+.store-img {
+    max-width: 100%;
+    width: 200px;
+}
+
+.store-img-apple { padding: 12px 14px; }
+
+.nav-link { color: #fff !important; }
+
+.nav-link:hover {
+    background-color: white !important;
+    color: #EF7D00 !important;
+}
+
+.nav-link.nav-link-reversed {
+    background-color: #E1AE23 !important;
+    border-radius: 5px;
+    color: white !important;
+}
+
+.nav-link.nav-link-reversed.active {
+    background-color: #de912a !important;
+    color: white !important;
+}
+
+.nav-link.nav-link-reversed:hover {
+    background-color: #de912a !important;
+    color: #303030 !important;
+}
+
+.nav-link.nav-link-reversed.disabled {
+    background-color: lightgray !important;
+    color: #303030 !important;
+}
+
+.mr { margin-right: 10px; }
+
+.mb { margin-bottom: 10px; }
+
+.mt { margin-top: 10px; }
+
+.admin-label { width: 85pt; }
+
+.k-primary {
+    background-color: #E1AE23 !important;
+    border-color: #E1AE23 !important;
+    color: #fff;
+}
+
+.k-primary.k-state-hover, .k-primary:hover {
+    background-color: #de912a !important;
+    border-color: #de912a !important;
+    color: #000;
+}
+
+.k-primary.reversed {
+    background-color: white;
+    border-color: white;
+    color: #E1AE23;
+}
+
+.k-primary.reversed.k-state-hover, .reversed.k-primary:hover {
+    background-color: lightgrey !important;
+    border-color: lightgrey !important;
+    color: #EF7D00;
+}
+
+.accentColor {
+    background-color: #EF7D00 !important;
+    color: white !important;
+}
+
+.tab-border {
+    border: 1px solid #E1AE23;
+    border-radius: 3px;
+}
+
+.tab-title {
+    margin: 0;
+    padding: 10px;
+}
+
+.tab-line {
+    border-color: #E1AE23;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.sl-icon {
+    -moz-osx-font-smoothing: grayscale;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'DigitalShopping' !important;
+    font-size: 28px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    speak: none;
+    text-transform: none;
+}
+
+.bg-orange { background: #EF7D00 !important; }
+
+#store-search-input {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.contMarginTop { margin-top: 20px; }
+
+.dot {
+    border-radius: 50%;
+    display: inline-block;
+    height: 25px;
+    position: relative;
+    top: 5px;
+    width: 25px;
+}
+
+.dotClosed {
+    /*background-color: #FFDC143C !important;*/
+    background-color: red !important;
+}
+
+.dotOpen {
+    /*background-color: #FF228B22 !important;*/
+    background-color: green !important;
+}
+
+.storeSiteLink {
+    background-color: transparent;
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.storeSiteLink:hover {
+    background-color: transparent;
+    color: #6c757d;
+    text-decoration: underline;
+}
+
+
+.appointmentButton {
+    background: #EF7D00;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.appointmentButtonLink { color: white; }
+
+.appointmentButtonLink:hover {
+    color: white;
+    /*text-decoration:underline;*/
+}
+
+.appointmentClickable:hover { cursor: pointer; }

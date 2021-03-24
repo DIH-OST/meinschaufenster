@@ -1,0 +1,23 @@
+﻿@model Database.Tables.TableStore
+
+@{
+    ViewData["Title"] = "Löschen";
+}
+<script src="/lib/kendo-ui/js/messages/kendo.messages.de-AT.min.js"></script>
+<div class="container">
+    <h1>Geschäft dauerhaft löschen</h1>
+
+    <h3>Bist du dir sicher, dass du dein Geschäft löschen willst?</h3>
+    <div>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id"/>
+            <div class="form-group text-right">
+                <kendo-button type="submit" name="confirmDelete" icon="delete" class="k-button k-error-colored" style="margin-right: 10px">&nbsp;Löschen</kendo-button>
+                <a asp-action="Index" class="k-button"><span class="k-icon k-i-cancel"></span>&nbsp;Abbrechen</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>

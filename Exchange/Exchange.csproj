@@ -1,0 +1,223 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <NeutralLanguage>de</NeutralLanguage>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resources\Images\AppIconTransparent.png" />
+    <None Remove="Resources\Images\DefaultAvatar.png" />
+    <None Remove="Resources\Images\DefaultUserImage.png" />
+    <None Remove="Resources\Images\Logo.png" />
+    <None Remove="Resources\Images\Logo2.png" />
+    <None Remove="Resources\Images\Logo3.png" />
+    <None Remove="Resources\Images\Pin.png" />
+    <None Remove="Resources\Images\SplashScreenHorizontal.png" />
+    <None Remove="Resources\Images\SplashScreenVertical.png" />
+    <None Remove="Resources\Images\WhatsAppAnleitung.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\AppIconTransparent.png" />
+    <EmbeddedResource Include="Resources\Images\DefaultAvatar.png" />
+    <EmbeddedResource Include="Resources\Images\DefaultUserImage.png" />
+    <EmbeddedResource Include="Resources\Images\Logo.png" />
+    <EmbeddedResource Include="Resources\Images\Pin.png" />
+    <EmbeddedResource Include="Resources\Images\SplashScreenVertical.png" />
+    <EmbeddedResource Include="Resources\Images\WhatsAppAnleitung.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Biss" Version="4.2.1" />
+    <PackageReference Include="Biss.Apps" Version="5.0.13" />
+    <PackageReference Include="Biss.Apps.Components.AppCenter" Version="5.0.13" />
+    <PackageReference Include="Biss.Apps.Components.RestAccess" Version="5.0.13" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.1.3" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\SplashScreenHorizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\ResView.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResView.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewAppInformation.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewAppInformation.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewAppointmentInfo.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewAppointmentInfo.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewCreateAppointment.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewCreateAppointment.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewDeveloperInfo.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewDeveloperInfo.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewEditPassword.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewEditPassword.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewEditUser.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewEditUser.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewLogin.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewLogin.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewMain.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewMain.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewMenu.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewMenu.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewPassword.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewPassword.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewRegistration.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewRegistration.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewSettings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewSettings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewSplash.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewSplash.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewUser.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewUser.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResWebCommon.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResWebCommon.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ResViewAppointments.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResViewAppointments.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\ResView.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResView.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewAppInformation.resx">
+      <LastGenOutput>ResViewAppInformation.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewAppointmentInfo.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewAppointmentInfo.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewCreateAppointment.en.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewCreateAppointment.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewCreateAppointment.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewDeveloperInfo.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewDeveloperInfo.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewEditPassword.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewEditPassword.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewEditUser.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewEditUser.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewLogin.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewLogin.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewMain.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewMain.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewMenu.en.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewMenu.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewMenu.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewPassword.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewPassword.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewRegistration.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewRegistration.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewSettings.en.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewSettings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewSettings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewSplash.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewSplash.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewUser.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewUser.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\ResWebCommon.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResWebCommon.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewAppointments.en.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResViewAppointments.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResViewAppointments.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Fonts\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <SsdtUnitTestVersion>3.1</SsdtUnitTestVersion>
+  </PropertyGroup>
+</Project>

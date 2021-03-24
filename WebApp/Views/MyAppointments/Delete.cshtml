@@ -1,0 +1,41 @@
+﻿@model Database.Tables.TableAppointment
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<div class="container">
+    <h1>Stornieren</h1>
+
+    <h3>Bist du dir sicher, dass du diesen Termin absagen willst?</h3>
+
+    <div>
+        <h4>Termin</h4>
+        <hr/>
+        <div class="row">
+            <div class="col-md-6">
+                <dl>
+                    <dt>
+                        <label>Von</label>
+                    </dt>
+                    <dd>
+                        @Convert.ToDateTime(Model.ValidFrom).ToString("dd.MM.yyyy HH:mm")
+                    </dd>
+                    <dt>
+                        <label>Bis</label>
+                    </dt>
+                    <dd>
+                        @Convert.ToDateTime(Model.ValidTo).ToString("dd.MM.yyyy HH:mm")
+                    </dd>
+                </dl>
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id"/>
+                    <div class="form-group text-right">
+                        <kendo-button type="submit" name="confirmDelete" icon="delete" class="k-button k-error-colored" style="margin-right: 10px">&nbsp;Stornieren</kendo-button>
+                        <a asp-action="Index" class="k-button"><span class="k-icon k-i-cancel"></span>&nbsp;Abbrechen</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

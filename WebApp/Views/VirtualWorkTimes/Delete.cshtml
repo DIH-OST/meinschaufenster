@@ -1,0 +1,58 @@
+﻿@model Database.Tables.TableVirtualWorkTime
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+
+<partial name="_StoreSettingsHeader"/>
+<script type="text/javascript">
+    $("#employees").addClass("active");
+</script>
+
+<div class="tab-border">
+<h4 class="tab-title">Wollen Sie wirklich folgende virtuelle Arbeitszeit löschen?</h4>
+<hr class="tab-line"/>
+
+<div class="col-12">
+    <div class="row">
+        <div class="col-md-6">
+            <dl>
+                <dt>
+                    <label>Wochentag</label>
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Weekday)
+                </dd>
+                <dt>
+                    <label>Zeit von</label>
+                </dt>
+                <dd>
+                    @Model.TimeFrom
+                </dd>
+                <dt>
+                    <label>Zeit bis</label>
+                </dt>
+                <dd>
+                    @Model.TimeTo
+                </dd>
+                <dt>
+                    <label>TimeSlot</label>
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.TimeSlot)
+                </dd>
+            </dl>
+            @Html.HiddenFor(model => model.EmployeeId)
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id"/>
+                <div class="form-group text-right">
+                    <kendo-button type="submit" name="confirmDelete" icon="delete" class="k-button k-error-colored" style="margin-right: 10px">&nbsp;Löschen</kendo-button>
+                    <a asp-action="Employees" asp-controller="Stores" class="k-button"><span class="k-icon k-i-cancel"></span>&nbsp;Abbrechen</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

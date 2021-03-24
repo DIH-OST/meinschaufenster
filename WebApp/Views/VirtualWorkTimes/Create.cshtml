@@ -1,0 +1,94 @@
+﻿@model Database.Tables.TableVirtualWorkTime
+
+
+@{
+    List<SelectListItem> values = new List<SelectListItem>();
+
+    foreach (var value in Enum.GetValues(typeof(DayOfWeek)))
+    {
+        var text = ((DayOfWeek) value).ToString();
+        switch (((DayOfWeek) value))
+        {
+            case DayOfWeek.Sunday:
+                text = "Sonntag";
+                break;
+            case DayOfWeek.Monday:
+                text = "Montag";
+                break;
+            case DayOfWeek.Tuesday:
+                text = "Dienstag";
+                break;
+            case DayOfWeek.Wednesday:
+                text = "Mittwoch";
+                break;
+            case DayOfWeek.Thursday:
+                text = "Donnerstag";
+                break;
+            case DayOfWeek.Friday:
+                text = "Freitag";
+                break;
+            case DayOfWeek.Saturday:
+                text = "Samstag";
+                break;
+        }
+
+        values.Add(new SelectListItem
+                   {
+                       Text = text,
+                       Value = ((int) value).ToString()
+                   });
+    }
+}
+
+<div class="container">
+
+    <partial name="_StoreSettingsHeader"/>
+    <script type="text/javascript">
+        $("#openingHours").addClass("active");
+    </script>
+
+    <div class="tab-border">
+        <h4 class="tab-title">Virtuelle Arbeitszeit hinzufügen</h4>
+        <hr class="tab-line"/>
+
+        <div class="col-12">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form asp-action="Create" id="TableVirtualWorkTimeForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="EmployeeId"/>
+                        <div class="form-group">
+                            <label>Wochentag</label>
+                            <select asp-for="Weekday" asp-items="@values"></select>
+                            <span asp-validation-for=" Weekday" class="text-danger k-invalid-msg" data-for="Weekday" style="width: 100%">
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>Zeit von</label>
+                            <kendo-timepicker culture="de-AT" for="TimeFrom" format="HH:mm" style="width: 100%"/>
+                            <span asp-validation-for="TimeFrom" class="text-danger k-invalid-msg" data-for="TimeFrom"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Zeit bis</label>
+                            <kendo-timepicker culture="de-AT" for="TimeTo" format="HH:mm" style="width: 100%"/>
+                            <span asp-validation-for="TimeTo" class="text-danger k-invalid-msg" data-for="TimeTo"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>TimeSlot in Minuten</label>
+                            <kendo-numerictextbox for="TimeSlot" format="{0:#}" style="width: 100%;"/>
+                            <span asp-validation-for="TimeSlot" class="text-danger k-invalid-msg" data-for="TimeSlot"></span>
+                        </div>
+
+                        <div class="form-group text-right">
+                            <a asp-action="Employees" asp-controller="Stores" class="k-button" style="margin-right: 10px;"><span class="k-icon k-i-cancel"></span>&nbsp;Abbrechen</a>
+                            <kendo-button type="submit" name="confirmCreate" icon="check" class="k-primary">Create</kendo-button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

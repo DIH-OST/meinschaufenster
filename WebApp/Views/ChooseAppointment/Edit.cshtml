@@ -1,0 +1,46 @@
+﻿@model AppointmentEntryViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="container">
+    <h1>Termin buchen</h1>
+
+    <h4>Bitte überprüfe die Daten und gib noch einen Hinweis ein</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit" id="TableAppointmentForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id"/>
+                <input type="hidden" asp-for="ShopId"/>
+                <input type="hidden" asp-for="StaffId"/>
+                <input type="hidden" asp-for="StartTime"/>
+                <input type="hidden" asp-for="EndTime"/>
+
+                <div class="form-group">
+                    <label>Von</label>
+                    @Model.StartTime.AddHours(2).ToString("dd.MM.yyyy HH:mm")
+                </div>
+                <div class="form-group">
+                    <label>Bis</label>
+                    @Convert.ToDateTime(Model.EndTime.AddHours(2), new CultureInfo("de-DE")).ToString("dd.MM.yyyy HH:mm")
+                </div>
+
+                <div class="form-group">
+                    <label>Infos an den Verkäufer</label>
+                    <br/>
+                    <textarea asp-for="OptionalText" class="form-control" placeholder="@Model.PreviewText"></textarea>
+                    <span asp-validation-for="OptionalText" class="text-danger k-invalid-msg" data-for="OptionalText"></span>
+                </div>
+
+                <div class="form-group text-right">
+                    <a asp-route-storeId="@Model.ShopId" asp-action="Index" class="k-button" style="margin-right: 10px"><span class="k-icon k-i-cancel"></span>&nbsp;Abbrechen</a>
+                    <kendo-button type="submit" name="confirmEdit" icon="check" class="k-primary">Termin buchen</kendo-button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>

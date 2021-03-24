@@ -1,0 +1,103 @@
+﻿@model Database.Tables.TableOpeningHours
+
+@{
+    List<SelectListItem> values = new List<SelectListItem>();
+
+    foreach (var value in Enum.GetValues(typeof(DayOfWeek)))
+    {
+        var text = ((DayOfWeek) value).ToString();
+        switch (((DayOfWeek) value))
+        {
+            case DayOfWeek.Sunday:
+                text = "Sonntag";
+                break;
+            case DayOfWeek.Monday:
+                text = "Montag";
+                break;
+            case DayOfWeek.Tuesday:
+                text = "Dienstag";
+                break;
+            case DayOfWeek.Wednesday:
+                text = "Mittwoch";
+                break;
+            case DayOfWeek.Thursday:
+                text = "Donnerstag";
+                break;
+            case DayOfWeek.Friday:
+                text = "Freitag";
+                break;
+            case DayOfWeek.Saturday:
+                text = "Samstag";
+                break;
+        }
+
+        values.Add(new SelectListItem
+                   {
+                       Text = text,
+                       Value = ((int) value).ToString()
+                   });
+    }
+}
+
+
+<div class="container">
+
+<partial name="_StoreSettingsHeader"/>
+<script type="text/javascript">
+    $("#openingHours").addClass("active");
+</script>
+
+<div class="tab-border">
+    <h4 class="tab-title">Virtuelle Öffnungszeiten bearbeiten</h4>
+    <hr class="tab-line"/>
+
+    <div class="col-12">
+
+        <div class="row">
+            <div class="col-md-6">
+                <form asp-action="Edit" id="TableOpeningHoursForm">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <input type="hidden" asp-for="Id"/>
+                    <input type="hidden" asp-for="StoreId"/>
+                    <input type="hidden" asp-for="TimeFrom"/>
+                    <input type="hidden" asp-for="TimeTo"/>
+                    <div class="form-group">
+                        <label>Wochentag</label>
+                        <select asp-for="Weekday" asp-items="@values"></select>
+                        <span asp-validation-for=" Weekday" class="text-danger k-invalid-msg" data-for="Weekday">
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>Zeit von</label>
+                        <kendo-timepicker culture="de-AT" for="TimeFromLocal" format="HH:mm" style="width: 100%"/>
+                        <span asp-validation-for="TimeFromLocal" class="text-danger k-invalid-msg" data-for="TimeFromLocal"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Zeit bis</label>
+                        <kendo-timepicker culture="de-AT" for="TimeToLocal" format="HH:mm" style="width: 100%"/>
+                        <span asp-validation-for="TimeToLocal" class="text-danger k-invalid-msg" data-for="TimeToLocal"></span>
+                    </div>
+                    <div class="form-group text-right">
+                        <a asp-action="OpeningHours" asp-controller="Stores" class="k-button" style="margin-right: 10px"><span class="k-icon k-i-cancel"></span>&nbsp;Abbrechen</a>
+                        <kendo-button type="submit" name="confirmEdit" icon="check" class="k-primary">Speichern</kendo-button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        $("#TableOpeningHoursForm").kendoValidator({
+            // You can define your custom rules here:
+            //rules: {}
+        
+        });
+    })
+</script>

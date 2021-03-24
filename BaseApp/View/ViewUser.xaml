@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<view:BissContentPage
+    x:Class="BaseApp.View.ViewUser"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:input="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+    xmlns:markupExtensions="clr-namespace:BaseApp.MarkupExtensions;assembly=BaseApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:primitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+    xmlns:view="clr-namespace:Biss.Apps.View;assembly=Biss.Apps"
+    xmlns:viewmodels="clr-namespace:BaseApp.ViewModel"
+    Title=""
+    d:DataContext="{d:DesignInstance {x:Type viewmodels:ViewModelUser},
+                                     IsDesignTimeCreatable=True}"
+    x:TypeArguments="viewmodels:ViewModelUser"
+    ControlTemplate="{StaticResource MainPageTemplate}"
+    IsBusy="{Binding IsBusy}"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout
+            Margin="10,0"
+            Spacing="0"
+            WidthRequest="{StaticResource DefaultWidthSize}">
+
+            <Label
+                Margin="30,30,30,10"
+                FontSize="{StaticResource LargerSize}"
+                IsVisible="{Binding FromRegistration}"
+                Style="{StaticResource PageTitleStyle}"
+                Text="Ihre hinterlegten Daten:"
+                TextColor="{StaticResource MainColor}" />
+
+            <primitives:RadBorder
+                Margin="{StaticResource EntryBorderMargin}"
+                BackgroundColor="{StaticResource EntryColor}"
+                CornerRadius="10">
+                <input:RadEntry
+                    Margin="5,0"
+                    Text="{Binding Data.FirstName, Mode=TwoWay}"
+                    TextColor="{StaticResource DarkMainColor}"
+                    WatermarkText="{markupExtensions:Translate ResViewEditUser.LblFirstName}" />
+            </primitives:RadBorder>
+
+            <primitives:RadBorder
+                Margin="{StaticResource EntryBorderMargin}"
+                BackgroundColor="{StaticResource EntryColor}"
+                CornerRadius="10">
+                <input:RadEntry
+                    Margin="5,0"
+                    Text="{Binding Data.LastName, Mode=TwoWay}"
+                    TextColor="{StaticResource DarkMainColor}"
+                    WatermarkText="{markupExtensions:Translate ResViewEditUser.LblLastName}" />
+            </primitives:RadBorder>
+
+            <primitives:RadBorder
+                Margin="{StaticResource EntryBorderMargin}"
+                BackgroundColor="{StaticResource EntryColor}"
+                CornerRadius="10">
+                <input:RadEntry
+                    Margin="5,0"
+                    Text="{Binding Data.Street, Mode=TwoWay}"
+                    TextColor="{StaticResource DarkMainColor}"
+                    WatermarkText="{markupExtensions:Translate ResViewEditUser.LblStreet}" />
+            </primitives:RadBorder>
+
+            <primitives:RadBorder
+                Margin="{StaticResource EntryBorderMargin}"
+                BackgroundColor="{StaticResource EntryColor}"
+                CornerRadius="10">
+                <input:RadEntry
+                    Margin="5,0"
+                    Keyboard="Numeric"
+                    Text="{Binding Data.PostalCode, Mode=TwoWay}"
+                    TextColor="{StaticResource DarkMainColor}"
+                    WatermarkText="{markupExtensions:Translate ResViewEditUser.LblPostalCode}" />
+            </primitives:RadBorder>
+
+            <primitives:RadBorder
+                Margin="{StaticResource EntryBorderMargin}"
+                BackgroundColor="{StaticResource EntryColor}"
+                CornerRadius="10">
+                <input:RadEntry
+                    Margin="5,0"
+                    Text="{Binding Data.City, Mode=TwoWay}"
+                    TextColor="{StaticResource DarkMainColor}"
+                    WatermarkText="{markupExtensions:Translate ResViewEditUser.LblCity}" />
+            </primitives:RadBorder>
+
+            <primitives:RadBorder
+                Margin="30,20,30,5"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="10">
+                <Button Command="{Binding CmdChangeUserData}" Text="{Binding CmdChangeUserData.DisplayName}" />
+            </primitives:RadBorder>
+
+            <primitives:RadBorder
+                Margin="30,0"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="10">
+                <Button Command="{Binding CmdLogout}" Text="{Binding CmdLogout.DisplayName}" />
+            </primitives:RadBorder>
+
+            <primitives:RadBorder
+                Margin="30,30,30,10"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="10">
+                <Button Command="{Binding CmdDeleteAccount}" Text="{Binding CmdDeleteAccount.DisplayName}" />
+            </primitives:RadBorder>
+
+        </StackLayout>
+    </ScrollView>
+</view:BissContentPage>

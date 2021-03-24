@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    x:Class="BaseApp.ViewSplash"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:me="clr-namespace:BaseApp.MarkupExtensions"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid
+            BackgroundColor="{StaticResource WhiteColor}"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="200" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid
+                Grid.Row="1"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+                <Image
+                    x:Name="SplashImage"
+                    Aspect="AspectFit"
+                    BackgroundColor="Transparent" />
+            </Grid>
+
+            <Label
+                Grid.Row="3"
+                Grid.Column="0"
+                Margin="0,200,0,0"
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource BusyTextStyle}"
+                Text="{me:Translate ResViewSplash.Loading}"
+                TextColor="{StaticResource MainColor}"
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

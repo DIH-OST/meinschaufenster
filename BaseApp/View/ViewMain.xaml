@@ -1,0 +1,667 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<view:BissContentPage
+    x:Class="BaseApp.View.ViewMain"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:me="clr-namespace:BaseApp.MarkupExtensions"
+    xmlns:model="clr-namespace:Exchange.Model;assembly=Exchange"
+    xmlns:primitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+    xmlns:uiModel="clr-namespace:BaseApp.ViewModel.UiModel;assembly=BaseApp"
+    xmlns:view="clr-namespace:Biss.Apps.View;assembly=Biss.Apps"
+    xmlns:viewmodels="clr-namespace:BaseApp.ViewModel"
+    x:Name="MyViewMain"
+    Title=""
+    d:DataContext="{d:DesignInstance {x:Type viewmodels:ViewModelMain},
+                                     IsDesignTimeCreatable=True}"
+    x:TypeArguments="viewmodels:ViewModelMain"
+    ControlTemplate="{StaticResource MapPageTemplate}"
+    IsBusy="{Binding IsBusy}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <Grid BackgroundColor="{StaticResource BackgroundColor}" WidthRequest="{StaticResource DefaultWidthSize}">
+
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            BackgroundColor="Transparent"
+            HorizontalOptions="FillAndExpand"
+            RowSpacing="0"
+            VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="08" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="300" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--#region  Map-->
+            <Grid
+                x:Name="MapGrid"
+                Grid.Row="0"
+                Grid.RowSpan="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand" />
+
+            <!--#endregion-->
+
+            <!--#region  My Position Button-->
+            <primitives:RadBorder
+                Grid.Row="4"
+                Grid.Column="0"
+                Margin="10,20,0,30"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="10"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding NoAccess, Converter={StaticResource InvertedBooleanConverter}, Mode=TwoWay}"
+                VerticalOptions="End">
+                <Grid
+                    BackgroundColor="Transparent"
+                    HeightRequest="55"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    WidthRequest="55">
+                    <BoxView Opacity="0.8" Color="{StaticResource LightMainColor}" />
+                    <Label
+                        BackgroundColor="Transparent"
+                        FontFamily="{StaticResource StreamLineIcons}"
+                        FontSize="{StaticResource LargeSize}"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding CmdZoomMyPosition.Glyph, Mode=TwoWay}"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CmdZoomMyPosition}" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </primitives:RadBorder>
+            <!--#endregion-->
+
+            <!--#region Update Search Button-->
+            <primitives:RadBorder
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="10,20,10,0"
+                BorderColor="Transparent"
+                CornerRadius="10"
+                HorizontalOptions="Center"
+                IsVisible="{Binding UpdateSearchAvailable}"
+                VerticalOptions="FillAndExpand"
+                WidthRequest="200">
+                <Grid
+                    BackgroundColor="Transparent"
+                    HeightRequest="40"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start">
+                    <BoxView
+                        HorizontalOptions="FillAndExpand"
+                        Opacity="0.7"
+                        Color="{StaticResource LightMainColor}" />
+                    <Label
+                        BackgroundColor="Transparent"
+                        FontFamily="{StaticResource StreamLineIcons}"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{me:Translate ResViewMain.LblUpdateSearch}"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CmdUpdateShops}" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </primitives:RadBorder>
+            <!--#endregion-->
+
+            <!--#region  Header-->
+            <primitives:RadBorder
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="10,2,10,0"
+                BackgroundColor="{StaticResource LightMainColor}"
+                BorderColor="Transparent"
+                CornerRadius="10"
+                HorizontalOptions="FillAndExpand"
+                Opacity="1"
+                VerticalOptions="FillAndExpand">
+                <Grid BackgroundColor="Transparent" ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--#region Suche-->
+                    <primitives:RadBorder
+                        x:Name="SearchBorder"
+                        Grid.Column="1"
+                        Margin="0,3,-5,3"
+                        BackgroundColor="{StaticResource MainColor}"
+                        CornerRadius="10"
+                        Opacity="0.4" />
+
+                    <!--<SearchBar
+                        x:Name="SearchBar"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Margin="40,0,40,0"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="{me:Translate ResViewMain.PlaceholderSearch}"
+                        PlaceholderColor="{StaticResource PlaceholderColor}"
+                        Text="{Binding SearchTerm, Mode=OneWayToSource}"
+                        TextColor="{StaticResource WhiteColor}" />-->
+                    <Label
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Margin="40,0,40,0"
+                        BackgroundColor="Transparent"
+                        FontSize="{StaticResource LargeSize}"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding SelectedCategory.Category.Name, Mode=TwoWay}"
+                        TextColor="{StaticResource WhiteColor}"
+                        VerticalOptions="CenterAndExpand"
+                        VerticalTextAlignment="Center" />
+                    <!--#endregion-->
+
+                    <!--#region Menü Button-->
+                    <Label
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        FontSize="20"
+                        HeightRequest="50"
+                        HorizontalOptions="Start"
+                        Style="{StaticResource IconLabel}"
+                        Text="&#xE93E;"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="50">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CmdShowMenu}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <!--#endregion-->
+
+                    <!--#region Filter-->
+                    <Grid
+                        Grid.Column="2"
+                        HorizontalOptions="End"
+                        VerticalOptions="FillAndExpand"
+                        WidthRequest="40">
+                        <Label
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Rotation="90"
+                            Style="{StaticResource IconLabel}"
+                            Text="&#xE93F;"
+                            VerticalOptions="Center">
+                            <primitives:RadPopup.Popup>
+                                <primitives:RadPopup
+                                    x:Name="Popup"
+                                    HorizontalOffset="-150"
+                                    IsModal="False"
+                                    IsOpen="{Binding IsFilterTypePopupOpen}"
+                                    Placement="Relative"
+                                    VerticalOffset="60">
+                                    <primitives:RadBorder
+                                        Padding="1,2,1,0"
+                                        BackgroundColor="{StaticResource HalfTransparentBackgroundColor}"
+                                        CornerRadius="10"
+                                        HeightRequest="140"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand">
+                                        <ListView
+                                            HeightRequest="140"
+                                            HorizontalOptions="FillAndExpand"
+                                            ItemTapped="ListView_OnItemTapped"
+                                            ItemsSource="{Binding Categories}"
+                                            SelectionMode="None"
+                                            SeparatorColor="Transparent"
+                                            SeparatorVisibility="None"
+                                            VerticalOptions="FillAndExpand"
+                                            VerticalScrollBarVisibility="Always"
+                                            WidthRequest="150">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <primitives:RadBorder CornerRadius="10">
+                                                            <Grid
+                                                                d:DataContext="{d:DesignInstance {x:Type uiModel:UiExCategory}}">
+                                                                <BoxView
+                                                                    BackgroundColor="{Binding IsSelected, Converter={StaticResource ItemSelectedBackgroundColorConverter}}"
+                                                                    HorizontalOptions="FillAndExpand"
+                                                                    VerticalOptions="FillAndExpand" />
+                                                                <Label
+                                                                    HorizontalOptions="Center"
+                                                                    HorizontalTextAlignment="Center"
+                                                                    Text="{Binding Category.Name}"
+                                                                    TextColor="{Binding IsSelected, Converter={StaticResource ItemSelectedColorConverter}}"
+                                                                    VerticalOptions="Center"
+                                                                    VerticalTextAlignment="Center" />
+                                                            </Grid>
+                                                        </primitives:RadBorder>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </primitives:RadBorder>
+                                </primitives:RadPopup>
+                            </primitives:RadPopup.Popup>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CmdShowFilters}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CmdShowFilters}" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <!--#endregion-->
+
+                </Grid>
+            </primitives:RadBorder>
+            <!--  endregion  -->
+
+
+            <!--#region Detailansicht-->
+            <primitives:RadBorder
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="10"
+                Padding="10,0,10,10"
+                BackgroundColor="{StaticResource LightMainColor}"
+                BorderColor="Transparent"
+                CornerRadius="10"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding AnnotationSelected}"
+                VerticalOptions="FillAndExpand">
+
+                <Grid
+                    Margin="10,5"
+                    HorizontalOptions="FillAndExpand"
+                    RowSpacing="0"
+                    VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="35" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--#region Name-->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        FontAttributes="Bold"
+                        FontSize="{StaticResource LargerSize}"
+                        HorizontalOptions="Start"
+                        Text="{Binding SelectedShop.Shop.Name}"
+                        VerticalOptions="Center" />
+                    <!--#endregion-->
+
+                    <!--#region Weitere Info-->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Margin="0,0,0,0"
+                        FontFamily="{StaticResource StreamLineIcons}"
+                        FontSize="{StaticResource LargerSize}"
+                        HorizontalOptions="End"
+                        Text="&#xE92F;"
+                        VerticalOptions="Center">
+                        <primitives:RadPopup.Popup>
+                            <primitives:RadPopup
+                                IsModal="False"
+                                IsOpen="{Binding IsAdditionalPopupOpen}"
+                                Placement="Center"
+                                PlacementTarget="{x:Reference MyViewMain}"
+                                VerticalOffset="-75">
+                                <primitives:RadBorder
+                                    Margin="20,0"
+                                    Padding="4"
+                                    BackgroundColor="{StaticResource BackgroundColor}"
+                                    BorderColor="{StaticResource DarkMainColor}"
+                                    CornerRadius="10"
+                                    HeightRequest="300"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    WidthRequest="3000">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60*" />
+                                            <ColumnDefinition Width="40*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--#region links-->
+                                        <StackLayout
+                                            Grid.Column="0"
+                                            Margin="10"
+                                            HorizontalOptions="FillAndExpand"
+                                            Spacing="0"
+                                            VerticalOptions="FillAndExpand">
+                                            <Label
+                                                FontSize="{StaticResource LargerSize}"
+                                                Text="{Binding SelectedShop.Shop.Name}"
+                                                TextColor="{StaticResource MainColor}" />
+                                            <Label
+                                                Margin="0,10,0,0"
+                                                Text="{Binding SelectedShop.Shop.Address}"
+                                                TextColor="{StaticResource MainColor}" />
+                                            <StackLayout Orientation=" Horizontal">
+                                                <Label Text="{Binding SelectedShop.Shop.PostCode}"
+                                                       TextColor="{StaticResource MainColor}" />
+                                                <Label Text="{Binding SelectedShop.Shop.City}"
+                                                       TextColor="{StaticResource MainColor}" />
+                                            </StackLayout>
+
+                                            <Label
+                                                Margin="0,5"
+                                                Text="{Binding SelectedShop.Shop.WebLink}"
+                                                TextColor="{StaticResource MainColor}">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding CmdOpenWebsite}" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+
+                                            <Label
+                                                Margin="0,10,0,0"
+                                                Text="{me:Translate ResViewMain.LblOpeningHours}"
+                                                TextColor="{StaticResource MainColor}" />
+                                            <ListView
+                                                Margin="0,2,0,0"
+                                                HorizontalOptions="FillAndExpand"
+                                                ItemsSource="{Binding SelectedShop.Shop.OpeningHours}"
+                                                RowHeight="20"
+                                                SelectionMode="None"
+                                                SeparatorColor="Transparent"
+                                                SeparatorVisibility="None"
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalScrollBarVisibility="Always">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <ViewCell>
+                                                            <Grid
+                                                                d:DataContext="{d:DesignInstance {x:Type model:ExOpeningHour}}">
+                                                                <Label
+                                                                    HorizontalOptions="Start"
+                                                                    HorizontalTextAlignment="Start"
+                                                                    Text="{Binding Converter={StaticResource OpeningHoursToString}}"
+                                                                    TextColor="{Binding ., Converter={StaticResource IsOpenTextColorConverter}}"
+                                                                    VerticalOptions="Center"
+                                                                    VerticalTextAlignment="Center" />
+                                                            </Grid>
+                                                        </ViewCell>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+
+                                        </StackLayout>
+
+                                        <!--#endregion-->
+
+
+                                        <Grid
+                                            Grid.Column="1"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="2*" />
+                                                <RowDefinition Height="1*" />
+                                            </Grid.RowDefinitions>
+
+                                            <!--  Description Text  -->
+                                            <ScrollView
+                                                Grid.Row="0"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="FillAndExpand">
+                                                <Label
+                                                    Margin="0,10,0,0"
+                                                    FontSize="{StaticResource LargeSize}"
+                                                    Text="{Binding SelectedShop.Shop.Description}"
+                                                    TextColor="{StaticResource MainColor}" />
+                                            </ScrollView>
+
+                                            <Label
+                                                Grid.Row="1"
+                                                Margin="0,0,20,0"
+                                                FontSize="{StaticResource LargeSize}"
+                                                HorizontalOptions="StartAndExpand"
+                                                HorizontalTextAlignment="Start"
+                                                Style="{StaticResource IconLabel}"
+                                                Text="{Binding SelectedShop.Payments}"
+                                                TextColor="{StaticResource MainColor}"
+                                                VerticalOptions="Center"
+                                                VerticalTextAlignment="Center"
+                                                WidthRequest="400" />
+
+                                        </Grid>
+
+
+                                    </Grid>
+                                </primitives:RadBorder>
+                            </primitives:RadPopup>
+                        </primitives:RadPopup.Popup>
+
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CmdShopAdditionalInfoPopup}"
+                                                  NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <!--#endregion-->
+
+                    <!--#region Telefonieren-->
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="{StaticResource MainViewDetailSize}"
+                        HorizontalOptions="End"
+                        Text="Telefonieren"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CmdCallShop}" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="0,0,0,0"
+                        FontFamily="{StaticResource StreamLineIcons}"
+                        FontSize="{StaticResource LargerSize}"
+                        HorizontalOptions="End"
+                        Text="&#xE948;"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CmdCallShop}" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <!--#endregion-->
+
+                    <!--#region Videoberatung-->
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="{StaticResource MainViewDetailSize}"
+                        HorizontalOptions="End"
+                        Text="Videoberatung"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CmdWhatsAppShop}" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Margin="0,0,0,0"
+                        FontFamily="{StaticResource StreamLineIcons}"
+                        FontSize="{StaticResource LargerSize}"
+                        HorizontalOptions="End"
+                        Text="&#xE93C;"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CmdWhatsAppShop}" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <!--#endregion-->
+
+                    <!--#region geöffnet-->
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="{StaticResource MainViewDetailSize}"
+                        HorizontalOptions="End"
+                        Text="{Binding SelectedShop.Shop.IsOpen, Converter={StaticResource IsOpenTextConverter}}"
+                        VerticalOptions="Center" />
+
+                    <primitives:RadBorder
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Margin="0,10"
+                        BackgroundColor="{Binding SelectedShop.Shop.IsOpen, Converter={StaticResource IsOpenSignalColorConverter}}"
+                        BorderColor="{StaticResource WhiteColor}"
+                        CornerRadius="10"
+                        HeightRequest="20"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        WidthRequest="20" />
+
+
+                    <!--#endregion-->
+
+
+                    <!--#region Bild-->
+                    <primitives:RadBorder
+                        x:Name="ImageBorder"
+                        Grid.Row="1"
+                        Grid.RowSpan="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="{StaticResource MainViewImageBorderMargin}"
+                        Padding="5"
+                        BackgroundColor="{Binding IsOpaque, Source={x:Reference Image}, Converter={StaticResource ImageBackgroundConverter}}"
+                        BorderColor="{StaticResource BackgroundColor}"
+                        CornerRadius="10">
+                        <Image
+                            x:Name="Image"
+                            Aspect="AspectFit"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="FillAndExpand"
+                            Source="{Binding SelectedShop.ImageSource, Mode=TwoWay}"
+                            VerticalOptions="FillAndExpand" />
+                    </primitives:RadBorder>
+                    <!--#endregion-->
+
+                    <primitives:RadBorder
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        BackgroundColor="{StaticResource MainColor}"
+                        BorderColor="{StaticResource DarkMainColor}"
+                        BorderThickness="0.5"
+                        CornerRadius="10"
+                        WidthRequest="180">
+                        <Button
+                            BackgroundColor="Transparent"
+                            Command="{Binding CmdCreateAppointment}"
+                            Text="{me:Translate ResViewMain.LblScheduleAppointment}" />
+                    </primitives:RadBorder>
+                </Grid>
+            </primitives:RadBorder>
+        </Grid>
+
+
+        <!--#region  Kein GPS-->
+        <!--<Grid
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding NoAccess}"
+            VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                FontFamily="{StaticResource Glyphicons}"
+                FontSize="130"
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Text="&#xE773;"
+                TextColor="{StaticResource MainColor}"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="30,0"
+                FontSize="{StaticResource LargerSize}"
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Text="{me:Translate ResViewMain.LblNoAccess}"
+                TextColor="{StaticResource DarkMainColor}"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+
+            <Label
+                Grid.Row="3"
+                Grid.Column="1"
+                Margin="30,20,30,0"
+                FontSize="{StaticResource LargerSize}"
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Text="{me:Translate ResViewMain.LblNoAccessPermissions}"
+                TextColor="{StaticResource DarkMainColor}"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+
+            <primitives:RadBorder
+                Grid.Row="4"
+                Grid.Column="1"
+                Margin="30,20,30,5"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="10">
+                <Button Command="{Binding CmdRequestPermission}" Text="{Binding CmdRequestPermission.DisplayName}" />
+            </primitives:RadBorder>
+
+        </Grid>-->
+        <!--#endregion-->
+    </Grid>
+</view:BissContentPage>

@@ -1,0 +1,61 @@
+﻿@model Database.Tables.TableAppointment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TableAppointment</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" id="TableAppointmentForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Text"></label>
+                <input asp-for="Text" class="k-textbox"/>
+                <span asp-validation-for="Text" class="text-danger k-invalid-msg" data-for="Text"></span>
+            </div>
+            <div class="form-group">
+                @Html.Kendo().CheckBoxFor(m => m.Canceled)
+                <label asp-for="Canceled"></label>
+                <span asp-validation-for="Canceled" class="text-danger k-invalid-msg" data-for="Canceled"></span>
+            </div>
+            <div class="form-group">
+                @Html.Kendo().CheckBoxFor(m => m.Attended)
+                <label asp-for="Attended"></label>
+                <span asp-validation-for="Attended" class="text-danger k-invalid-msg" data-for="Attended"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookedOn"></label>
+                <kendo-datetimepicker for="BookedOn" style="width: 100%"/>
+                <span asp-validation-for="BookedOn" class="text-danger k-invalid-msg" data-for="BookedOn"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValidFrom"></label>
+                <kendo-datetimepicker for="ValidFrom" style="width: 100%"/>
+                <span asp-validation-for="ValidFrom" class="text-danger k-invalid-msg" data-for="ValidFrom"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValidTo"></label>
+                <kendo-datetimepicker for="ValidTo" style="width: 100%"/>
+                <span asp-validation-for="ValidTo" class="text-danger k-invalid-msg" data-for="ValidTo"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId"></label>
+                <kendo-numerictextbox for="UserId" style="width: 100%"/>
+                <span asp-validation-for="UserId" class="text-danger k-invalid-msg" data-for="UserId"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeId"></label>
+                <kendo-numerictextbox for="EmployeeId" style="width: 100%"/>
+                <span asp-validation-for="EmployeeId" class="text-danger k-invalid-msg" data-for="EmployeeId"></span>
+            </div>
+            <div class="form-group text-right">
+                <a asp-action="Index" class="k-button" style="margin-right: 10px;"><span class="k-icon k-i-cancel"></span>&nbsp;Cancel</a>
+                <kendo-button type="submit" name="confirmCreate" icon="check" class="k-primary">Create</kendo-button>
+            </div>
+        </form>
+    </div>
+</div>

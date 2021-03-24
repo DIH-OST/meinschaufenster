@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette-->
+	<color name="primary">#ee5357</color>
+	<color name="primaryDark">#9E3C00</color>
+	<color name="accent">#ef7d00</color>
+	<color name="window_background">#FFFFFF</color>
+	<color name="splash_background">#FFFFFF</color>
+</resources>

@@ -1,0 +1,782 @@
+<?xml version="1.0"?>
+
+<doc>
+	<assembly>
+		<name>WebRestApi</name>
+	</assembly>
+	<members>
+		<member name="T:WebRestApi.Controllers.DeviceController">
+			<summary>
+				Geräte-Controller
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Controllers.DeviceController.DeviceAllWithUser">
+			<summary>
+				Alle Geräte eines bestimmten Benutzers
+			</summary>
+			<returns>Liste der Geräte</returns>
+		</member>
+		<member name="T:WebRestApi.Controllers.MeetingController">
+			<summary>
+				<para>Termincontroller</para>
+				Klasse MeetingController. (C) 2020 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Controllers.MeetingController.GetDefaultText(System.Int32)">
+			<summary>
+				Platzhaltertext für Terminabfrage
+			</summary>
+			<param name="staffId"></param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.MeetingController.GetMeetingsForDate(Exchange.PostRequests.ExGetMeetingsForDateRequest)">
+			<summary>
+				Termine eines Shops holen
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.MeetingController.GetMyMeetingsForDate(Exchange.PostRequests.ExGetMeetingsForDateRequest)">
+			<summary>
+				Termine eines Users für einen Tag holen für Apps
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.MeetingController.GetMyMeetingsForDateWeb(Exchange.PostRequests.ExGetMeetingsForDateRequest)">
+			<summary>
+				Termine eines Users für einen Tag holen für WebApp
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.MeetingController.GetMyMeetingsForDateInternal(Exchange.PostRequests.ExGetMeetingsForDateRequest)">
+			<summary>
+				Termine eines Users für einen Tag holen
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.MeetingController.SetMeeting(Exchange.PostRequests.ExSaveMeetingRequest)">
+			<summary>
+				Termin vereinbaren Apps
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.MeetingController.SetMeetingWeb(Exchange.PostRequests.ExSaveMeetingRequest)">
+			<summary>
+				Termin vereinbaren WebApp
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.MeetingController.SetMeetingInternal(Exchange.PostRequests.ExSaveMeetingRequest)">
+			<summary>
+				Termin vereinbaren
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.MeetingController.DeleteMeeting(Exchange.PostRequests.ExRemoveMeetingRequest)">
+			<summary>
+				Termin entfernen
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.MeetingController.DeleteMeetingWeb(Exchange.PostRequests.ExRemoveMeetingRequest)">
+			<summary>
+				Termin entfernen
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.MeetingController.DeleteMeetingInternal(Exchange.PostRequests.ExRemoveMeetingRequest)">
+			<summary>
+				Termin entfernen
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.MeetingController.GetStaffImage(System.Int32)">
+			<summary>
+				Bild für einen Mitarbeiter laden
+			</summary>
+			<param name="staffId"></param>
+			<returns></returns>
+		</member>
+		<member name="T:WebRestApi.Controllers.NotificationController">
+			<summary>
+				<para>NotificationController</para>
+				Klasse NotificationController. (C) 2017 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.NotificationController.NotificationSendBroadcast(Exchange.PostRequests.ExPostNotofication)">
+			<summary>
+				Push Notifizierung senden an alle Apps aller User senden
+			</summary>
+			<param name="data">Daten</param>
+			<returns>Id von Mobile Center oder String.Empty wenn es nicht funktioniert hat (IOS, Android, UWP)</returns>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.NotificationController.NotificationSendToDevice(Exchange.Model.Admin.ExPushNotificationData)">
+			<summary>
+				Notifizierung an ein bestimmtes Gerät per Push versenden
+			</summary>
+			<param name="data">Daten</param>
+			<returns></returns>
+		</member>
+		<member name="T:WebRestApi.Controllers.PublicController">
+			<summary>
+				<para>PublicController</para>
+				Klasse PublicController. (C) 2017 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Controllers.PublicController.GetAppInfos">
+			<summary>
+				Infos für die Apps holen
+			</summary>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.PublicController.GetMaintenanceInfo">
+			<summary>
+				Infos für die Apps holen
+			</summary>
+			<returns></returns>
+		</member>
+		<member name="T:WebRestApi.Controllers.PublicSecureController">
+			<summary>
+				Kontroller für interne Tests
+			</summary>
+		</member>
+		<member name="T:WebRestApi.Controllers.ShopController">
+			<summary>
+				<para>Shopcontroller</para>
+				Klasse ShopController. (C) 2020 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Controllers.ShopController.DeleteShop(Exchange.PostRequests.ExDeleteRequest)">
+			<summary>
+				Einen Shop komplett löschen
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.ShopController.GetFilterInfos">
+			<summary>
+				Listen für Filter laden
+			</summary>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.ShopController.GetShops(Exchange.PostRequests.ExGetShopsRequest)">
+			<summary>
+				Alle Shops für einen Request holen
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.ShopController.GetShopInfo(System.Int32)">
+			<summary>
+				Shopinfos holen
+			</summary>
+			<param name="locationId"></param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.ShopController.GlyphToIcon(System.String,System.String,System.String,System.String,System.Int32,System.Boolean)">
+			<summary>
+				Pin Image
+			</summary>
+			<param name="code"> zB "E994"</param>
+			<param name="pinColor">Color.Crimson(rot): #FFDC143C  oder Color.ForestGreen: #FF228B22</param>
+			<param name="glyphColor">Color.White: #FFFFFFFF</param>
+			<param name="backgroundColor">Color.Transparent: #00FFFFFF</param>
+			<param name="squaredSize">32 64 was auch immer</param>
+			<param name="pinOnly">Soll nur ein Pin in der Farbe pinColor erzeugt werden?</param>
+			<returns>PNG</returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.ShopController.GetStoreImage(System.Int32)">
+			<summary>
+				Bild für einen Shop laden
+			</summary>
+			<param name="storeId"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.ShopController.RegisterShop(Exchange.Model.ExShopRegistration)">
+			<summary>
+
+			</summary>
+			<param name="exShopRegistration"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.ShopController.ForgotPasswordShop(Exchange.Model.ExShopForgotPassword)">
+			<summary>
+
+			</summary>
+			<param name="exShopRegistration"></param>
+			<returns></returns>
+		</member>
+		<member name="T:WebRestApi.Controllers.SignalRController">
+			<summary>
+				<para>SignalRController - API für Kommunikation mit SignalRProxy</para>
+				Klasse SignalRController (C) 2017 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="F:WebRestApi.Controllers.SignalRController.Clients">
+			<summary>
+				Dict für Clients
+				Pro UserId eine Liste mit verbundenen SignalRClients
+			</summary>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.SignalRController.#ctor(Microsoft.AspNetCore.SignalR.IHubContext{WebRestApi.Hubs.BissHub})">
+			<summary>
+				Konstruktor
+			</summary>
+			<param name="hubcontext"></param>
+		</member>
+		<member name="P:WebRestApi.Controllers.SignalRController.HubContext">
+			<summary>
+				Hub Context
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Controllers.SignalRController.SignalRSetClientData(Exchange.Model.ExSignalRClientData)">
+			<summary>
+				Ein Client hat Daten gesendet
+			</summary>
+			<param name="data">Clientdaten</param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.SignalRController.SignalRSendMessage(Exchange.Notifications.ExSignalRNotificationData)">
+			<summary>
+				Notifizierung an einen oder alle verbundenen Clients senden
+			</summary>
+			<param name="notification">Notifizierung</param>
+			<returns>True wenn der Client noch verbunden ansonsten falsch </returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.SignalRController.SignalRListConnectedClients">
+			<summary>
+				Verbundene SignalR Clients abfragen
+			</summary>
+			<returns>Liste der verbundenen Clients</returns>
+		</member>
+		<member name="T:WebRestApi.Controllers.UserController">
+			<summary>
+				<para>Controller für Login, User erzeugen, Passwort zurücksetzen, ...</para>
+				Klasse UserController. (C) 2017 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Controllers.UserController.UserUpdate(Exchange.Model.ExUserAccountData)">
+			<summary>
+				Benutzerstammdaten ändern
+			</summary>
+			<param name="user">Benutzerdaten</param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.UserController.UserUpdatePassword(Exchange.PostRequests.ExPostUserChangePasswortData)">
+			<summary>
+				Passwort ändern
+			</summary>
+			<param name="password">Altes und neues Passwort</param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.UserController.UserDeviceUpdate(Exchange.Model.ExUserDeviceInfo)">
+			<summary>
+				Ein Gerät eines User anlegen bzw. aktualisieren
+			</summary>
+			<param name="userDeviceData"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.UserController.UserDeviceDelete(Exchange.PostRequests.ExPostUserDeviceDelete)">
+			<summary>
+				Ein Gerät eines Benutzers aus dessen Geräteliste entfernen für Apps
+			</summary>
+			<param name="userDeviceData"></param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.UserController.UserDeviceDeleteWeb(Exchange.PostRequests.ExPostUserDeviceDelete)">
+			<summary>
+				Ein Gerät eines Benutzers aus dessen Geräteliste entfernen für WebApp
+			</summary>
+			<param name="userDeviceData"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.UserController.UserCheck(System.String)">
+			<summary>
+				1. Schritt der Anmeldung => UserName (Telefonnummer) wird empfangen. Wenn User existiert wird Id zurück gegeben. Wenn neuer
+				User dann IsNewUser = true und Passwort per SMS schicken.
+				Es wird auch mitgegeben ob der Account gerade gesperrt ist.
+			</summary>
+			<param name="userPhone">User Telefonnummer (Login Name)</param>
+			<returns> Passwort Hash oder String.Empty</returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.UserController.UserDemoId">
+			<summary>
+				Demo User Id abfragen (wenn Demo User verfügbar)
+			</summary>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.UserController.UserAccountData(Exchange.PostRequests.ExPostUserPasswortData)">
+			<summary>
+				2. Schritt Anmeldung => Passwort lokal gehashed und wird nun überprüft.
+			</summary>
+			<returns>Userdaten oder null wenn nicht verfügbar oder Passwort</returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.UserController.UserStartResetPassword(System.Int32)">
+			<summary>
+				Passwort zurücksetzen - Email mit Link zum zurücksetzen senden
+			</summary>
+			<param name="userId">Id des User aus TableUser</param>
+			<returns>Ja - true</returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.UserController.UserValidateEMail(System.Int32,System.String)">
+			<summary>
+				EMail eines User ist gültig
+			</summary>
+			<param name="userId">User Id (Datenbank)</param>
+			<param name="token">token</param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.UserController.DeleteUser(Exchange.PostRequests.ExDeleteRequest)">
+			<summary>
+				Userdaten löschen für die Apps
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.UserController.DeleteUserWeb(Exchange.PostRequests.ExDeleteRequest)">
+			<summary>
+				Userdaten löschen für die WebApp
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.UserController.DeleteUsereInternal(System.Int32)">
+			<summary>
+				Userdaten löschen
+			</summary>
+			<param name="userId"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.UserController.UserSetAsDemoUser(System.Int32)">
+			<summary>
+				Einen bestimmten User zum Demo User machen
+			</summary>
+			<param name="userId">User Id (Datenbank)</param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Controllers.UserController.GetAuthenticatedUser">
+			<summary>
+				Liefert den authentifizierten Benutzer zurück
+			</summary>
+			<returns>Authentifizierter Benutzer</returns>
+		</member>
+		<member
+			name="M:WebRestApi.Controllers.UserController.SendPassword(Database.Tables.TableUser,System.String,System.Boolean)">
+			<summary>
+				Bestätigungs-Token senden ...
+			</summary>
+			<param name="user">User Daten</param>
+			<returns></returns>
+		</member>
+		<member name="T:WebRestApi.Helper.GlyphConverter">
+			<summary>
+				<para>DESCRIPTION</para>
+				Klasse GlyphConverter. (C) 2020 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Helper.GlyphConverter.GetGlyph(Exchange.Model.ExGlyphDataPost)">
+			<summary>
+				Glyph laden und bei bedarf erzeugen
+			</summary>
+			<param name="data"></param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Helper.GlyphConverter.TextToBitmap(System.String,System.String,System.Drawing.Color,System.Drawing.Color,System.Int32,System.Int32)">
+			<summary>
+				Gets a bitmap containing the specified text or glyph in the center of the bitmap.
+			</summary>
+			<param name="text">The text or glyph in the center of the bitmap.</param>
+			<param name="fontFamily">The font family of the text or glyph.</param>
+			<param name="textColor">The text color of the text or glyph.</param>
+			<param name="backgroundColor">The background color of the bitmap.</param>
+			<param name="width">The width of the bitmap.</param>
+			<param name="height">The height of the bitmap.</param>
+			<returns>A bitmap containing the specified text or glyph in the center of the bitmap.</returns>
+		</member>
+		<member
+			name="M:WebRestApi.Helper.GlyphConverter.GeneratePin(System.Drawing.Color,System.String,System.Drawing.FontFamily,System.Drawing.Color,System.Drawing.Color,System.Int32)">
+			<summary>
+				Generates a Pin as Bitmap in squared format.
+			</summary>
+			<param name="pinColor">The color of the pin.</param>
+			<param name="text">The text or glyph inside the pin.</param>
+			<param name="fontFamily">The font family of the text or glyph.</param>
+			<param name="textColor">The color of the text or glyph.</param>
+			<param name="backgroundColor">The background color around the pin (consider Color.Transparent!).</param>
+			<param name="squaredSize">The width and height of the bitmap.</param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Helper.GlyphConverter.GetFontFamiliesFromFile(System.String)">
+			<summary>
+				Gets the font families contained in the specified file name.
+			</summary>
+			<param name="fileName">The file name containing the font families.</param>
+			<returns>All font families contained in the specified name.</returns>
+		</member>
+		<member name="M:WebRestApi.Helper.GlyphConverter.GetFontFamilyFromFile(System.String,System.String)">
+			<summary>
+				Gets the font family with the specified name from the specified file.
+			</summary>
+			<param name="familyName">The name of the font familiy.</param>
+			<param name="fileName">The file where to get the font family from.</param>
+			<returns>The font family with the specified name from the specified file.</returns>
+		</member>
+		<member name="M:WebRestApi.Helper.GlyphConverter.SquareBitMap(System.String)">
+			<summary>
+				Gets a squared bitmap of the given bitmap given as file name.
+			</summary>
+			<param name="fileName">The file name of the bitmap.</param>
+			<returns>A squared bitmap, i.e. same width and height.</returns>
+		</member>
+		<member name="M:WebRestApi.Helper.GlyphConverter.SquareBitMap(System.Drawing.Bitmap)">
+			<summary>
+				Gets a squared bitmap of the given bitmap.
+			</summary>
+			<param name="bitmap">The source bitmap.</param>
+			<returns>A squared bitmap, i.e. same width and height.</returns>
+		</member>
+		<member name="M:WebRestApi.Helper.GlyphConverter.ScaleBitMap(System.Drawing.Bitmap,System.Int32,System.Int32)">
+			<summary>
+				Gets a bitmap scaled to the specified width and height.
+			</summary>
+			<param name="sourceBitmap">The bitmap to be scaled.</param>
+			<param name="width">The width of the new scaled bitmap.</param>
+			<param name="height">The height of the new scaled bitmap.</param>
+			<returns>A new bitmap scaled to the specified width and height.</returns>
+		</member>
+		<member name="M:WebRestApi.Helper.GlyphConverter.GetColoredPin(System.Drawing.Color,System.Int32)">
+			<summary>
+				Gets a bitmap of the pin in the specified color.
+			</summary>
+			<param name="color">The color of the pin.</param>
+			<returns>A bitmap containing a pin in the specified color.</returns>
+		</member>
+		<member name="T:WebRestApi.Helper.Common">
+			<summary>
+				<para>Ilfsfunktionen</para>
+				Klasse Helper. (C) 2017 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Helper.Common.GetCommonFile(System.String)">
+			<summary>
+				XML Kommentar-Datei für Swagger
+			</summary>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Helper.Common.SendSMS(System.String,System.String)">
+			<summary>
+				SMS Schicken
+			</summary>
+			<param name="to"></param>
+			<param name="msg"></param>
+			<returns></returns>
+		</member>
+		<member name="T:WebRestApi.Helper.HtmlGenerator">
+			<summary>
+				<para>DESCRIPTION</para>
+				Klasse HtmlGenerator. (C) 2020 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Helper.HtmlGenerator.GetMessageOnlyEmail(Exchange.Model.ExEMailMessageOnly)">
+			<summary>
+				Html für EMail Registrierung generieren
+			</summary>
+			<param name="request">UserInfos</param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Helper.HtmlGenerator.GetRegistrationEmail(Exchange.Model.ExEmailRegistration)">
+			<summary>
+				Html für EMail Registrierung generieren
+			</summary>
+			<param name="request">UserInfos</param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Helper.HtmlGenerator.GetStornoAppointmentShopEmail(Exchange.Model.ExEMailStornoAppointmentShop)">
+			<summary>
+				HTML Meldung wenn ein Kunden den Termin bei einem Geschäft löscht
+			</summary>
+			<param name="request"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Helper.HtmlGenerator.GetNewPasswordEmail(Exchange.Model.ExEmailNewPassword)">
+			<summary>
+				Html für EMail neues Passwort generieren
+			</summary>
+			<param name="request">UserInfos</param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Helper.HtmlGenerator.GetPasswordResetEmail(Exchange.Model.ExEmailResetPassword)">
+			<summary>
+				Html für EMail Passwort reset generieren
+			</summary>
+			<param name="request">UserInfos</param>
+			<returns></returns>
+		</member>
+		<member name="T:WebRestApi.Helper.ImageHelper">
+			<summary>
+				<para>Helper for processing images</para>
+				Klasse ImageHelper. (C) 2019 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="T:WebRestApi.Helper.MeetingSlots">
+			<summary>
+				<para>Slots für Meetings</para>
+				Klasse MeetingSlots. (C) 2020 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Helper.MeetingSlots.GetSlots(System.Int32,System.DateTime)">
+			<summary>
+				Meetingslots für einen Standort suchen für den gegebenen Tag bzw  nach der gegebenen Zeit
+			</summary>
+			<param name="locationId"></param>
+			<param name="date"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Helper.MeetingSlots.GetSlots(Database.Db,System.Int32,System.DateTime)">
+			<summary>
+				alle Meetingslots für einen Standort suchen für den gegebenen Tag bzw  nach der gegebenen Zeit
+			</summary>
+			<param name="db"></param>
+			<param name="locationId"></param>
+			<param name="date"></param>
+			<returns></returns>
+		</member>
+		<member name="T:WebRestApi.Helper.PhoneHelper">
+			<summary>
+				<para>Telefonnummer Helper</para>
+				Klasse PhoneHelper. (C) 2020 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Helper.PhoneHelper.RemoveWhitespaces(System.String)">
+			<summary>
+				Removes all white spaces in a string.
+			</summary>
+			<param name="phoneNumber">The phone number.</param>
+			<returns>The phone number withouts white spaces.</returns>
+			<exception cref="T:System.ArgumentNullException">
+				Thrown if phone Number is null.
+			</exception>
+		</member>
+		<member name="T:WebRestApi.Helper.ReportGenerator">
+			<summary>
+				<para>DESCRIPTION</para>
+				Klasse ReportGenerator. (C) 2020 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="T:WebRestApi.Helper.ShopCache">
+			<summary>
+				<para>Einfacher Cache für die Geschäfte</para>
+				Klasse ShopCache. (C) 2020 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Helper.ShopCache.GetShops(Exchange.PostRequests.ExGetShopsRequest,System.String)">
+			<summary>
+				Einfacher schneller Cache für die Geschäfte
+			</summary>
+			<param name="request"></param>
+			<param name="namofGlyphToIcon"></param>
+			<returns></returns>
+		</member>
+		<member name="T:WebRestApi.Helper.Staff">
+			<summary>
+				<para>MA Funktionen</para>
+				Klasse Staff. (C) 2020 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="T:WebRestApi.Helper.WebAppSettings">
+			<summary>
+				Einstellungen für die WebApplikation
+			</summary>
+		</member>
+		<member name="P:WebRestApi.Helper.WebAppSettings.Secret">
+			<summary>
+				Secret für den JWT (JSON Web Token)
+			</summary>
+		</member>
+		<member name="F:WebRestApi.Helper.WebAppSettings.EmailCredentials">
+			<summary>
+				Credentials für Sendgrid
+			</summary>
+		</member>
+		<member name="F:WebRestApi.Helper.WebAppSettings.CheckPassword">
+			<summary>
+				Passwort für Sicheren Austausch zwischen WebApp und WebApi
+			</summary>
+		</member>
+		<member name="T:WebRestApi.Hubs.BissHub">
+			<summary>
+				<para>Biss Hub</para>
+				Klasse BissHub. (C) 2018 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Hubs.BissHub.OnConnectedAsync">
+			<summary>
+				Called when a new connection is established with the hub.
+			</summary>
+			<returns>A <see cref="T:System.Threading.Tasks.Task" /> that represents the asynchronous connect.</returns>
+		</member>
+		<member name="M:WebRestApi.Hubs.BissHub.OnDisconnectedAsync(System.Exception)">
+			<summary>
+				Client hat wurde getrennt
+			</summary>
+			<param name="exception">Fehler</param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Hubs.BissHub.Login(System.Int64,System.String,System.String)">
+			<summary>
+				Client loggt sich ein
+			</summary>
+			<param name="userId">BenutzerId</param>
+			<param name="userToken">Benutzertoken</param>
+			<param name="deviceToken">Gerätetoken</param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Hubs.BissHub.SetData(System.String,System.String)">
+			<summary>
+				Client setzt Daten
+			</summary>
+			<param name="key">Schlüssel</param>
+			<param name="value">Wert</param>
+			<returns></returns>
+		</member>
+		<member name="T:WebRestApi.Models.SignalRClient">
+			<summary>
+				<para>SignalRClient - SignalRClient </para>
+				Klasse SignalRClient (C) 2017 FOTEC Forschungs- und Technologietransfer GmbH
+			</summary>
+		</member>
+		<member name="P:WebRestApi.Models.SignalRClient.DeviceToken">
+			<summary>
+				Geräte-Token
+			</summary>
+		</member>
+		<member name="P:WebRestApi.Models.SignalRClient.ConnectionId">
+			<summary>
+				Verbindugns-Id für SignalR
+			</summary>
+		</member>
+		<member name="P:WebRestApi.Models.SignalRClient.UserToken">
+			<summary>
+				UserToken
+			</summary>
+		</member>
+		<member name="T:WebRestApi.Program">
+			<summary>
+				Programm
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Program.Main(System.String[])">
+			<summary>
+				Main
+			</summary>
+			<param name="args"></param>
+		</member>
+		<member name="T:WebRestApi.Services.ViewRender">
+			<summary>
+				Renderer für Mails
+			</summary>
+		</member>
+		<member
+			name="M:WebRestApi.Services.ViewRender.#ctor(Microsoft.AspNetCore.Mvc.Razor.IRazorViewEngine,Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataProvider,System.IServiceProvider)">
+			<summary>
+				Konstruktor
+			</summary>
+			<param name="viewEngine"></param>
+			<param name="tempDataProvider"></param>
+			<param name="serviceProvider"></param>
+		</member>
+		<member name="M:WebRestApi.Services.ViewRender.Render``1(System.String,``0)">
+			<summary>
+				Renderer
+			</summary>
+			<typeparam name="TModel"></typeparam>
+			<param name="name"></param>
+			<param name="model"></param>
+			<returns></returns>
+		</member>
+		<member name="M:WebRestApi.Services.ViewRender.GetActionContext">
+			<summary>
+				Action Kontext abfragen
+			</summary>
+			<returns></returns>
+		</member>
+		<member name="T:WebRestApi.Startup">
+			<summary>
+				Rest Web API Startup
+			</summary>
+		</member>
+		<member name="F:WebRestApi.Startup.SwaggerVersion">
+			<summary>
+				Welche Swagger Version soll verwendet werden (v1, v2, v3)
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Startup.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+			<summary>
+				Rest Web API Startup
+			</summary>
+			<param name="env"></param>
+		</member>
+		<member name="P:WebRestApi.Startup.Configuration">
+			<summary>
+				Configuration
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+			<summary>
+				This method gets called by the runtime. Use this method to add services to the container.
+			</summary>
+			<param name="services"></param>
+		</member>
+		<member name="M:WebRestApi.Startup.GetAssemblyInfos(System.Reflection.Assembly)">
+			<summary>
+				Infos über ein Assembly sammeln
+			</summary>
+			<param name="assembly">Assembly (zB Assembly.GetExecutingAssembly() für den Code der gerade läuft)</param>
+			<returns></returns>
+		</member>
+		<member
+			name="M:WebRestApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+			<summary>
+				This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+			</summary>
+			<param name="app"></param>
+			<param name="env"></param>
+			<param name="loggerFactory"></param>
+		</member>
+		<member name="T:WebRestApi.Views.EMail.EMailBaseModel">
+			<summary>
+				Basisklasse für Emails
+			</summary>
+		</member>
+		<member name="M:WebRestApi.Views.EMail.EMailBaseModel.OnGet">
+			<summary>
+				OnGet
+			</summary>
+		</member>
+	</members>
+</doc>

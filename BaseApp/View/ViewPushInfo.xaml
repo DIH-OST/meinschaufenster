@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<view:BissContentPage
+    x:Class="BaseApp.View.ViewPushInfo"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
+    xmlns:listView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:me="clr-namespace:BaseApp.MarkupExtensions"
+    xmlns:view="clr-namespace:Biss.Apps.View;assembly=Biss.Apps"
+    xmlns:viewmodels="clr-namespace:BaseApp.ViewModel"
+    Title=""
+    d:DataContext="{d:DesignInstance {x:Type viewmodels:ViewModelPushInfo},
+                                     IsDesignTimeCreatable=True}"
+    x:TypeArguments="viewmodels:ViewModelPushInfo"
+    ControlTemplate="{StaticResource MainPageTemplate}"
+    IsBusy="{Binding IsBusy}"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <StackLayout Margin="10,0" WidthRequest="{StaticResource DefaultWidthSize}">
+
+        <Label Style="{StaticResource PageTitleStyle}" Text="{Binding PageSubTitle}" />
+
+        <dataControls:RadListView BackgroundColor="Beige" ItemsSource="{Binding Data}">
+            <dataControls:RadListView.ItemTemplate>
+                <DataTemplate>
+                    <listView:ListViewTemplateCell>
+                        <listView:ListViewTemplateCell.View>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding Key}" />
+                                <Label Grid.Column="1" Text="{Binding Value}" />
+                            </Grid>
+                        </listView:ListViewTemplateCell.View>
+                    </listView:ListViewTemplateCell>
+                </DataTemplate>
+            </dataControls:RadListView.ItemTemplate>
+        </dataControls:RadListView>
+
+    </StackLayout>
+</view:BissContentPage>

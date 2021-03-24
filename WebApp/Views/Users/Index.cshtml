@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Kunden";
+}
+<script src="/lib/kendo-ui/js/messages/kendo.messages.de-AT.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.min.js"></script>
+
+<div class="container-fluid">
+    <h1>Kunden</h1>
+
+    <kendo-grid name="TblUsersGrid" height="550" on-change="handleChange" selectable="true">
+        <columns>
+            <column field="Id" title="Einloggen" template="#= linkToUserTemp(Id) #"/>
+            <column field="PhoneNumber" title="Telefonnummer"/>
+            <column field="PhoneChecked" title="Telefonnummer überprüft" template="#= PhoneChecked ? 'Ja' : 'Nein' #"/>
+            <column field="DefaultUserLanguage" title="Sprache"/>
+            <column field="CreatedAtUtc" title="Erstellt am" format="{0: dd-MM-yyyy}"/>
+            <column field="Firstname" title="Vorname"/>
+            <column field="Lastname" title="Nachname"/>
+            <column field="Street" title="Straße"/>
+            <column field="PostalCode" title="Postleitzahl"/>
+            <column field="City" title="Ort"/>
+        </columns>
+        <toolbar>
+            <toolbar-button name="excel"/>
+            <toolbar-button name="create" template="tbCreate"/>
+            <toolbar-button name="edit" template="tbEdit"/>
+            <toolbar-button name="delete" template="tbDelete"/>
+        </toolbar>
+        <excel all-pages="true" file-name="Kunden.xlsx"/>
+        <groupable enabled="false"/>
+        <sortable enabled="true"/>
+        <pageable button-count="5" refresh="true"/>
+        <filterable enabled="true"/>
+        <datasource type="DataSourceTagHelperType.Ajax" page-size="20">
+            <schema>
+                <model>
+                    <fields>
+                        <field name="PhoneNumber" type="string"/>
+                        <field name="PhoneChecked" type="string"/>
+                        <field name="DefaultUserLanguage" type="string"/>
+                        <field name="CreatedAtUtc" type="date"/>
+                        <field name="Firstname" type="string"/>
+                        <field name="Lastname" type="string"/>
+                        <field name="Street" type="string"/>
+                        <field name="PostalCode" type="string"/>
+                        <field name="City" type="string"/>
+                    </fields>
+                </model>
+            </schema>
+            <transport>
+                <read url="@Url.Action("TblUsers_Read")"/>
+            </transport>
+        </datasource>
+    </kendo-grid>
+</div>
+<script>
+
+    function linkToUserTemp(data) {
+        return `<a id='tbCreate' href='${location.pathname}/SignInAsUser/?userId=${data}'><span class='sl-icon'>&#xe932;</span></a>`;
+    };
+
+    function tbCreate(data) {
+        return `<a id='tbCreate' href='${location.pathname}/create' class='k-button'>Hinzufügen</a>`;
+    };
+
+    function tbEdit(data) {
+        return `<a id='tbEdit'>Bearbeiten</a>`;
+    };
+
+    function tbDelete(data) {
+        return `<a id='tbDelete'>Löschen</a>`;
+    };
+
+    function handleChange(args) {
+        let enabled = this.select().length != 0;
+        toolBar.edit.enable(enabled);
+        toolBar.del.enable(enabled);
+        if (enabled) {
+            let selectedId = this.dataItem(this.select()).Id;
+            toolBar.edit.wrapper.attr("href", `${location.pathname}/edit/${selectedId}`);
+            toolBar.del.wrapper.attr("href", `${location.pathname}/delete/${selectedId}`);
+        } else {
+            toolBar.edit.wrapper.attr("href", "#");
+        }
+    };
+
+    let toolBar;
+    $(function() {
+        // references to UI elements
+        toolBar = {
+            create: $("#tbCreate").kendoButton().data("kendoButton"),
+            edit: $("#tbEdit").kendoButton({ enable: false }).data("kendoButton"),
+            del: $("#tbDelete").kendoButton({ enable: false }).data("kendoButton")
+        };
+    });
+</script>

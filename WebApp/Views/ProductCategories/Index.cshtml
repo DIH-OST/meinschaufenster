@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Produktkategorien";
+}
+<script src="/lib/kendo-ui/js/messages/kendo.messages.de-AT.min.js"></script>
+<div class="container">
+    <h1>Produktkategorien</h1>
+
+    <kendo-grid name="TblProductCategoriesGrid" height="550" on-change="handleChange" selectable="true">
+        <columns>
+            <column field="Icon" title="Symbol" width="150" template="#=template(data)#"/>
+            <column field="Description" title="Bezeichnung"/>
+        </columns>
+        <toolbar>
+            <toolbar-button name="create" template="tbCreate"/>
+            <toolbar-button name="edit" template="tbEdit"/>
+            <toolbar-button name="delete" template="tbDelete"/>
+        </toolbar>
+        <excel all-pages="true"/>
+        <groupable enabled="false"/>
+        <sortable enabled="true"/>
+        <pageable button-count="5" refresh="true"/>
+        <filterable enabled="true"/>
+        <datasource type="DataSourceTagHelperType.Ajax" page-size="20">
+            <schema>
+                <model>
+                    <fields>
+                        <field name="Description" type="string"/>
+                        <field name="Icon" type="string"/>
+                    </fields>
+                </model>
+            </schema>
+            <transport>
+                <read url="@Url.Action("TblProductCategories_Read")"/>
+            </transport>
+        </datasource>
+    </kendo-grid>
+</div>
+<script>
+    function template(data) {
+        return `<span class='sl-icon'>&#x${data.Icon};</span>`;
+    };
+
+    function tbCreate(data) {
+        return `<a id='tbCreate' href='${location.pathname}/create' class='k-button'>Hinzufügen</a>`;
+    };
+
+    function tbEdit(data) {
+        return `<a id='tbEdit'>Bearbeiten</a>`;
+    };
+
+    function tbDelete(data) {
+        return `<a id='tbDelete'>Löschen</a>`;
+    };
+
+    function handleChange(args) {
+        let enabled = this.select().length != 0;
+        toolBar.edit.enable(enabled);
+        toolBar.del.enable(enabled);
+        if (enabled) {
+            let selectedId = this.dataItem(this.select()).Id;
+            toolBar.edit.wrapper.attr("href", `${location.pathname}/edit/${selectedId}`);
+            toolBar.del.wrapper.attr("href", `${location.pathname}/delete/${selectedId}`);
+        } else {
+            toolBar.edit.wrapper.attr("href", "#");
+        }
+    };
+
+    let toolBar;
+    $(function() {
+        // references to UI elements
+        toolBar = {
+            create: $("#tbCreate").kendoButton().data("kendoButton"),
+            edit: $("#tbEdit").kendoButton({ enable: false }).data("kendoButton"),
+            del: $("#tbDelete").kendoButton({ enable: false }).data("kendoButton")
+        };
+    });
+</script>

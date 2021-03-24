@@ -1,0 +1,109 @@
+﻿@model Database.Tables.TableStore
+
+@{
+    ViewData["Title"] = "Hinzufügen";
+}
+<script src="/lib/kendo-ui/js/messages/kendo.messages.de-AT.min.js"></script>
+<div class="container">
+    <h1>Hinzufügen</h1>
+
+    <h4>Geschäfte</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create" id="TableStoreForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Activated" class="admin-label">Freigeschalten</label>
+                    @Html.Kendo().CheckBoxFor(m => m.Activated)
+                    <span asp-validation-for="Activated" class="text-danger k-invalid-msg" data-for="Activated"></span>
+                </div>
+                <div class="form-group">
+                    <label for="logoFile" class="admin-label">Logo</label>
+                    <kendo-upload name="logoFile" multiple="false" for="logoFile">
+                        <localization select="Wähle eine Datei für das Logo" invalid-file-extension="Nur .jpg, .jpeg und .png Dateien sind erlaubt"/>
+                        <validation allowed-extensions='@new string[] { ".jpg",".png",".jpeg" }'/>
+                    </kendo-upload>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CompanyName" class="admin-label">Firmenname</label>
+                    <input asp-for="CompanyName" class="k-textbox"/>
+                    <span asp-validation-for="CompanyName" class="text-danger k-invalid-msg" data-for="CompanyName"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="admin-label">Was verkaufst du?</label>
+                    <input asp-for="Description" class="k-textbox"/>
+                    <span asp-validation-for="Description" class="text-danger k-invalid-msg" data-for="Description"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EMail" class="admin-label">E-Mail</label>
+                    <input asp-for="EMail" class="k-textbox"/>
+                    <span asp-validation-for="EMail" class="text-danger k-invalid-msg" data-for="EMail"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Website" class="admin-label">Website</label>
+                    <input asp-for="Website" class="k-textbox"/>
+                    <span asp-validation-for="Website" class="text-danger k-invalid-msg" data-for="Website"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Telephonenumber" class="admin-label">Telefonnummer</label>
+                    <input asp-for="Telephonenumber" class="k-textbox"/>
+                    <span asp-validation-for="Telephonenumber" class="text-danger k-invalid-msg" data-for="Telephonenumber"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CreatedAt" class="admin-label">Erstellt am</label>
+                    <kendo-datetimepicker format="dd-MM-yyyy" for="CreatedAt" style="width: 100%"/>
+                    <span asp-validation-for="CreatedAt" class="text-danger k-invalid-msg" data-for="CreatedAt"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PostCode" class="admin-label">Postleitzahl</label>
+                    <input asp-for="PostCode" class="k-textbox"/>
+                    <span asp-validation-for="PostCode" class="text-danger k-invalid-msg" data-for="PostCode"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="City" class="admin-label">Ort</label>
+                    <input asp-for="City" class="k-textbox"/>
+                    <span asp-validation-for="City" class="text-danger k-invalid-msg" data-for="City"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="admin-label">Adresse</label>
+                    <input asp-for="Address" class="k-textbox"/>
+                    <span asp-validation-for="Address" class="text-danger k-invalid-msg" data-for="Address"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Country" class="admin-label">Land</label>
+                    <input asp-for="Country" class="k-textbox"/>
+                    <span asp-validation-for="Country" class="text-danger k-invalid-msg" data-for="Country"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FederalState" class="admin-label">Bundesland</label>
+                    <input asp-for="FederalState" class="k-textbox"/>
+                    <span asp-validation-for="FederalState" class="text-danger k-invalid-msg" data-for="FederalState"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Latitude" class="admin-label">Breitengrad</label>
+                    <kendo-numerictextbox for="Latitude" style="width: 100%"/>
+                    <span asp-validation-for="Latitude" class="text-danger k-invalid-msg" data-for="Latitude"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Longitude" class="admin-label">Längengrad</label>
+                    <kendo-numerictextbox for="Longitude" style="width: 100%"/>
+                    <span asp-validation-for="Longitude" class="text-danger k-invalid-msg" data-for="Longitude"></span>
+                </div>
+                <div class="form-group text-right">
+                    <a asp-action="Index" class="k-button" style="margin-right: 10px;"><span class="k-icon k-i-cancel"></span>&nbsp;Abbrechen</a>
+                    <kendo-button type="submit" name="confirmCreate" icon="check" class="k-primary">Hinzufügen</kendo-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#TableStoreForm").kendoValidator({
+            // You can define your custom rules here:
+            //rules: {}
+        
+        });
+    })
+</script>

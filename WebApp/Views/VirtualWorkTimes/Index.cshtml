@@ -1,0 +1,90 @@
+﻿<h5 class="tab-title">Virtuelle Arbeitszeiten</h5>
+<hr class="tab-line"/>
+
+<kendo-grid class="mb" name="TblVirtualWorkTimesGrid" height="550" on-change="handleChange" selectable="true">
+    <columns>
+        <column field="Weekday" title="Wochentag" template="<span>
+            #if(Weekday == 0){#
+            Sonntag
+            #}else if(Weekday == 1){#
+            Montag
+            #}else if(Weekday == 2){#
+            Dienstag
+            #}else if(Weekday == 3){#
+            Mittwoch
+            #}else if(Weekday == 4){#
+            Donnerstag
+            #}else if(Weekday == 5){#
+            Freitag
+            #}else if(Weekday == 6){#
+            Samstag
+            #}#
+        </span>"/>
+        <column field="TimeFrom" title="Zeit von" format="{0: HH:mm}"/>
+        <column field="TimeTo" title="Zeit bis" format="{0: HH:mm}"/>
+        <column field="TimeSlot" title="TimeSlot in min" format="{0:#}"/>
+        <column field="EmployeeId" title="EmplyeeId" hidden="true"/>
+    </columns>
+    <toolbar>
+        <toolbar-button name="bcreate" template="tbarCreate"/>
+        <toolbar-button name="bedit" template="tbarEdit"/>
+        <toolbar-button name="bdelete" template="tbarDelete"/>
+    </toolbar>
+    <groupable enabled="false"/>
+    <sortable enabled="true"/>
+    <pageable button-count="5" refresh="true"/>
+    <filterable enabled="true"/>
+    <datasource type="DataSourceTagHelperType.Ajax" page-size="20">
+        <schema>
+            <model>
+                <fields>
+                    <field name="Weekday" type="string"/>
+                    <field name="TimeFrom" type="string"/>
+                    <field name="TimeTo" type="string"/>
+                    <field name="TimeSlot" type="number"/>
+                    <field name="EmployeeId" type="number"/>
+                </fields>
+            </model>
+        </schema>
+        <transport>
+            <read url="@Url.Action("TblVirtualWorkTimes_Read", "VirtualWorkTimes")"/>
+        </transport>
+    </datasource>
+</kendo-grid>
+<script>
+    function tbarCreate(data) {
+        return `<a id='tbarCreate' href='@Url.Action("Create", "VirtualWorkTimes")' class='k-button'>Hinzufügen</a>`;
+    };
+
+    function tbarEdit(data) {
+        return `<a id='tbarEdit'>Bearbeiten</a>`;
+    };
+
+    function tbarDelete(data) {
+        return `<a id='tbarDelete'>Löschen</a>`;
+    };
+
+    function handleChange(args) {
+
+        let enabled = this.select().length != 0;
+        toolBarVw.edit.enable(enabled);
+        toolBarVw.del.enable(enabled);
+        if (enabled) {
+            let selectedId = this.dataItem(this.select()).Id;
+            toolBarVw.edit.wrapper.attr("href", `@Url.Action("Edit", "VirtualWorkTimes")/${selectedId}`);
+            toolBarVw.del.wrapper.attr("href", `@Url.Action("Delete", "VirtualWorkTimes")/${selectedId}`);
+        } else {
+            toolBarVw.edit.wrapper.attr("href", "#");
+        }
+    };
+
+    let toolBarVw;
+    $(function() {
+        // references to UI elements
+        toolBarVw = {
+            create: $("#tbarCreate").kendoButton().data("kendoButton"),
+            edit: $("#tbarEdit").kendoButton({ enable: false }).data("kendoButton"),
+            del: $("#tbarDelete").kendoButton({ enable: false }).data("kendoButton")
+        };
+    });
+</script>

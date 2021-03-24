@@ -1,0 +1,178 @@
+﻿@model AppointmentViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style type="text/css">
+    #icInfo:hover { cursor: pointer; }
+</style>
+<div class="container">
+
+    <h1>Termine</h1>
+    @*<p>Für eine bessere Ansicht drehe einfach dein Smartphone auf Querformat</p>*@
+    <h4>Datumsauswahl</h4>
+    <kendo-datepicker id="dpFilterFrom" name='datepicker' for="FilterFrom" on-change="pickerChanged"/>
+
+    <div class="row mt mb">
+        <h4 class="col-sm-12">Gebuchte Termine</h4>
+        <div id="appointmentList" class="col-md-12">
+
+
+        </div>
+
+        <div id="noAppointments" class="col-md-12">
+            <div class="col-md-6 ">
+                <label class="sl-icon" style="font-size: 120px; margin: 20px 20px 20px 120px;">@Html.Raw(string.Format("&#x{0}", "e915"))</label>
+            </div>
+            <div class="col-md-6 font-weight-bold">
+                An diesem Tag hast du keine Termine.<br/>
+                Versuche es doch an einem anderen Tag.
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header accentColor">
+                <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="exampleModalCenterContent" class="modal-body">
+            </div>
+            <div class="modal-footer accentColor">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function addDatetimeParameter() {
+        var startPicker = $("#dpFilterFrom").data("kendoDatePicker");
+        return {
+            filterFromDate: startPicker.value()
+        };
+    }
+
+    function templateInfo(data) {
+        return `<span id="icInfo" onclick='alertinfo("${data.Id}")'class='sl-icon'>&#xe92f;</span>`;
+    }
+
+    function template(data) {
+        return `<a class="appointmentButtonLink mr" onclick="openmodal(${data.Phonenumber})" href="#"><span class='sl-icon'>&#xe93c;</span></a>`;
+    }
+
+    function openmodal(phone) {
+        $("#exampleModalCenterContent").load("/Modal/WhatsApp?style=1&phone=" + phone);
+
+        $("#exampleModalLabel").html("Videoberatung");
+        $("#exampleModal").modal("show");
+    }
+
+    function templatePhone(data) {
+        return `<a class="appointmentButtonLink mr" href='tel:+${data.Phonenumber}' target='_blank'><span class='sl-icon'>&#xe948;</span></a>`;
+    }
+
+    function tbCreate(data) {
+        return `<a id='tbCreate' href='${location.pathname}/create' class='k-button'>Create</a>`;
+    };
+
+    function tbDetails(data) {
+        return `<a id='tbDetails'>Details</a>`;
+    };
+
+    function tbEdit(data) {
+        return `<a id='tbEdit'>Edit</a>`;
+    };
+
+    function tbDelete(data) {
+        return `<a id='tbDelete'>Termin absagen</a>`;
+    };
+
+    function templateStorno(data) {
+        return `<a class="appointmentButtonLink mr" href='/Appointments/Delete?id=${data.Id}' ><span class='sl-icon'> &#xe912;</span> </a>`;
+    }
+
+    function alertinfo(id) {
+
+        // get data 
+        $("#exampleModalCenterContent").load("/Appointments/Details?id=" + id);
+        $("#exampleModalLabel").html("Details");
+
+        $('#exampleModal').modal({
+            show: true
+        });
+    }
+
+    function pickerChanged() {
+        console.log("pickerChanged");
+        var startPicker = $("#dpFilterFrom").data("kendoDatePicker");
+
+        var data = { filterFromDate: null };
+        if (startPicker != null)
+            data.filterFromDate =
+                startPicker.value().toLocaleDateString() + ' ' + startPicker.value().toLocaleTimeString();
+
+        $.ajax({
+            url: '@Url.Action("TblAppointments_ReadJson", "Appointments")',
+            data: data,
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+                if (response == null || response.length == 0) {
+                    $('#appointmentList').hide();
+                    $('#noAppointments').show();
+                } else {
+
+                    $('#appointmentList').html("");
+                    console.log(response);
+
+                    for (var i = 0; i < response.length; i++) {
+                        var vf = Date.parse(response[i].ValidFrom);
+
+
+                        $('#appointmentList').append("<div class='appointmentButton'>" + "<div class='row'>" + "<div class='col-md-8'>" + "<span style='font-weight:bold'>" + response[i].Name + "</span><br/>" + "<span>" + response[i].ValidFromTime + " - " + response[i].ValidToTime + " </span>" + "</div>" + "<div class='col-md-4' style='margin-top:10px;text-align: right;' >" + template(response[i]) + templatePhone(response[i]) + templateInfo(response[i]) + templateStorno(response[i]) + "</div>" + "</div>" + "</div>");
+                    }
+
+                    $('#appointmentList').show();
+                    $('#noAppointments').hide();
+                }
+            }
+        });
+    }
+
+    function handleChange(args) {
+        let enabled = this.select().length != 0;
+
+        toolBar.del.enable(enabled);
+        if (enabled) {
+            let selectedId = this.dataItem(this.select()).Id;
+
+            toolBar.del.wrapper.attr("href", `${location.pathname}/delete/${selectedId}`);
+        }
+    };
+
+    let toolBar;
+    $(function() {
+        // references to UI elements
+        toolBar = {
+            del: $("#tbDelete").kendoButton({ enable: false }).data("kendoButton")
+        };
+    });
+
+
+    $(document).ready(function(r) {
+        $('#appointmentList').hide();
+        $('#noAppointments').hide();
+        pickerChanged();
+    });
+</script>

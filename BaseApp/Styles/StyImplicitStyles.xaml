@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ResourceDictionary
+    x:Class="BaseApp.Styles.StyImplicitStyles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Biss.Apps.Components.Map.Base;assembly=Biss.Apps.Components.Map"
+    xmlns:customControls="clr-namespace:Biss.Apps.Controls.Button.CustomControls;assembly=Biss.Apps.Controls.Button"
+    xmlns:input="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+    xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives">
+
+    <!--#region RadBusyIndicator-->
+
+    <Style
+        ApplyToDerivedTypes="True"
+        CanCascade="True"
+        TargetType="telerikBusyIndicator:RadBusyIndicator">
+        <Setter Property="AnimationContentColor" Value="{StaticResource MainColor}" />
+        <Setter Property="AnimationContentHeightRequest" Value="100" />
+        <Setter Property="AnimationContentWidthRequest" Value="100" />
+        <!--  https://docs.telerik.com/devtools/xamarin/controls/busyindicator/features/busyindicator-animations  -->
+        <Setter Property="AnimationType" Value="Animation7" />
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region RadEntry-->
+
+    <Style
+        ApplyToDerivedTypes="True"
+        CanCascade="True"
+        TargetType="input:RadEntry">
+        <Setter Property="FontFamily" Value="{StaticResource TwCenMt}" />
+        <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+        <Setter Property="FontSize" Value="{StaticResource LargeSize}" />
+        <Setter Property="WatermarkTextColor" Value="{StaticResource BackgroundColor}" />
+        <Setter Property="Opacity" Value="0.6" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BorderStyle">
+            <input:BorderStyle BorderColor="{StaticResource AccentColor}">
+                <input:BorderStyle.BorderThickness>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,1,0,1" />
+                        <On Platform="Android" Value="0,2,0,2" />
+                        <On Platform="UWP" Value="0,1,0,1" />
+                    </OnPlatform>
+                </input:BorderStyle.BorderThickness>
+            </input:BorderStyle>
+        </Setter>
+        <Style.Triggers>
+            <Trigger TargetType="input:RadEntry" Property="IsFocused" Value="True">
+                <Setter Property="Opacity" Value="1" />
+                <Setter Property="BorderStyle">
+                    <input:BorderStyle BorderColor="{StaticResource MainColor}">
+                        <input:BorderStyle.BorderThickness>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="iOS" Value="0,0,0,1" />
+                                <On Platform="Android" Value="0,0,0,2" />
+                                <On Platform="UWP" Value="0,0,0,1" />
+                            </OnPlatform>
+                        </input:BorderStyle.BorderThickness>
+                    </input:BorderStyle>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region Button-->
+
+    <Style
+        ApplyToDerivedTypes="True"
+        CanCascade="True"
+        TargetType="Button">
+        <Setter Property="FontSize" Value="{StaticResource BaseButtonFontSize}" />
+        <Setter Property="FontAttributes" Value="{StaticResource BaseButtonFontAttributes}" />
+        <Setter Property="BorderRadius" Value="{StaticResource BaseButtonBorderRadius}" />
+        <Setter Property="BorderWidth" Value="{StaticResource BaseButtonBorderWidth}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource DefaultButtonClassBackgroundColor}" />
+        <Setter Property="BorderColor" Value="{StaticResource DefaultButtonClassBorderColor}" />
+        <Setter Property="TextColor" Value="{StaticResource DefaultButtonClassTextColor}" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Style.Triggers>
+            <Trigger TargetType="Button" Property="IsEnabled" Value="false">
+                <Setter Property="TextColor" Value="{StaticResource LightMainColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="BorderColor" Value="{StaticResource LightMainColor}" />
+                <Setter Property="BorderWidth" Value="0" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region Label-->
+
+    <Style
+        ApplyToDerivedTypes="True"
+        CanCascade="True"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+        <Setter Property="FontSize" Value="{StaticResource BaseFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource TwCenMt}" />
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region ImageCell-->
+
+    <Style
+        ApplyToDerivedTypes="True"
+        CanCascade="True"
+        TargetType="ImageCell">
+        <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+        <Setter Property="DetailColor" Value="{StaticResource AccentColor}" />
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region TextCell-->
+
+    <Style
+        ApplyToDerivedTypes="True"
+        CanCascade="True"
+        TargetType="TextCell">
+        <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+        <Setter Property="DetailColor" Value="{StaticResource AccentColor}" />
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region ListView-->
+
+    <Style
+        ApplyToDerivedTypes="True"
+        CanCascade="True"
+        TargetType="ListView">
+        <Setter Property="BackgroundColor" Value="{StaticResource ListViewBackgroundColor}" />
+        <Setter Property="SeparatorColor" Value="{StaticResource SeparatorLineColor}" />
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region ActivityIndicator-->
+
+    <Style
+        ApplyToDerivedTypes="True"
+        CanCascade="True"
+        TargetType="ActivityIndicator">
+        <Setter Property="Color" Value="{StaticResource ActivityIndicatorColor}" />
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region ContentPage-->
+
+    <Style
+        ApplyToDerivedTypes="True"
+        CanCascade="True"
+        TargetType="ContentPage">
+        <Setter Property="BackgroundColor">
+            <OnPlatform x:TypeArguments="Color">
+                <On Platform="Android" Value="{StaticResource MainColor}" />
+                <On Platform="iOS" Value="{StaticResource MainColor}" />
+                <On Platform="UWP" Value="{StaticResource MainColor}" />
+            </OnPlatform>
+        </Setter>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region NavigationPage-->
+
+    <Style
+        ApplyToDerivedTypes="True"
+        CanCascade="True"
+        TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{StaticResource MainColor}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource MainColor}" />
+        <Setter Property="BarTextColor" Value="{StaticResource WhiteColor}" />
+        <Setter Property="HasBackButton" Value="False" />
+        <Setter Property="HasNavigationBar" Value="False" />
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region BissMap-->
+
+    <Style
+        ApplyToDerivedTypes="True"
+        CanCascade="True"
+        TargetType="base:BissMap">
+        <Setter Property="CircleColor" Value="{StaticResource LightMainColor}" />
+        <Setter Property="IsShowingUser" Value="True" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region BissButton-->
+
+    <Style
+        ApplyToDerivedTypes="True"
+        CanCascade="True"
+        TargetType="customControls:BissButton">
+        <Setter Property="ButtonFontColor" Value="{StaticResource WhiteColor}" />
+        <Setter Property="ButtonBackgroundColor" Value="{StaticResource MainColor}" />
+        <Setter Property="ButtonBorderColor" Value="{StaticResource LightMainColor}" />
+        <Setter Property="ButtonBorderThickness" Value="0" />
+        <Setter Property="ButtonCornerRadius" Value="3" />
+        <Setter Property="ButtonPadding" Value="6" />
+        <Setter Property="TextMargin" Value="3" />
+        <Setter Property="GlyphFontFamily" Value="{StaticResource StreamLineIcons}" />
+    </Style>
+
+    <!--#endregion-->
+
+</ResourceDictionary>

@@ -1,0 +1,85 @@
+﻿<h5 class="tab-title">Mitarbeiter</h5>
+<hr class="tab-line"/>
+
+<kendo-grid class="mb" name="TblEmployeesGrid" height="250" on-change="handleChangeEmp" on-data-bound="dataBound" selectable="true">
+    <columns>
+        <column field="FirstName" title="Vorname"/>
+        <column field="LastName" title="Nachname"/>
+        <column field="TelephoneNumber" title="Telefonnummer"/>
+        <column field="DefaultAnnotation" title="Frage des Mitarbeiters an Kunden"/>
+        <column field="Active" title="Active" hidden="true"/>
+        <column field="Image" title="Image" hidden="true"/>
+        <column field="StoreId" title="StoreId" hidden="true"/>
+    </columns>
+    <toolbar>
+        <toolbar-button name="create" template="tbCreate" text="Hinzufügen" icon-class="k-icon k-i-add"/>
+        <toolbar-button name="edit" template="tbEdit" text="Bearbeiten" icon-class="k-icon k-i-edit"/>
+    </toolbar>
+    <pageable button-count="5" refresh="true"/>
+    <datasource type="DataSourceTagHelperType.Ajax" page-size="20">
+        <schema>
+            <model>
+                <fields>
+                    <field name="FirstName" type="string"/>
+                    <field name="LastName" type="string"/>
+                    <field name="TelephoneNumber" type="string"/>
+                    <field name="DefaultAnnotation" type="string"/>
+                    <field name="Active" type="string"/>
+                    <field name="Image" type="number"/>
+                    <field name="StoreId" type="number"/>
+                </fields>
+            </model>
+        </schema>
+        <transport>
+            <read url="@Url.Action("TblEmployees_Read", "Employees")"/>
+        </transport>
+    </datasource>
+</kendo-grid>
+<script>
+    function tbCreate(data) {
+        return `<a id='tbCreate' href='@Url.Action("create", "Employees")' class='k-button'>` + data.text + `</a>`;
+    };
+
+    function tbEdit(data) {
+        return `<a id='tbEdit'>` + data.text + `</a>`;
+    };
+
+    function tbDelete(data) {
+        return `<a id='tbDelete'>` + data.text + `</a>`;
+    };
+
+    function handleChangeEmp(args) {
+
+        let enabled = this.select().length != 0;
+        toolBar.edit.enable(enabled);
+        //toolBar.del.enable(false);
+        if (enabled) {
+            let selectedId = this.dataItem(this.select()).Id;
+            toolBar.edit.wrapper.attr("href", `@Url.Action("edit", "Employees")/${selectedId}`);
+            //toolBar.del.wrapper.attr("href", `@Url.Action("delete", "Employees")/${selectedId}`);
+        } else {
+            toolBar.edit.wrapper.attr("href", "#");
+        }
+    };
+
+    let toolBar;
+    $(function() {
+        // references to UI elements
+        toolBar = {
+            create: $("#tbCreate").kendoButton().data("kendoButton"),
+            edit: $("#tbEdit").kendoButton({ enable: false }).data("kendoButton"),
+            //del: $("#tbDelete").kendoButton({ enable: false }).data("kendoButton")
+        };
+    });
+    var x;
+
+    function dataBound(args) {
+        if (this.dataItems().length > 0) {
+            //disable hinzufügen
+            toolBar.create.enable(false);
+            toolBar.create.wrapper.attr("href", "#");
+        }
+
+    }
+
+</script>

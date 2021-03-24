@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ResourceDictionary
+    x:Class="BaseApp.Styles.StyConverter"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:baseConverter="clr-namespace:Biss.Apps.Converter;assembly=Biss.Apps"
+    xmlns:converter="clr-namespace:BaseApp.Converter">
+
+    <converter:ByteToImageConverter x:Key="ByteToImageConverter" />
+
+    <baseConverter:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+
+    <converter:IsFreeConverter x:Key="IsFreeConverter" />
+
+    <converter:OpeningHoursToString x:Key="OpeningHoursToString" />
+
+    <converter:NameShortener x:Key="NameShortener" />
+
+    <converter:BooleanValueConverter
+        x:Key="InvertedBooleanToOpacityConverter"
+        FalseValue="0.3"
+        TrueValue="1.0" />
+
+    <converter:BooleanValueConverter
+        x:Key="BooleanToOpacityConverter"
+        FalseValue="1.0"
+        TrueValue="0.3" />
+
+    <converter:IsOpenBackgroundColorConverter x:Key="IsOpenBackgroundColorConverter" />
+    <converter:IsOpenTextColorConverter x:Key="IsOpenTextColorConverter" />
+    <converter:IsOpenSignalColorConverter x:Key="IsOpenSignalColorConverter" />
+    <converter:IsOpenTextConverter x:Key="IsOpenTextConverter" />
+
+
+    <converter:BooleanValueConverter
+        x:Key="BooleanHeaderColorConverter"
+        FalseValue="{StaticResource MainColor}"
+        TrueValue="{StaticResource AccentColor}" />
+
+    <converter:BooleanValueConverter
+        x:Key="ItemSelectedBackgroundColorConverter"
+        FalseValue="{StaticResource LightMainColor}"
+        TrueValue="{StaticResource MainColor}" />
+
+    <converter:BooleanValueConverter
+        x:Key="ItemSelectedColorConverter"
+        FalseValue="{StaticResource DarkMainColor}"
+        TrueValue="{StaticResource WhiteColor}" />
+
+    <converter:BooleanValueConverter
+        x:Key="IsFreeToColorConverter"
+        FalseValue="{StaticResource IsNotFreeColor}"
+        TrueValue="{StaticResource IsFreeColor}" />
+
+    <converter:BooleanValueConverter
+        x:Key="ImageBackgroundConverter"
+        FalseValue="{StaticResource BackgroundColor}"
+        TrueValue="Transparent" />
+
+</ResourceDictionary>

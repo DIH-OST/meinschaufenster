@@ -1,0 +1,62 @@
+﻿@model List
+<Exchange.Model.ExCategoryItem>
+
+
+<div class="container">
+
+<partial name="_StoreSettingsHeader"/>
+<script type="text/javascript">
+    $("#deliveryOptions").addClass("active");
+</script>
+
+<div class="tab-border">
+    <h4 class="tab-title">Liefermöglichkeiten</h4>
+    <hr class="tab-line"/>
+
+    <div class="col-12">
+
+
+        <form asp-controller="Stores" asp-action="DeliveryOptions" method="post" role="form">
+            <div class="row">
+
+                @{
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                        <div class="col-sm-12 col-md-6 col-lg-4">
+                            <input asp-for="@Model[i].checkboxAnswer" type="checkbox"/>
+                            <label class="sl-icon" style="font-size: 24px">@Html.Raw(string.Format("&#x{0}", Model[i].Glyph))</label>
+                            <label asp-for="@Model[i].Id">@Model[i].Name</label>
+                            <input asp-for="@Model[i].Id" type="hidden"/>
+                            <input asp-for="@Model[i].Name" type="hidden"/>
+                            <input asp-for="@Model[i].Glyph" type="hidden"/>
+                        </div>
+                    }
+                }
+                <br/>
+
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12  mb col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                    <kendo-button type="submit" name="update" icon="check" class="k-primary">Speichern</kendo-button>
+                </div>
+            </div>
+
+
+        </form>
+
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#TableStoreForm").kendoValidator({
+            // You can define your custom rules here:
+            //rules: {}
+        
+        });
+
+
+    })
+</script>

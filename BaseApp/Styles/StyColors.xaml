@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ResourceDictionary
+    x:Class="BaseApp.Styles.StyColors"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="WhiteColor">#ffffff</Color>
+    <Color x:Key="GrayColor">#e2e2e2</Color>
+    <Color x:Key="BlackColor">#000000</Color>
+
+    <Color x:Key="EntryColor">#FFBB68</Color>
+    <Color x:Key="BackgroundColor">#FFF7ED</Color>
+    <Color x:Key="MainColor">#ef7d00</Color>
+    <Color x:Key="AccentColor">#b2886A</Color>
+    <Color x:Key="LightMainColor">#FF8d52</Color>
+    <Color x:Key="WhatsappColor">#51E7B6</Color>
+    <Color x:Key="HeaderColor">#ef7d00</Color>
+    <Color x:Key="DarkMainColor">#b34c00</Color>
+    <Color x:Key="LightTextColor">#979797</Color>
+    <Color x:Key="ErrorColor">#ff5252</Color>
+    <Color x:Key="PlaceholderColor">#DDDDDD</Color>
+    <Color x:Key="IsFreeColor">#005247</Color>
+    <Color x:Key="IsNotFreeColor">#C35257</Color>
+
+    <Color x:Key="HalfTransparentLightMainColor">#A0FF8d52</Color>
+    <Color x:Key="HalfTransparentLightEntryColor">#A0FFBB68</Color>
+    <Color x:Key="HalfTransparentBackgroundColor">#A0FFF7ED</Color>
+    <Color x:Key="EntryBackgroundColor">Transparent</Color>
+    <Color x:Key="ListViewBackgroundColor">Transparent</Color>
+
+    <OnPlatform x:Key="ActivityIndicatorColor" x:TypeArguments="Color">
+        <On Platform="Android" Value="{StaticResource AccentColor}" />
+        <On Platform="iOS" Value="{StaticResource AccentColor}" />
+        <On Platform="UWP, WinRT, WinPhone" Value="{StaticResource AccentColor}" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="DefaultButtonClassBackgroundColor" x:TypeArguments="Color">
+        <On Platform="Android" Value="{StaticResource MainColor}" />
+        <On Platform="iOS" Value="{StaticResource MainColor}" />
+        <On Platform="UWP, WinRT, WinPhone" Value="{StaticResource MainColor}" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="DefaultButtonClassBorderColor" x:TypeArguments="Color">
+        <On Platform="Android" Value="Transparent" />
+        <On Platform="iOS" Value="Transparent" />
+        <On Platform="UWP, WinRT, WinPhone" Value="Transparent" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="DefaultButtonClassTextColor" x:TypeArguments="Color">
+        <On Platform="Android" Value="{StaticResource WhiteColor}" />
+        <On Platform="iOS" Value="{StaticResource WhiteColor}" />
+        <On Platform="UWP, WinRT, WinPhone" Value="{StaticResource WhiteColor}" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="SeparatorLineColor" x:TypeArguments="Color">
+        <On Platform="Android" Value="{StaticResource LightMainColor}" />
+        <On Platform="iOS" Value="{StaticResource LightMainColor}" />
+        <On Platform="UWP, WinRT, WinPhone" Value="{StaticResource LightMainColor}" />
+    </OnPlatform>
+
+</ResourceDictionary>

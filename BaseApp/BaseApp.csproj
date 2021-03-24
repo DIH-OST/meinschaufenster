@@ -1,0 +1,162 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssetTargetFallback>portable-net45+win8+wp8+wpa81</AssetTargetFallback>
+    <AssemblyVersion>1.0.1.5</AssemblyVersion>
+    <FileVersion>1.0.1.5</FileVersion>
+    <Version>1.0.1.5</Version>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <NoWarn>NU1701</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Exchange\Exchange.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Biss.Apps" Version="5.0.13" />
+    <PackageReference Include="Biss.Apps.Components.RestAccess" Version="5.0.13" />
+    <PackageReference Include="Biss.Apps.Components.SignalR" Version="5.0.13" />
+    <PackageReference Include="Biss.Apps.Controls.Button" Version="5.0.13" />
+    <PackageReference Include="LiveXAML" Version="2.1.73" />
+    <PackageReference Include="Microsoft.AppCenter" Version="2.6.4" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.6.4" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.6.4" />
+    <PackageReference Include="Microsoft.AppCenter.Distribute" Version="2.6.4" />
+    <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.1.3" />
+    <PackageReference Include="Telerik.UI.for.Xamarin" Version="2019.3.1119.1" />
+    <PackageReference Include="Toasts.Forms.Plugin" Version="3.3.2" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Xam.Plugin.DeviceInfo" Version="4.1.1" />
+    <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991537" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="4.4.0.991537" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="View\ViewAppInformation.xaml.cs">
+      <DependentUpon>ViewAppInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\ViewWhatsAppTutorial.xaml.cs">
+      <DependentUpon>ViewWhatsAppTutorial.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Styles\StyColors.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXAML</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\StyControlTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\StyConverter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\StyExplicitStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\StyFonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\StyFontSizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\StyImplicitStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\StyLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\StyPageTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ViewSplash.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\ViewWhatsAppTutorial.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\ViewPushInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Styles\StyColors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Styles\StyControlTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Styles\StyConverter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Styles\StyExplicitStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Styles\StyFonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Styles\StyFontSizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Styles\StyImplicitStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Styles\StyLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Styles\StyPageTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewMaster.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewMasterDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewNavigation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewSplash.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\ViewDeveloperInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\ViewEditPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\ViewEditUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\ViewLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\ViewMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\ViewPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\ViewPushInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\ViewRegistration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\ViewSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\ViewUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,842 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<style type="text/css">
+
+    .gm-fullscreen-control { display: none; }
+
+    .responsive_map {
+        height: 800px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #map {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    /*******************************
+    * MODAL AS LEFT/RIGHT SIDEBAR
+    * Add "left" or "right" in modal parent div, after class="modal".
+    * Get free snippets on bootpen.com
+    *******************************/
+
+    .modal.left .modal-dialog,
+    .modal.right .modal-dialog {
+        -ms-transform: translate3d(0%, 0, 0);
+        -o-transform: translate3d(0%, 0, 0);
+        -webkit-transform: translate3d(0%, 0, 0);
+        height: 100%;
+        margin: auto;
+        position: fixed;
+        transform: translate3d(0%, 0, 0);
+    }
+
+    .modal.left .modal-content,
+    .modal.right .modal-content {
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    .modal.left .modal-body,
+    .modal.right .modal-body { padding: 15px 15px 80px; }
+
+    /* ----- MODAL STYLE ----- */
+
+    .modal-content {
+        border: none;
+        border-radius: 0;
+    }
+
+    .modal-header {
+        background-color: #FAFAFA;
+        border-bottom-color: #EEEEEE;
+    }
+
+    .productImg {
+        margin-top: 20px;
+        max-width: 100%;
+    }
+
+    #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+    }
+
+    #infowindow-content .title { font-weight: bold; }
+
+    #infowindow-content { display: none; }
+
+    #map #infowindow-content { display: inline; }
+
+    .pac-card {
+        -moz-box-sizing: border-box;
+        background-color: #fff;
+        border-radius: 2px 0 0 2px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+        font-family: Roboto;
+        margin: 10px 10px 0 0;
+        outline: none;
+    }
+
+    #pac-container {
+        margin-right: 12px;
+        padding-bottom: 12px;
+    }
+
+    .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+    }
+
+    .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+    }
+
+    #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin: 10px;
+        max-width: 400px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+    }
+
+    #pac-input:focus { border-color: #4d90fe; }
+
+    #title {
+        background-color: #4d90fe;
+        color: #fff;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+    }
+
+    #target { width: 345px; }
+
+    .margin-20 { margin: 0 0 40px 0; }
+
+    .autocomplete {
+        display: inline-block;
+        /*the container must be positioned relative:*/
+        position: relative;
+        width: 100%;
+    }
+
+    .autocomplete-items {
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        left: 0;
+        margin: 0 auto;
+        max-width: 600px;
+        position: absolute;
+        right: 0;
+        /*position the autocomplete items to be the same width as the container:*/
+        top: 100%;
+        z-index: 99;
+    }
+
+    .autocomplete-items div {
+        background-color: #fff;
+        border-bottom: 1px solid #d4d4d4;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .autocomplete-items div:hover, .autocomplete-items div:hover p {
+        /*when hovering an item:*/
+        background-color: #e9e9e9;
+    }
+
+    .autocomplete-items p {
+        background-color: #fff;
+        /*padding: 5px;*/
+        cursor: pointer;
+        /*border-bottom: 1px solid #d4d4d4;*/
+        margin-bottom: 0;
+    }
+
+    .autocomplete-active, .autocomplete-active p {
+        /*when navigating through the items using the arrow keys:*/
+        background-color: DodgerBlue !important;
+        color: #ffffff;
+    }
+
+    .greyfont { color: grey; }
+</style>
+
+<div class="container">
+    <div class="margin-20 autocomplete">
+        <input id="store-search-input" class="form-control" type="text" placeholder="Suche Geschäft, Kategorie, ...">
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 responsive_map">
+            <input id="pac-input" class="form-control" type="text" placeholder="Suche nach Ort oder Adresse">
+            <div id="map">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="container-fluid" style="background-color: #f7f7f7;padding-top:25px;padding-bottom: 12px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        Das Projekt ist eine nicht wirtschaftlich genutzte Aktivität des <a href="https://dih-ost.at/" target="_blank">Digital Innovation Hubs Ostösterreich</a> in Kooperation mit dem niederösterreichischen <a href="https://www.virtuelleshaus.at/" target="_blank">Haus der Digitalisierung</a>. Die Projektleitung erfolgt durch Johannes Eßmeister, <a href="https://www.ecoplus.at/" target="_blank">ecoplus</a>.
+                        Die programmtechnische Umsetzung erfolgt durch <a href="https://www.fotec.at" target="_blank">FOTEC</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<div class="container-fluid" style="padding-bottom: 25px; padding-top: 12px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="https://play.google.com/store/apps/details?id=at.dihost.digitalesschaufenster">
+                    <img class="store-img" height="60" width="201" src="~/images/google-play-badge.png"/>
+                </a>
+                <a href="https://apps.apple.com/at/app/schau/id1504885963">
+                    <img class="store-img" height="60" width="180" src="~/images/apple_appstore-badge.png"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal left fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="exampleModalCenterContent">
+
+        </div>
+    </div>
+</div>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUxOWbkM07Wlwpr8rJQXICVMfQr2UWwwU&libraries=places&callback=initMap">
+</script>
+
+<script type="text/javascript">
+    var map, infoWindow;
+
+    function initMap() {
+        // The location of Uluru
+        var lowerAustria = { lat: 48.271146, lng: 15.861860 };
+        // The map, centered at Uluru
+
+
+        var styles = [
+            {
+                featureType: "administrative",
+                elementType: "geometry",
+                stylers: [
+                    {
+                        visibility: "off"
+                    }
+                ]
+            },
+            {
+                featureType: "poi",
+                stylers: [
+                    {
+                        visibility: "off"
+                    }
+                ]
+            },
+            {
+                featureType: "road",
+                elementType: "labels.icon",
+                stylers: [
+                    {
+                        visibility: "off"
+                    }
+                ]
+            },
+            {
+                featureType: "transit",
+                stylers: [
+                    {
+                        visibility: "off"
+                    }
+                ]
+            }
+        ];
+
+        map = new google.maps.Map(
+            document.getElementById('map'),
+            { zoom: 10, center: lowerAustria, styles: styles, mapTypeControl: false, fullScreenControl: false });
+        // The marker, positioned at Uluru
+        //var marker = new google.maps.Marker({ position: uluru, map: map });
+
+        infoWindow = new google.maps.InfoWindow;
+
+        // Load the stores GeoJSON onto the map.
+        map.data.loadGeoJson('@Url.Action("LoadStores", "Home")',
+            { idPropertyName: 'storeid' },
+            async stores => {
+
+                // sort stores by name
+                stores.sort((first, second) => {
+
+                    let firstname = first.getProperty('name').toUpperCase();
+                    let secondname = second.getProperty('name').toUpperCase();
+
+                    if (firstname < secondname) {
+                        return -1;
+                    }
+                    if (firstname > secondname) {
+                        return 1;
+                    }
+                    return 0;
+                });
+
+                // get location of user
+                navigator.geolocation.getCurrentPosition(locatorSuccess, locatorError); //options possible as 3. parameter (see: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition)
+
+                autocomplete(stores, false);
+
+                // success function for navigator
+                async function locatorSuccess(position) {
+
+                    //let origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                    let origin = {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    };
+
+                    // sort stores based on distances to current location
+                    calculateDistances(stores, origin).then(sortedStores => {
+                            // set up autocomplete function of search field (sorted by distances)
+                            autocomplete(sortedStores, true);
+                        },
+                        error => {
+                            console.log(error);
+                            // set up autocomplete function of search field without distances (just sorted by name)
+                            autocomplete(stores, false);
+                        }
+                    );
+                }
+
+                // error funtion for navigator
+                async function locatorError(error) {
+                    console.log("error in locator: " + error);
+
+                    // set up autocomplete function of search field without distances (just sorted by name)
+                    autocomplete(stores, false);
+                }
+            });
+
+        map.data.setStyle(function(feature) {
+            var s = feature.getProperty('symbol');
+            return {
+                icon: s
+            };
+        });
+
+        // Show the information for a store when its marker is clicked.
+        map.data.addListener('click',
+            (event) => {
+
+                const storeId = event.feature.getProperty('storeid');
+
+                showStoreModal(storeId);
+            });
+
+        async function showStoreModal(storeId) {
+
+            $("#exampleModalCenterContent").empty();
+
+            $("#exampleModalCenterContent").html("<div class='m-5 p-5 d-flex justify-content-center'><div class='spinner-border text-secondary m-5' role='status'></div></div>");
+
+            $("#exampleModalCenterContent").load("/Home/LoadStoreDetail?storeId=" + storeId);
+
+            $("#exampleModalCenter").modal("show");
+        }
+
+        var myloc = new google.maps.Marker({
+            clickable: true,
+            icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
+                new google.maps.Size(22, 22),
+                new google.maps.Point(0, 18),
+                new google.maps.Point(11, 11)),
+            shadow: null,
+            zIndex: 999,
+            map: map // your google.maps.Map object
+        });
+
+        myloc.addListener('click',
+            function() {
+
+                alert("Das ist eine ungefähre Position.");
+                //    $("#exampleModalLongTitle").text("Manuel's Hutladen");
+                //    $("#exampleModalCenter").modal("show");
+            });
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Meine Position');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+
+                    var me = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    myloc.setPosition(me);
+                    map.setZoom(15);
+
+                },
+                function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ? 'Bitte aktiviere das GPS, damit dein Standort angezeigt werden kann.' : 'Dein Browser unterstütz leider keine Geolocation.');
+            infoWindow.open(map);
+        }
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed',
+            function() {
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //Hab ich auskommentier verursacht einen Haufen requests ;-)
+                //searchBox.setBounds(map.getBounds());
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed',
+            function() {
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Clear out the old markers.
+                markers.forEach(function(marker) {
+                    marker.setMap(null);
+                });
+                markers = [];
+
+                // For each place, get the icon, name and location.
+                var bounds = new google.maps.LatLngBounds();
+                places.forEach(function(place) {
+                    if (!place.geometry) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+                    var icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+                    // Create a marker for each place.
+                    markers.push(new google.maps.Marker({
+                        map: map,
+                        icon: icon,
+                        title: place.name,
+                        position: place.geometry.location
+                    }));
+
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+            });
+
+        async function autocomplete(stores, locatorSuccessfull) {
+
+            var inp = document.getElementById("store-search-input");
+            var currentFocus;
+
+            /*execute a function when someone writes in the text field:*/
+            inp.addEventListener("input",
+                function(e) {
+
+                    var listContainer, storeNameDiv, val = this.value;
+
+                    /*close any already open lists of autocompleted values*/
+                    closeAllLists();
+                    if (!val) {
+                        return false;
+                    }
+                    currentFocus = -1;
+
+                    /*create a DIV element that will contain the items (values):*/
+                    listContainer = document.createElement("DIV");
+                    listContainer.setAttribute("id", this.id + "autocomplete-list");
+                    listContainer.setAttribute("class", "autocomplete-items");
+
+                    /*append the DIV element as a child of the autocomplete container:*/
+                    this.parentNode.appendChild(listContainer);
+
+                    /*for each item in the array... max 10 items*/
+                    for (var i = 0; i < stores.length && listContainer.children.length < 10; i++) {
+
+                        let storename, storecategory, storeSymbolUrl, distanceText, distanceDiv, listElementDiv;
+
+                        listElementDiv = document.createElement("DIV");
+
+                        if (locatorSuccessfull) {
+                            storename = stores[i].store.getProperty('name');
+                            storecategory = stores[i].store.getProperty('category');
+                            storeSymbolUrl = stores[i].store.getProperty('symbol');
+                            distanceText = stores[i].distanceText;
+
+                            distanceDiv = document.createElement("p");
+                        } else {
+                            storename = stores[i].getProperty('name');
+                            storecategory = stores[i].getProperty('category');
+                            storeSymbolUrl = stores[i].getProperty('symbol');
+                        }
+
+                        let indexOfValInName = storename.toUpperCase().indexOf(val.toUpperCase());
+                        let indexOfValInCategory = storecategory.toUpperCase().indexOf(val.toUpperCase());
+
+                        /*check if the name or category of a store includes the same letters as the text field value:*/
+                        if (indexOfValInName > -1 || indexOfValInCategory > -1) {
+
+                            /*create a DIV element for each matching element:*/
+                            storeNameDiv = document.createElement('p');
+
+                            /*add symbol*/
+                            storeNameDiv.innerHTML = "<img src='" + storeSymbolUrl + "' alt='' width='16' height='16'> ";
+
+                            /*make the matching letters bold:*/
+                            if (indexOfValInName > -1) {
+                                storeNameDiv.innerHTML += storename.substr(0, indexOfValInName);
+                                storeNameDiv.innerHTML += "<strong>" + storename.substr(indexOfValInName, val.length) + "</strong>";
+                                storeNameDiv.innerHTML += storename.substr(indexOfValInName + val.length);
+                            } else {
+                                storeNameDiv.innerHTML += storename;
+                            }
+
+                            if (indexOfValInCategory > -1) {
+
+                                if (storecategory && storecategory.trim() != '') {
+                                    storeNameDiv.innerHTML += " (";
+                                    storeNameDiv.innerHTML += storecategory.substr(0, indexOfValInCategory);
+                                    storeNameDiv.innerHTML += "<strong>" + storecategory.substr(indexOfValInCategory, val.length) + "</strong>";
+                                    storeNameDiv.innerHTML += storecategory.substr(indexOfValInCategory + val.length);
+                                    storeNameDiv.innerHTML += ")";
+                                }
+
+                            } else {
+
+                                if (storecategory && storecategory.trim() != '') {
+                                    storeNameDiv.innerHTML += " (" + storecategory + ")";
+                                }
+                            }
+
+                            listElementDiv.appendChild(storeNameDiv);
+
+                            /*create distance div if we have a distance*/
+                            if (distanceDiv) {
+                                distanceDiv.classList.add('greyfont');
+                                distanceDiv.innerHTML += distanceText;
+                                listElementDiv.appendChild(distanceDiv);
+                            }
+
+                            // to use i in following eventlistener
+                            let storeNum = i;
+
+                            /*execute a function when someone clicks on the item value (DIV element):*/
+                            listElementDiv.addEventListener("click",
+                                function(e) {
+
+                                    /*close the list of autocompleted values,
+                                    (or any other open lists of autocompleted values:*/
+                                    closeAllLists();
+
+                                    // get data of store
+                                    let storepos = null;
+                                    let storeid = null;
+                                    let storename = null;
+
+                                    if (stores[storeNum].store != null) {
+                                        storepos = stores[storeNum].store.getGeometry().get();
+                                        storeid = stores[storeNum].store.getProperty('storeid');
+                                        storename = stores[storeNum].store.getProperty('name');
+                                    } else {
+                                        storepos = stores[storeNum].getGeometry().get();
+                                        storeid = stores[storeNum].getProperty('storeid');
+                                        storename = stores[storeNum].getProperty('name');
+                                    }
+
+                                    /*insert the value for the autocomplete text field:*/
+                                    inp.value = storename;
+
+                                    // move map to store
+                                    map.setCenter(storepos);
+                                    map.setZoom(15);
+
+                                    //open modal with store
+                                    showStoreModal(storeid);
+                                });
+
+                            listContainer.appendChild(listElementDiv);
+                        }
+                    }
+                });
+
+            inp.addEventListener("keydown",
+                function(e) {
+                    var x = document.getElementById(this.id + "autocomplete-list");
+                    if (x) x = x.getElementsByTagName("div");
+                    if (e.keyCode == 40) {
+
+                        /*If the arrow DOWN key is pressed,
+                        increase the currentFocus variable:*/
+                        currentFocus++;
+
+                        /*and and make the current item more visible:*/
+                        addActive(x);
+                    } else if (e.keyCode == 38) { //up
+
+                        /*If the arrow UP key is pressed,
+                        decrease the currentFocus variable:*/
+                        currentFocus--;
+
+                        /*and and make the current item more visible:*/
+                        addActive(x);
+                    } else if (e.keyCode == 13) {
+
+                        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                        e.preventDefault();
+                        if (currentFocus > -1) {
+                            /*and simulate a click on the "active" item:*/
+                            if (x) x[currentFocus].click();
+                        }
+                    }
+                });
+
+            function addActive(x) {
+
+                /*a function to classify an item as "active":*/
+                if (!x) return false;
+
+                /*start by removing the "active" class on all items:*/
+                removeActive(x);
+                if (currentFocus >= x.length) currentFocus = 0;
+                if (currentFocus < 0) currentFocus = (x.length - 1);
+
+                /*add class "autocomplete-active":*/
+                x[currentFocus].classList.add("autocomplete-active");
+            }
+
+            function removeActive(x) {
+
+                /*a function to remove the "active" class from all autocomplete items:*/
+                for (var i = 0; i < x.length; i++) {
+                    x[i].classList.remove("autocomplete-active");
+                }
+            }
+
+            function closeAllLists(elmnt) {
+
+                /*close all autocomplete lists in the document,
+                except the one passed as an argument:*/
+                var x = document.getElementsByClassName("autocomplete-items");
+
+                for (var i = 0; i < x.length; i++) {
+                    if (elmnt != x[i] && elmnt != inp) {
+                        x[i].parentNode.removeChild(x[i]);
+                    }
+                }
+            }
+        }
+
+        async function calculateDistances(stores, origin) {
+
+            let results = [];
+
+            stores.forEach(store => {
+                let storeLoc = {
+                    latitude: store.i.i.lat(),
+                    longitude: store.i.i.lng()
+                };
+
+                // get distance to origin (in meter)
+                let distanceVal = getDistance(origin, storeLoc);
+                let distanceText = getDistanceText(distanceVal);
+
+                results.push({
+                    store: store,
+                    distanceText: distanceText,
+                    distanceVal: distanceVal,
+                });
+            });
+
+            //sort by distance to origin
+            results.sort((first, second) => {
+                return first.distanceVal - second.distanceVal;
+            });
+
+            return results;
+        }
+
+        /* !!ACHTUNG: beim Verwenden folgender Funktion könnten hohe Kosten entstehen (DistanceMatrixService.getDistanceMatrix(...)) !!!
+        async function calculateDistancesOld(stores, origin) {
+
+            // Retrieve the distances of each store from the origin
+            // The returned list will be in the same order as the destinations list
+            const service = new google.maps.DistanceMatrixService();
+            const getDistanceMatrix =
+            (stores, service, parameters) => new Promise((resolve, reject) => {
+                service.getDistanceMatrix(parameters, (response, status) => {
+                    if (status != google.maps.DistanceMatrixStatus.OK) {
+                        reject(response);
+                    } else {
+                        const distances = [];
+                        const results = response.rows[0].elements;
+                        for (let j = 0; j < results.length; j++) {
+                        const element = results[j];
+                        const distanceText = element.distance.text;
+                        const distanceVal = element.distance.value;
+                        const distanceObject = {
+                            store: stores[j],
+                            distanceText: distanceText,
+                            distanceVal: distanceVal,
+                        };
+                        distances.push(distanceObject);
+                        }
+                        resolve(distances);
+                    }
+                });
+            });
+
+            let storeChunks = getChunkedArray(stores, 25);
+
+            let allDistancePromises = [];
+
+            storeChunks.forEach(storeChunk => {
+
+                const destinations = [];
+
+                // Build array for the destinations
+                storeChunk.forEach((store) => {
+                    const storeLoc = store.getGeometry().get();
+                    destinations.push(storeLoc);
+                });
+
+                const distancesListPromise = getDistanceMatrix(storeChunk, service, {
+                    origins: [origin],
+                    destinations: destinations,
+                    travelMode: 'DRIVING',
+                    unitSystem: google.maps.UnitSystem.METRIC,
+                });
+
+                allDistancePromises.push(distancesListPromise);
+            });
+
+            //wait for all distances to be resolved
+            let distances = await Promise.all(allDistancePromises);
+
+            //flatten array of array of distances to array of distances
+            let totalDistanceList = flattenArray(distances);
+
+            totalDistanceList.sort((first, second) => {
+                return first.distanceVal - second.distanceVal;
+            });
+
+            return totalDistanceList;
+        }
+        */
+
+        function getChunkedArray(array, chunkSize) {
+
+            let numberOfCompleteChunks = Math.floor(array.length / chunkSize);
+            let lastChunkSize = array.length % chunkSize;
+
+            let result = [];
+
+            for (let i = 0; i < numberOfCompleteChunks * chunkSize; i += chunkSize) {
+                let temp = array.slice(i, i + chunkSize);
+                result.push(temp);
+            }
+
+            if (lastChunkSize > 0) result.push(array.slice(chunkSize * (numberOfCompleteChunks)));
+
+            return result;
+        }
+
+        function flattenArray(array) {
+            return Array.prototype.concat.apply([], array);
+        }
+
+        function getDistance(posA, posB) {
+            let rlat1 = Math.PI * posA.latitude / 180;
+            let rlat2 = Math.PI * posB.latitude / 180;
+            let theta = posA.longitude - posB.longitude;
+            let rtheta = Math.PI * theta / 180;
+            let dist =
+                Math.sin(rlat1) * Math.sin(rlat2) +
+                    Math.cos(rlat1) *
+                    Math.cos(rlat2) *
+                    Math.cos(rtheta);
+            dist = Math.acos(dist);
+            dist = dist * 180 / Math.PI;
+            dist = dist * 60 * 1.1515;
+
+            //Meter
+            return dist * 1.609344 * 1000;
+        }
+
+        function getDistanceText(distanceValue) {
+
+            //if distance value less than 1 km
+            if (distanceValue < 1000) {
+                return Math.round(distanceValue).toString() + ' m';
+            } else {
+                return (distanceValue / 1000).toFixed(1).toString().replace('.', ',') + ' km';
+            }
+        }
+    }
+</script>

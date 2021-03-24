@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ResourceDictionary
+    x:Class="BaseApp.Styles.StyPageTemplates"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives">
+
+    <!--#region MainPageTemplate - für Seiten mit/im Hauptmenü-->
+
+    <ControlTemplate x:Key="MainPageTemplate">
+        <Grid BackgroundColor="{StaticResource BackgroundColor}" BindingContext="{TemplateBinding BindingContext}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource HeaderHeight}" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  NavBar  -->
+            <Grid
+                Grid.Row="0"
+                BackgroundColor="{StaticResource HeaderColor}"
+                IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBooleanConverter}}"
+                Opacity="{Binding IsBusy, Converter={StaticResource BooleanToOpacityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="1" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--#region MenuButton-->
+
+                <BoxView
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    BackgroundColor="Transparent"
+                    VerticalOptions="Center">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CmdShowMenu}" NumberOfTapsRequired="1" />
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="15,0,0,0"
+                    FontFamily="{StaticResource StreamLineIcons}"
+                    FontSize="{StaticResource NavBarFontSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding CmdShowMenu.Glyph}"
+                    TextColor="{StaticResource WhiteColor}"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CmdShowMenu}" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <!--#endregion-->
+
+                <!--#region Title-->
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Style="{StaticResource PageTitleStyleHeader}"
+                    Text="{Binding PageTitle}"
+                    VerticalOptions="Center" />
+
+                <!--#endregion-->
+
+                <!--#region SubMenuButton-->
+
+                <BoxView
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    BackgroundColor="Transparent"
+                    VerticalOptions="Center">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CmdSubMenu}" NumberOfTapsRequired="1" />
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Margin="0,0,15,0"
+                    FontFamily="{StaticResource StreamLineIcons}"
+                    FontSize="{StaticResource NavBarFontSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding CmdSubMenu.Glyph}"
+                    TextColor="{StaticResource WhiteColor}"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CmdSubMenu}" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <!--#endregion-->
+
+                <!--#region Linie-->
+                <BoxView
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    BackgroundColor="{StaticResource WhiteColor}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand" />
+            </Grid>
+
+            <!--  Content  -->
+            <Grid
+                Grid.Row="1"
+                IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBooleanConverter}}"
+                Opacity="{Binding IsBusy, Converter={StaticResource BooleanToOpacityConverter}}">
+                <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            </Grid>
+
+            <!--  Busy  -->
+            <Grid Grid.Row="1" IsVisible="{Binding IsBusy}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <telerikBusyIndicator:RadBusyIndicator
+                    Grid.Row="1"
+                    AnimationContentColor="{StaticResource MainColor}"
+                    IsBusy="{Binding IsBusy}" />
+                <Label
+                    Grid.Row="3"
+                    Style="{StaticResource BusyTextStyle}"
+                    Text="{Binding BusyContent}" />
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+
+    <!--#endregion-->
+
+    <ControlTemplate x:Key="MapPageTemplate">
+        <Grid BackgroundColor="{StaticResource WhiteColor}" BindingContext="{TemplateBinding BindingContext}">
+
+            <!--  Content  -->
+            <Grid IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBooleanConverter}}"
+                  Opacity="{Binding IsBusy, Converter={StaticResource BooleanToOpacityConverter}}">
+                <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            </Grid>
+
+            <!--  Busy  -->
+            <Grid IsVisible="{Binding IsBusy}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <telerikBusyIndicator:RadBusyIndicator
+                    Grid.Row="1"
+                    AnimationContentColor="{StaticResource MainColor}"
+                    IsBusy="{Binding IsBusy}" />
+                <Label
+                    Grid.Row="3"
+                    Style="{StaticResource BusyTextStyle}"
+                    Text="{Binding BusyContent}" />
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+
+    <!--#region BackPageTemplate - SubSeite mit "Zurück"-->
+
+    <ControlTemplate x:Key="BackPageTemplate">
+        <Grid BackgroundColor="{StaticResource BackgroundColor}" BindingContext="{TemplateBinding BindingContext}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource HeaderHeight}" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  NavBar  -->
+            <Grid
+                Grid.Row="0"
+                BackgroundColor="{StaticResource HeaderColor}"
+                IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBooleanConverter}}"
+                Opacity="{Binding IsBusy, Converter={StaticResource BooleanToOpacityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="1" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--#region Zurück Button-->
+
+                <BoxView
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    BackgroundColor="Transparent"
+                    VerticalOptions="Center">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CmdBack}" NumberOfTapsRequired="1" />
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="15,0,0,0"
+                    FontFamily="{StaticResource StreamLineIcons}"
+                    FontSize="{StaticResource NavBarFontSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding CmdBack.Glyph}"
+                    TextColor="{StaticResource WhiteColor}"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CmdBack}" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="5,0,0,0"
+                    FontSize="{StaticResource NavBarFontSize}"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding LangBackButtonText}"
+                    TextColor="{StaticResource HeaderColor}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CmdBack}" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <!--#endregion-->
+
+                <!--#region Title-->
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    Style="{StaticResource BackPageTitleStyleHeader}"
+                    Text="{Binding PageTitle}"
+                    VerticalOptions="Center" />
+
+                <!--#endregion-->
+
+                <!--#region SubMenuButton-->
+
+                <BoxView
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    BackgroundColor="Transparent"
+                    VerticalOptions="Center">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CmdSubMenu}" NumberOfTapsRequired="1" />
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    Margin="0,0,15,0"
+                    FontFamily="{StaticResource StreamLineIcons}"
+                    FontSize="{StaticResource NavBarFontSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding CmdSubMenu.Glyph}"
+                    TextColor="{StaticResource WhiteColor}"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CmdSubMenu}" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <!--#endregion-->
+
+                <!--#region Linie-->
+
+                <BoxView
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    BackgroundColor="{StaticResource WhiteColor}" />
+
+                <!--#endregion-->
+            </Grid>
+
+            <!--  Content  -->
+            <Grid
+                Grid.Row="1"
+                IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBooleanConverter}}"
+                Opacity="{Binding IsBusy, Converter={StaticResource BooleanToOpacityConverter}}">
+                <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            </Grid>
+
+            <!--  Busy  -->
+            <Grid Grid.Row="1" IsVisible="{Binding IsBusy}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <telerikBusyIndicator:RadBusyIndicator
+                    Grid.Row="1"
+                    AnimationContentColor="{StaticResource MainColor}"
+                    IsBusy="{Binding IsBusy}" />
+                <Label
+                    Grid.Row="3"
+                    Style="{StaticResource BusyTextStyle}"
+                    Text="{Binding BusyContent}" />
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+
+    <!--#endregion-->
+
+    <!--#region EmptyPageTemplate - Leere SubSeite-->
+
+    <ControlTemplate x:Key="EmptyPageTemplate">
+        <Grid BackgroundColor="{StaticResource BackgroundColor}" BindingContext="{TemplateBinding BindingContext}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Content  -->
+            <Grid
+                Grid.Row="0"
+                IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBooleanConverter}}"
+                Opacity="{Binding IsBusy, Converter={StaticResource BooleanToOpacityConverter}}">
+                <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            </Grid>
+
+            <!--  Busy  -->
+            <Grid Grid.Row="0" IsVisible="{Binding IsBusy}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <telerikBusyIndicator:RadBusyIndicator
+                    Grid.Row="1"
+                    AnimationContentColor="{StaticResource MainColor}"
+                    IsBusy="{Binding IsBusy}" />
+                <Label
+                    Grid.Row="3"
+                    Style="{StaticResource BusyTextStyle}"
+                    Text="{Binding BusyContent}" />
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+
+    <!--#endregion-->
+
+</ResourceDictionary>

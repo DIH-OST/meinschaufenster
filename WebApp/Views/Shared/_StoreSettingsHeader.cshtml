@@ -1,0 +1,31 @@
+﻿<div class="form-group " style="margin-top: 20px;">
+    <ul class="nav">
+        <li class="nav-item mr mb">
+            <a id="storeData" asp-controller="Stores" asp-action="StoreData" class="nav-link nav-link-reversed">Stammdaten</a>
+        </li>
+        <li class="nav-item mr mb">
+            <a id="openingHours" asp-controller="Stores" asp-action="OpeningHours" class="nav-link nav-link-reversed">Virtuelle Öffnungszeiten</a>
+        </li>
+        <li class="nav-item mr mb">
+            <a id="employees" asp-controller="Stores" asp-action="Employees" class="nav-link nav-link-reversed">Meine Verkäufer</a>
+        </li>
+        <li class="nav-item mr mb">
+            <a id="productCategories" asp-controller="Stores" asp-action="ProductCategories" class="nav-link nav-link-reversed">Produktkategorien</a>
+        </li>
+        <li class="nav-item mr mb">
+            <a id="deliveryOptions" asp-controller="Stores" asp-action="DeliveryOptions" class="nav-link nav-link-reversed">Liefermöglichkeiten</a>
+        </li>
+        <li class="nav-item mr mb">
+            <a id="paymentOptions" asp-controller="Stores" asp-action="PaymentOptions" class="nav-link nav-link-reversed active">Bezahlmöglichkeiten</a>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $("#storeData").removeClass("active");
+    $("#openingHours").removeClass("active");
+    $("#employees").removeClass("active");
+    $("#productCategories").removeClass("active");
+    $("#deliveryOptions").removeClass("active");
+    $("#paymentOptions").removeClass("active");
+</script>

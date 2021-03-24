@@ -1,0 +1,84 @@
+﻿<kendo-grid name="TblOpeningHoursGrid" style="margin-bottom: 10px" height="550" on-change="handleChange" selectable="true">
+    <columns>
+        <column field="Weekday" title="Wochentag" template="<span>
+            #if(Weekday == 0){#
+            Sonntag
+            #}else if(Weekday == 1){#
+            Montag
+            #}else if(Weekday == 2){#
+            Dienstag
+            #}else if(Weekday == 3){#
+            Mittwoch
+            #}else if(Weekday == 4){#
+            Donnerstag
+            #}else if(Weekday == 5){#
+            Freitag
+            #}else if(Weekday == 6){#
+            Samstag
+            #}#
+        </span>"/>
+        <column field="TimeFromLocal" title="Zeit von" format="{0: HH:mm}"/>
+        <column field="TimeToLocal" title="Zeit bis" format="{0: HH:mm}"/>
+        <column field="StoreId" title="StoreId" hidden="true"/>
+    </columns>
+    <toolbar>
+        <toolbar-button name="create" template="tbCreate" text="Hinzufügen" icon-class="k-icon k-i-add"/>
+        <toolbar-button name="edit" template="tbEdit" text="Bearbeiten" icon-class="k-icon k-i-edit"/>
+        <toolbar-button name="del" template="tbDelete" text="Löschen" icon-class="k-icon k-i-delete"/>
+    </toolbar>
+    <sortable enabled="true"/>
+    <datasource type="DataSourceTagHelperType.Ajax" page-size="20">
+        <schema>
+            <model>
+                <fields>
+                    <field name="Weekday" type="string"/>
+                    <field name="TimeFromLocal" type="date"/>
+                    <field name="TimeToLocal" type="date"/>
+                    <field name="StoreId" type="number"/>
+                </fields>
+            </model>
+        </schema>
+        <transport>
+            <read url="@Url.Action("TblOpeningHours_Read", "OpeningHours")"/>
+        </transport>
+    </datasource>
+</kendo-grid>
+
+<script>
+    function tbCreate(data) {
+        return `<a id='tbCreate' href='@Url.Action("create", "OpeningHours")' class='k-button'>` + data.text + `</a>`;
+    };
+
+    function tbEdit(data) {
+        console.log("tbEdit", data);
+        return `<a id='tbEdit'>` + data.text + `</a>`;
+    };
+
+    function tbDelete(data) {
+        return `<a id='tbDelete'>` + data.text + `</a>`;
+    };
+
+    function handleChange(args) {
+        let enabled = this.select().length != 0;
+        toolBar.edit.enable(enabled);
+        toolBar.del.enable(enabled);
+        if (enabled) {
+            let selectedId = this.dataItem(this.select()).Id;
+            toolBar.edit.wrapper.attr("href", `@Url.Action("edit", "OpeningHours")/${selectedId}`);
+            toolBar.del.wrapper.attr("href", `@Url.Action("delete", "OpeningHours")/${selectedId}`);
+        } else {
+            toolBar.edit.wrapper.attr("href", "#");
+        }
+    };
+
+    let toolBar;
+    $(function() {
+        // references to UI elements
+        toolBar = {
+            create: $("#tbCreate").kendoButton().data("kendoButton"),
+            edit: $("#tbEdit").kendoButton({ enable: false }).data("kendoButton"),
+            details: $("#tbDetails").kendoButton({ enable: false }).data("kendoButton"),
+            del: $("#tbDelete").kendoButton({ enable: false }).data("kendoButton")
+        };
+    });
+</script>

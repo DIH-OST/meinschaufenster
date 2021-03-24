@@ -1,0 +1,23 @@
+﻿@{
+    if (TempData["message"] != null)
+    {
+        ViewData["message"] = TempData["message"];
+    }
+}
+
+
+
+@if (ViewData["message"] != null)
+{
+    <div class="alert alert-info">
+        @ViewData["message"].ToString()
+    </div>
+}
+
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info">
+        @ViewBag.Message.ToString()
+    </div>
+}

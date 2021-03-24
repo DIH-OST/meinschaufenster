@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ResourceDictionary
+    x:Class="BaseApp.Styles.StyExplicitStyles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style x:Key="ValidationErrorLabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="TextColor" Value="{StaticResource ErrorColor}" />
+        <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
+    </Style>
+
+    <Style x:Key="PageTitleStyle" TargetType="{x:Type Label}">
+        <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+        <Setter Property="FontSize" Value="{StaticResource BigSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource TwCenMt}" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="PageTitleStyleHeader"
+        BasedOn="{StaticResource PageTitleStyle}"
+        TargetType="{x:Type Label}">
+        <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+        <Setter Property="FontSize" Value="{StaticResource NavBarFontSize}" />
+    </Style>
+
+    <Style
+        x:Key="BackPageTitleStyleHeader"
+        BasedOn="{StaticResource PageTitleStyleHeader}"
+        TargetType="{x:Type Label}">
+        <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+    </Style>
+
+    <Style x:Key="BusyTextStyle" TargetType="{x:Type Label}">
+        <Setter Property="TextColor" Value="{StaticResource MainColor}" />
+        <Setter Property="FontSize" Value="{StaticResource BusyTextFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource TwCenMt}" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="GlyphLabel" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="{StaticResource BigSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource Glyphicons}" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="WidthRequest" Value="60" />
+    </Style>
+    <Style x:Key="IconLabel" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="{StaticResource BigSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource StreamLineIcons}" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="WidthRequest" Value="60" />
+    </Style>
+
+    <Style x:Key="MapButton" TargetType="{x:Type Button}">
+        <Setter Property="TextColor" Value="{StaticResource LightTextColor}" />
+        <Setter Property="Margin" Value="{StaticResource MapButtonMargin}" />
+        <Setter Property="FontFamily" Value="{StaticResource TwCenMt}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource MainColor}" />
+    </Style>
+
+    <Style x:Key="ButtonLightStyle" TargetType="{x:Type Button}">
+        <Setter Property="TextColor" Value="{StaticResource LightMainColor}" />
+        <Setter Property="FontFamily" Value="{StaticResource TwCenMt}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+    </Style>
+
+</ResourceDictionary>

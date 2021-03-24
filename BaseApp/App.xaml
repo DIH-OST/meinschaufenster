@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    (C) 2018 FOTEC Forschungs- und Technologietransfer GmbH
+    Das Forschungsunternehmen der Fachhochschule Wiener Neustadt
+    
+    Kontakt biss@fotec.at / www.fotec.at
+    
+    Erstversion vom 11.08.2017 07:43
+    Entwickler      Michael Kollegger
+    Projekt         Biss.MvvM
+-->
+<Application
+    x:Class="BaseApp.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/StyColors.xaml" />
+                <ResourceDictionary Source="/Styles/StyConverter.xaml" />
+                <ResourceDictionary Source="/Styles/StyFonts.xaml" />
+                <ResourceDictionary Source="/Styles/StyFontSizes.xaml" />
+                <ResourceDictionary Source="/Styles/StyLayout.xaml" />
+                <ResourceDictionary Source="/Styles/StyExplicitStyles.xaml" />
+                <ResourceDictionary Source="/Styles/StyImplicitStyles.xaml" />
+                <ResourceDictionary Source="/Styles/StyControlTemplates.xaml" />
+                <ResourceDictionary Source="/Styles/StyPageTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

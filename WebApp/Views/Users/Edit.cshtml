@@ -1,0 +1,79 @@
+﻿@model Database.Tables.TableUser
+
+@{
+    ViewData["Title"] = "Bearbeiten";
+}
+<script src="/lib/kendo-ui/js/messages/kendo.messages.de-AT.min.js"></script>
+<div class="container">
+    <h1>Bearbeiten</h1>
+
+    <h4>Kunden</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit" id="TableUserForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id"/>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="admin-label">Telefonnummer</label>
+                    <input asp-for="PhoneNumber" class="k-textbox"/>
+                    <span asp-validation-for="PhoneNumber" class="text-danger k-invalid-msg" data-for="PhoneNumber"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneChecked" class="admin-label">Telefonnummer überprüft</label>
+                    @Html.Kendo().CheckBoxFor(m => m.PhoneChecked)
+                    <span asp-validation-for="PhoneChecked" class="text-danger k-invalid-msg" data-for="PhoneChecked"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DefaultUserLanguage" class="admin-label">Sprache</label>
+                    <input asp-for="DefaultUserLanguage" class="k-textbox"/>
+                    <span asp-validation-for="DefaultUserLanguage" class="text-danger k-invalid-msg" data-for="DefaultUserLanguage"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CreatedAtUtc" class="admin-label">Erstellt am</label>
+                    <kendo-datetimepicker format="dd-MM-yyyy" for="CreatedAtUtc" style="width: 100%"/>
+                    <span asp-validation-for="CreatedAtUtc" class="text-danger k-invalid-msg" data-for="CreatedAtUtc"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Firstname" class="admin-label">Vorname</label>
+                    <input asp-for="Firstname" class="k-textbox"/>
+                    <span asp-validation-for="Firstname" class="text-danger k-invalid-msg" data-for="Firstname"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Lastname" class="admin-label">Nachname</label>
+                    <input asp-for="Lastname" class="k-textbox"/>
+                    <span asp-validation-for="Lastname" class="text-danger k-invalid-msg" data-for="Lastname"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Street" class="admin-label">Straße</label>
+                    <input asp-for="Street" class="k-textbox"/>
+                    <span asp-validation-for="Street" class="text-danger k-invalid-msg" data-for="Street"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PostalCode" class="admin-label">Postleitzahl</label>
+                    <input asp-for="PostalCode" class="k-textbox"/>
+                    <span asp-validation-for="PostalCode" class="text-danger k-invalid-msg" data-for="PostalCode"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="City" class="admin-label">Ort</label>
+                    <input asp-for="City" class="k-textbox"/>
+                    <span asp-validation-for="City" class="text-danger k-invalid-msg" data-for="City"></span>
+                </div>
+                <div class="form-group text-right">
+                    <a asp-action="Index" class="k-button" style="margin-right: 10px"><span class="k-icon k-i-cancel"></span>&nbsp;Abbrechen</a>
+                    <kendo-button type="submit" name="confirmEdit" icon="check" class="k-primary">Speichern</kendo-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#TableUserForm").kendoValidator({
+            // You can define your custom rules here:
+            //rules: {}
+        
+        });
+    })
+</script>

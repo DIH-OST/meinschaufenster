@@ -1,0 +1,46 @@
+﻿@model Database.Tables.TablePaymentOption
+
+@{
+    ViewData["Title"] = "Bearbeiten";
+}
+<script src="/lib/kendo-ui/js/messages/kendo.messages.de-AT.min.js"></script>
+<div class="container">
+    <h1>Bearbeiten</h1>
+
+    <h4>Bezahlmöglichkeiten</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit" id="TablePaymentOptionForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id"/>
+                <div class="form-group">
+                    <label asp-for="Description" class="admin-label">Bezeichnung</label>
+                    <input asp-for="Description" class="k-textbox"/>
+                    <span asp-validation-for="Description" class="text-danger k-invalid-msg" data-for="Description"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Icon" class="admin-label">Symbol ID</label>
+                    <input asp-for="Icon" class="k-textbox"/>
+                    <span asp-validation-for="Icon" class="text-danger k-invalid-msg" data-for="Icon"></span>
+                    <a class="btn-link" href="/demofont/demo.html" target="_blank">Symbole</a>
+                </div>
+                <div class="form-group text-right">
+                    <a asp-action="Index" class="k-button" style="margin-right: 10px"><span class="k-icon k-i-cancel"></span>&nbsp;Abbrechen</a>
+                    <kendo-button type="submit" name="confirmEdit" icon="check" class="k-primary">Speichern</kendo-button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#TablePaymentOptionForm").kendoValidator({
+            // You can define your custom rules here:
+            //rules: {}
+        
+        });
+    })
+</script>

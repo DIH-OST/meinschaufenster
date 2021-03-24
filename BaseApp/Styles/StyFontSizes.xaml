@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ResourceDictionary
+    x:Class="BaseApp.Styles.StyFontSizes"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <OnPlatform x:Key="BusyTextFontSize" x:TypeArguments="x:Double">
+        <On Platform="Android" Value="24" />
+        <On Platform="iOS" Value="24" />
+        <On Platform="UWP, WinRT, WinPhone" Value="24" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="NavBarFontSize" x:TypeArguments="x:Double">
+        <On Platform="Android" Value="24" />
+        <On Platform="iOS" Value="24" />
+        <On Platform="UWP, WinRT, WinPhone" Value="24" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="BaseButtonFontSize" x:TypeArguments="x:Double">
+        <On Platform="Android" Value="14" />
+        <On Platform="iOS" Value="16" />
+        <On Platform="UWP, WinRT, WinPhone" Value="14" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="BaseFontSize" x:TypeArguments="x:Double">
+        <On Platform="Android" Value="15" />
+        <On Platform="iOS" Value="16" />
+        <On Platform="UWP, WinRT, WinPhone" Value="15" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="LittleSize" x:TypeArguments="x:Double">
+        <On Platform="Android" Value="11" />
+        <On Platform="iOS" Value="12" />
+        <On Platform="UWP, WinRT, WinPhone" Value="11" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="LargeSize" x:TypeArguments="x:Double">
+        <On Platform="Android" Value="18" />
+        <On Platform="iOS" Value="19" />
+        <On Platform="UWP, WinRT, WinPhone" Value="18" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="LargerSize" x:TypeArguments="x:Double">
+        <On Platform="Android" Value="21" />
+        <On Platform="iOS" Value="21" />
+        <On Platform="UWP, WinRT, WinPhone" Value="21" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="BigSize" x:TypeArguments="x:Double">
+        <On Platform="Android" Value="28" />
+        <On Platform="iOS" Value="28" />
+        <On Platform="UWP, WinRT, WinPhone" Value="28" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="MainViewDetailSize" x:TypeArguments="x:Double">
+        <On Platform="Android" Value="18" />
+        <On Platform="iOS" Value="18" />
+        <On Platform="UWP, WinRT, WinPhone" Value="18" />
+    </OnPlatform>
+
+
+</ResourceDictionary>

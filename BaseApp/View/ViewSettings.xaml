@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<view:BissContentPage
+    x:Class="BaseApp.View.ViewSettings"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:me="clr-namespace:BaseApp.MarkupExtensions;assembly=BaseApp"
+    xmlns:view="clr-namespace:Biss.Apps.View;assembly=Biss.Apps"
+    xmlns:viewmodels="clr-namespace:BaseApp.ViewModel"
+    Title=""
+    d:DataContext="{d:DesignInstance {x:Type viewmodels:ViewModelSettings},
+                                     IsDesignTimeCreatable=True}"
+    x:TypeArguments="viewmodels:ViewModelSettings"
+    ControlTemplate="{StaticResource MainPageTemplate}"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <StackLayout Margin="10,0" WidthRequest="{StaticResource DefaultWidthSize}">
+
+        <Label Style="{StaticResource PageTitleStyle}" Text="{Binding PageSubTitle}" />
+
+        <Label HorizontalOptions="Center" Text="{me:Translate ResViewSettings.LabelLanguages}" />
+
+        <Picker
+            Margin="5,2"
+            ItemDisplayBinding="{Binding Name}"
+            ItemsSource="{Binding Languages}"
+            SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
+
+        <ListView
+            HeightRequest="200"
+            ItemsSource="{Binding Languages}"
+            SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+            SeparatorColor="{StaticResource MainColor}"
+            SeparatorVisibility="Default">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label
+                                Margin="0,5"
+                                FontSize="{StaticResource LargeSize}"
+                                Text="{Binding Name}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Command="{Binding CmdSave}" Text="{Binding CmdSave.DisplayName}" />
+
+        <Label Style="{StaticResource PageTitleStyle}" Text="Pushtest" />
+
+        <Button Command="{Binding CmdPushSettingOn}" Text="{Binding CmdPushSettingOn.DisplayName}" />
+        <Button Command="{Binding CmdPushSettingOff}" Text="{Binding CmdPushSettingOff.DisplayName}" />
+        <Button Command="{Binding CmdPushSettingClear}" Text="{Binding CmdPushSettingClear.DisplayName}" />
+
+    </StackLayout>
+</view:BissContentPage>

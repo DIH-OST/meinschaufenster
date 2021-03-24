@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<view:BissContentPage
+    x:Class="BaseApp.View.ViewWhatsAppTutorial"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
+    xmlns:listView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:me="clr-namespace:BaseApp.MarkupExtensions"
+    xmlns:primitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+    xmlns:view="clr-namespace:Biss.Apps.View;assembly=Biss.Apps"
+    xmlns:viewmodels="clr-namespace:BaseApp.ViewModel"
+    Title=""
+    d:DataContext="{d:DesignInstance {x:Type viewmodels:ViewModelWhatsAppTutorial},
+                                     IsDesignTimeCreatable=True}"
+    x:TypeArguments="viewmodels:ViewModelWhatsAppTutorial"
+    ControlTemplate="{StaticResource BackPageTemplate}"
+    IsBusy="{Binding IsBusy}"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <Grid Margin="0,0" WidthRequest="{StaticResource DefaultWidthSize}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <primitives:RadBorder
+            Grid.Row="0"
+            Margin="10"
+            BackgroundColor="Transparent"
+            CornerRadius="10"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Image
+                Aspect="AspectFit"
+                HeightRequest="100"
+                HorizontalOptions="FillAndExpand"
+                Source="{Binding WhatsApp}"
+                VerticalOptions="FillAndExpand" />
+        </primitives:RadBorder>
+
+        <primitives:RadBorder
+            Grid.Row="0"
+            Margin="70,0,70,70"
+            Padding="10"
+            BackgroundColor="{StaticResource HalfTransparentLightMainColor}"
+            CornerRadius="10"
+            HorizontalOptions="Center"
+            VerticalOptions="End">
+            <Label
+                FontSize="{StaticResource LargerSize}"
+                HorizontalOptions="Center"
+                Text="{me:Translate ResView.LblWhatsAppInfo}}"
+                TextColor="{StaticResource BackgroundColor}" />
+        </primitives:RadBorder>
+
+        <StackLayout
+            Grid.Row="1"
+            HeightRequest="60"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Horizontal"
+            VerticalOptions="End">
+            <primitives:RadBorder
+                Margin="10,0,10,10"
+                BorderColor="Transparent"
+                CornerRadius="10"
+                WidthRequest="120">
+                <Button Command="{Binding CmdBack}" Text="Abbrechen" />
+            </primitives:RadBorder>
+
+            <primitives:RadBorder
+                Margin="10,0,10,10"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="10"
+                HorizontalOptions="FillAndExpand">
+                <Button Command="{Binding CmdContinue}" Text="Weiter" />
+            </primitives:RadBorder>
+
+        </StackLayout>
+
+
+    </Grid>
+</view:BissContentPage>

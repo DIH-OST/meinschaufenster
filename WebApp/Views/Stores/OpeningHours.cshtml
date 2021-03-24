@@ -1,0 +1,29 @@
+﻿<div class="container">
+
+<partial name="_StoreSettingsHeader"/>
+<script type="text/javascript">
+    $("#openingHours").addClass("active");
+</script>
+
+<div class="tab-border">
+    <h4 class="tab-title">Virtuelle Öffnungszeiten</h4>
+    <hr class="tab-line"/>
+
+    <div class="col-12">
+
+        <partial name="~/Views/OpeningHours/Index.cshtml"/>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#TableStoreForm").kendoValidator({
+            // You can define your custom rules here:
+            //rules: {}
+        
+        });
+
+
+    })
+</script>

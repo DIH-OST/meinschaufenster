@@ -1,0 +1,31 @@
+﻿<div class="container">
+
+<partial name="_StoreSettingsHeader"/>
+<script type="text/javascript">
+    $("#employees").addClass("active");
+</script>
+
+<div class="tab-border">
+    <h4 class="tab-title">Mitarbeiter &amp; Arbeitszeiten</h4>
+    <hr class="tab-line"/>
+
+    <div class="col-12">
+
+        <partial name="~/Views/Employees/Index.cshtml"/>
+
+        <partial name="~/Views/VirtualWorkTimes/Index.cshtml"/>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#TableStoreForm").kendoValidator({
+            // You can define your custom rules here:
+            //rules: {}
+        
+        });
+
+
+    })
+</script>

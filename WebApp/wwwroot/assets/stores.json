@@ -1,0 +1,42 @@
+﻿{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.127669,
+          47.515746
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "Hüte, Kappen",
+        "hours": "08:00 bis 12:00 Uhr - Mo bis Fr",
+        "description": "Hier finden sie aktuelle Hüte zu Sonderpreisen. Ein Hut der passt!",
+        "name": "Manuel's Hutladen",
+        "imgurl": "/images/hats-829509_640.jpg",
+        "phone": "+43 2622 90333 302",
+        "storeid": "01"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2526272, 47.8373309
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "Software, 3D Drucker",
+        "hours": "08:00 bis 16:00 Uhr - Mo bis Fr",
+        "description": "Hier finden sie die passende Software-Lösung für Sie die passt!",
+        "name": "FOTEC Forschungs- und Technologietransfer GmbH",
+        "phone": "+43 2622 90333",
+        "imgurl": "/images/Fotec_Logo.png",
+        "storeid": "02"
+      }
+    }
+  ]
+}

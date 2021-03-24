@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<view:BissContentPage
+    x:Class="BaseApp.View.ViewAppointments"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:input="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+    xmlns:markupExtensions="clr-namespace:BaseApp.MarkupExtensions;assembly=BaseApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:primitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+    xmlns:uiModel="clr-namespace:BaseApp.ViewModel.UiModel;assembly=BaseApp"
+    xmlns:view="clr-namespace:Biss.Apps.View;assembly=Biss.Apps"
+    xmlns:view1="clr-namespace:BaseApp.View;assembly=BaseApp"
+    xmlns:viewmodels="clr-namespace:BaseApp.ViewModel"
+    x:Name="ViewAppointmentList"
+    Title="{Binding PageTitle}"
+    d:DataContext="{d:DesignInstance {x:Type viewmodels:ViewModelAppointments},
+                                     IsDesignTimeCreatable=True}"
+    x:TypeArguments="viewmodels:ViewModelAppointments"
+    ControlTemplate="{StaticResource MainPageTemplate}"
+    IsBusy="{Binding IsBusy}"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <primitives:RadPopup.Popup>
+        <primitives:RadPopup
+            IsModal="False"
+            IsOpen="{Binding InfoPopupOpen, Mode=TwoWay}"
+            OutsideBackgroundColor="{StaticResource HalfTransparentBackgroundColor}"
+            Placement="Center">
+            <primitives:RadBorder
+                Margin="50,100"
+                BackgroundColor="{StaticResource MainColor}"
+                CornerRadius="10">
+                <Grid
+                    Margin="10"
+                    HeightRequest="1000"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    WidthRequest="600">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        FontSize="{StaticResource LargerSize}"
+                        Text="{Binding SelectedAppointment.Meeting.ShopName}"
+                        TextColor="{StaticResource BackgroundColor}" />
+
+                    <ScrollView Grid.Row="1" VerticalOptions="FillAndExpand">
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label FontSize="{StaticResource LargeSize}" Text="Am:" />
+                                <Label
+                                    Text="{Binding SelectedAppointment.Date}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="End" />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    FontSize="{StaticResource LargeSize}"
+                                    Text="Von:"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Text="{Binding SelectedAppointment.Hours}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="End" />
+                            </StackLayout>
+
+
+                            <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
+                                <Label
+                                    FontSize="{StaticResource LargeSize}"
+                                    Text="Bei"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    FontSize="{StaticResource LargeSize}"
+                                    Text="{Binding SelectedAppointment.Meeting.Staff.Name}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="End" />
+                            </StackLayout>
+                            <primitives:RadBorder
+                                x:Name="ImageBorder"
+                                Margin="10"
+                                Padding="5"
+                                BackgroundColor="{Binding IsOpaque, Source={x:Reference Image}, Converter={StaticResource ImageBackgroundConverter}}"
+                                BorderColor="{StaticResource BackgroundColor}"
+                                CornerRadius="10"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Image
+                                    x:Name="Image"
+                                    Aspect="AspectFit"
+                                    BackgroundColor="Transparent"
+                                    HorizontalOptions="FillAndExpand"
+                                    Source="{Binding SelectedAppointment.StaffImageSource, Mode=TwoWay}"
+                                    VerticalOptions="FillAndExpand" />
+                            </primitives:RadBorder>
+                        </StackLayout>
+                    </ScrollView>
+
+
+                    <primitives:RadBorder
+                        Grid.Row="2"
+                        Margin="30,0"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        CornerRadius="10">
+                        <Button Clicked="Button_OnClicked" Text="{markupExtensions:Translate ResView.LblClose}" />
+                    </primitives:RadBorder>
+
+                </Grid>
+            </primitives:RadBorder>
+        </primitives:RadPopup>
+    </primitives:RadPopup.Popup>
+
+
+    <StackLayout
+        Margin="0"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+
+        <StackLayout
+            Margin="0,0"
+            BackgroundColor="{StaticResource BackgroundColor}"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+
+            <Label
+                Margin="20,10,20,0"
+                Text="{markupExtensions:Translate ResViewAppointments.LblWhen}"
+                TextColor="{StaticResource MainColor}" />
+            <primitives:RadBorder
+                Margin="20,0"
+                Padding="5,0"
+                BorderColor="{StaticResource MainColor}"
+                CornerRadius="10">
+                <DatePicker
+                    Date="{Binding SelectedDate, Mode=TwoWay}"
+                    HorizontalOptions="Center"
+                    MaximumDate="{Binding MaximumDate}"
+                    MinimumDate="{Binding MinimumDate}"
+                    TextColor="{StaticResource MainColor}"
+                    WidthRequest="5000" />
+            </primitives:RadBorder>
+            <ListView
+                Margin="10,10,10,20"
+                BackgroundColor="{StaticResource BackgroundColor}"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding AppointmentsAvailable}"
+                ItemTapped="ListView_OnItemTapped"
+                ItemsSource="{Binding Appointments}"
+                RowHeight="80"
+                SelectionMode="None"
+                SeparatorColor="Transparent"
+                SeparatorVisibility="None"
+                VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <primitives:RadBorder
+                                Margin="5,2.5"
+                                Padding="10,2.5"
+                                BackgroundColor="{StaticResource LightMainColor}"
+                                CornerRadius="10">
+                                <Grid d:DataContext="{d:DesignInstance {x:Type uiModel:UiMeeting}}" RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="0"
+                                        FontFamily="{StaticResource DigitalShopping}"
+                                        FontSize="{StaticResource LittleSize}"
+                                        HorizontalOptions="Start"
+                                        Text="&#xE92F;"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center" />
+
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        HorizontalOptions="StartAndExpand"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding Hours}"
+                                        TextColor="{StaticResource WhiteColor}"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Grid.ColumnSpan="3"
+                                        Margin="0,-5,0,5"
+                                        FontSize="{StaticResource LargerSize}"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding Meeting.ShopName, Converter={StaticResource NameShortener}}"
+                                        TextColor="{StaticResource WhiteColor}"
+                                        VerticalOptions="FillAndExpand"
+                                        VerticalTextAlignment="Center" />
+
+                                    <Grid
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="2"
+                                        Grid.ColumnSpan="2"
+                                        d:DataContext="{d:DesignInstance {x:Type view1:ViewAppointments},
+                                                                         IsDesignTimeCreatable=True}"
+                                        HorizontalOptions="End"
+                                        WidthRequest="150">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="50" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <primitives:RadBorder
+                                            Grid.Column="0"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="Transparent"
+                                            CornerRadius="5"
+                                            HeightRequest="40"
+                                            HorizontalOptions="Center"
+                                            Opacity="1"
+                                            VerticalOptions="Center"
+                                            WidthRequest="40">
+                                            <Label
+                                                FontFamily="{StaticResource StreamLineIcons}"
+                                                FontSize="{StaticResource BigSize}"
+                                                HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="Center"
+                                                Text="{Binding ViewModel.CmdStartWhatsapp.Glyph, Source={x:Reference ViewAppointmentList}}"
+                                                TextColor="{StaticResource BackgroundColor}"
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding ViewModel.CmdStartWhatsapp, Source={x:Reference ViewAppointmentList}}"
+                                                        CommandParameter="{Binding .}"
+                                                        NumberOfTapsRequired="1" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                            <primitives:RadBorder.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding ViewModel.CmdStartWhatsapp, Source={x:Reference ViewAppointmentList}}"
+                                                    CommandParameter="{Binding}"
+                                                    NumberOfTapsRequired="1" />
+                                            </primitives:RadBorder.GestureRecognizers>
+                                        </primitives:RadBorder>
+
+                                        <primitives:RadBorder
+                                            Grid.Column="1"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="Transparent"
+                                            CornerRadius="5"
+                                            HeightRequest="40"
+                                            HorizontalOptions="Center"
+                                            Opacity="1"
+                                            VerticalOptions="Center"
+                                            WidthRequest="40">
+                                            <Label
+                                                FontFamily="{StaticResource StreamLineIcons}"
+                                                FontSize="{StaticResource BigSize}"
+                                                HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="Center"
+                                                Text="&#xE948;"
+                                                TextColor="{StaticResource BackgroundColor}"
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding ViewModel.CmdCall, Source={x:Reference ViewAppointmentList}}"
+                                                        CommandParameter="{Binding .}"
+                                                        NumberOfTapsRequired="1" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                            <primitives:RadBorder.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding ViewModel.CmdCall, Source={x:Reference ViewAppointmentList}}"
+                                                    CommandParameter="{Binding}"
+                                                    NumberOfTapsRequired="1" />
+                                            </primitives:RadBorder.GestureRecognizers>
+                                        </primitives:RadBorder>
+
+                                        <primitives:RadBorder
+                                            Grid.Column="2"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="Transparent"
+                                            CornerRadius="5"
+                                            HeightRequest="40"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            WidthRequest="40">
+                                            <Label
+                                                FontFamily="{StaticResource StreamLineIcons}"
+                                                FontSize="{StaticResource BigSize}"
+                                                HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="Center"
+                                                Text="{Binding ViewModel.CmdDelete.Glyph, Source={x:Reference ViewAppointmentList}}"
+                                                TextColor="{StaticResource BackgroundColor}"
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding ViewModel.CmdDelete, Source={x:Reference ViewAppointmentList}}"
+                                                        CommandParameter="{Binding}"
+                                                        NumberOfTapsRequired="1" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                            <primitives:RadBorder.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding ViewModel.CmdDelete, Source={x:Reference ViewAppointmentList}}"
+                                                    CommandParameter="{Binding}"
+                                                    NumberOfTapsRequired="1" />
+                                            </primitives:RadBorder.GestureRecognizers>
+                                        </primitives:RadBorder>
+                                    </Grid>
+
+                                </Grid>
+                            </primitives:RadBorder>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding AppointmentsAvailable, Converter={StaticResource InvertedBooleanConverter}}"
+                VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontFamily="{StaticResource DigitalShopping}"
+                    FontSize="250"
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="&#xE915;"
+                    TextColor="{StaticResource MainColor}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="30,0"
+                    FontSize="{StaticResource LargerSize}"
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="{markupExtensions:Translate ResViewAppointments.LblNoAppointments}"
+                    TextColor="{StaticResource DarkMainColor}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+        </StackLayout>
+
+
+    </StackLayout>
+</view:BissContentPage>

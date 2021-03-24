@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ResourceDictionary
+    x:Class="BaseApp.Styles.StyLayout"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <OnIdiom
+        x:Key="DefaultWidthSize"
+        x:TypeArguments="x:Double"
+        Desktop="600"
+        Phone="300"
+        TV="600"
+        Tablet="600"
+        Watch="100" />
+
+    <OnIdiom
+        x:Key="DefaultLayoutOptions"
+        x:TypeArguments="LayoutOptions"
+        Desktop="CenterAndExpand"
+        Phone="FillAndExpand"
+        TV="CenterAndExpand"
+        Tablet="CenterAndExpand"
+        Watch="FillAndExpand" />
+
+    <!--  Höhe der Menüzeile  -->
+    <OnPlatform x:Key="HeaderHeight" x:TypeArguments="GridLength">
+        <On Platform="iOS" Value="60" />
+        <On Platform="Android" Value="60" />
+        <On Platform="UWP" Value="60" />
+    </OnPlatform>
+
+    <!--  Anpassung für iPhone X  -->
+    <OnPlatform x:Key="IPhoneXHeight" x:TypeArguments="GridLength">
+        <On Platform="iOS" Value="0" />
+        <On Platform="Android" Value="0" />
+        <On Platform="UWP" Value="0" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="BaseButtonBorderRadius" x:TypeArguments="x:Double">
+        <On Platform="Android" Value="0" />
+        <On Platform="iOS" Value="0" />
+        <On Platform="UWP, WinRT, WinPhone" Value="0" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="BaseButtonBorderWidth" x:TypeArguments="x:Double">
+        <On Platform="Android" Value="0" />
+        <On Platform="iOS" Value="0" />
+        <On Platform="UWP, WinRT, WinPhone" Value="0" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="EntryBorderMargin" x:TypeArguments="Thickness">
+        <On Platform="Android" Value="30,0" />
+        <On Platform="iOS" Value="30,5" />
+        <On Platform="UWP, WinRT, WinPhone" Value="30,5" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="MainViewImageBorderMargin" x:TypeArguments="Thickness">
+        <On Platform="Android" Value="0,0,120,20" />
+        <On Platform="iOS" Value="0,0,130,20" />
+        <On Platform="UWP, WinRT, WinPhone" Value="30,5" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="MapButtonMargin" x:TypeArguments="Thickness">
+        <On Platform="Android" Value="80,5" />
+        <On Platform="iOS" Value="110,5" />
+        <On Platform="UWP, WinRT, WinPhone" Value="120,5" />
+    </OnPlatform>
+
+</ResourceDictionary>

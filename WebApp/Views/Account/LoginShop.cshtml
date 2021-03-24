@@ -1,0 +1,56 @@
+﻿@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="container">
+    <h2>Login für Geschäftsbetreiber</h2>
+    <h4>Bitte melde dich an</h4>
+    <hr/>
+    <p>
+        <a class="k-button k-primary" href="~/assets/Info_Unternehmen2.pdf">Infos für Geschäfte</a>
+    </p>
+    <p>
+        <a class="k-button k-primary" href="~/assets/AnleitungV2.pdf">Schritt für Schritt Hilfe</a>
+    </p>
+    <p>
+        <a class="k-button k-primary" href="~/assets/TippsVideogesprächV1.pdf">Anleitung für Videotelefonie</a>
+    </p>
+    <p>
+        <a class="k-button k-primary" href="~/assets/TippsBezahlsystemeV2.pdf">Tipps für Bezahlsysteme</a>
+    </p>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="LoginShop">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label">E-Mail</label>
+                    <input asp-for="UserName" placeholder="E-Mail: beispiel@email.at" class="form-control"/>
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" placeholder="Wurde dir per E-Mail gesendet!" class="form-control"/>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <kendo-button name="btnLogin" type="submit" class="k-primary">Anmelden</kendo-button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <h3>Noch nicht registriert?</h3>
+        <a class="k-button k-primary" role="button" asp-area="" asp-controller="Account" asp-action="RegisterShop">Zur Registrierung</a>
+    </div>
+    <div class="">
+        <div class="form-group">
+            <h3>Passwort vergessen oder keine E-Mail erhalten?</h3>
+            <a class="k-button k-primary" role="button" asp-area="" asp-controller="Account" asp-action="ForgotPasswordShop">Zur Wiederherstellung</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

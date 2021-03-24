@@ -1,0 +1,254 @@
+﻿@using Exchange
+@using Exchange.ServiceAccess
+@{
+    var res = new RestAccess(Constants.ServiceClientEndPointWithApiPrefix);
+
+    var result = await res.GetMaintenanceInfo();
+    if (result.Ok && !string.IsNullOrEmpty(result.Result))
+    {
+        ViewData["maintenance"] = result.Result;
+    }
+}
+
+<!DOCTYPE html>
+<html>
+@*itemscope itemtype="http://schema.org/Article">*@
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    @*<title>@ViewData["Title"] - Mein Schaufenster</title>*@
+    <title>Mein Schaufenster</title>
+
+    <meta property="og:title" content="Einfach & persönlich!">
+    <meta property="og:description" content="Einkaufen wie immer, ganz ohne Online-Shop.">
+    <meta property="og:image" content="@(Constants.CurrentAppSettings.DefaultWebApp)images/schaufenster.jpg">
+    <meta property="og:image:width" content="1600"/>
+    <meta property="og:image:height" content="837"/>
+    <meta property="og:url" content="@Constants.CurrentAppSettings.DefaultWebApp">
+    <meta property="og:type" content="website">
+
+    @* Twitter *@
+    <meta name="twitter:title" content="Einfach & persönlich!"/>
+    <meta name="twitter:url" content="@Constants.CurrentAppSettings.DefaultWebApp"/>
+    <meta name="twitter:description" content="Einfach und persönlich einkaufen, ganz ohne Onlineshop."/>
+    <meta name="twitter:image" content="@(Constants.CurrentAppSettings.DefaultWebApp)images/meinschaufenster.png"/>
+    <meta name="twitter:card" content="Einkaufen wie immer, ganz ohne Online-Shop.">
+    @*<meta name="twitter:site" content="website-username">*@
+
+    @*Linked In*@
+    @*<html itemscope itemtype="http://schema.org/Article">*@
+    <meta itemprop="name" content="https://meinschaufenster.at: Einkaufen wie immer!">
+    <meta itemprop="description" content="Einfach und persönlich einkaufen, ganz ohne Onlineshop.">
+    <meta itemprop="image" content="@(Constants.CurrentAppSettings.DefaultWebApp)images/meinschaufenster.png">
+
+    <!--  Non-Essential, But Recommended -->
+    <meta property="og:site_name" content="meinschaufenster.at">
+    @*<meta name="twitter:image:alt" content="meinschaufenster.at">*@
+
+    <!--  Non-Essential, But Required for Analytics-->
+    <meta property="fb:app_id" content="2916638108432903"/>
+
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
+
+    <link rel="stylesheet" href="~/lib/kendo-ui/styles/kendo.common-nova.min.css"/>
+    <link rel="stylesheet" href="~/lib/kendo-ui/styles/kendo.nova.min.css"/>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @* Place Kendo UI scripts after jQuery *@
+    <script src="~/lib/kendo-ui/js/kendo.all.min.js"></script>
+    <script src="~/lib/kendo-ui/js/kendo.aspnetmvc.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/lib/kendo-ui/js/cultures/kendo.culture.de-AT.min.js"></script>
+    <script src="~/lib/kendo-ui/js/messages/kendo.messages.de-AT.min.js"></script>
+
+    <script>kendo.culture("de-AT");</script>
+
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mr-auto">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <img style="height: 75px" src="~/images/SCHAU_LOGO.png">
+            </a>
+
+            @if (ViewData["maintenance"] != null)
+            {
+                <div class="alert alert-danger" style="color: darkred; font-weight: bold; width: 100%;">
+                    @ViewData["maintenance"].ToString()
+                </div>
+            }
+            @*<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a href="https://www.ffg.at/dih" target="_blank">
+                                    <img class="embed-responsive" src="~/images/unterstuetzung.png" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>*@
+
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-orange mr-auto" style="margin-bottom: 45px;">
+        <div class="container">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav ml-auto">
+
+                    @if (User.Identity.IsAuthenticated && User.FindFirst(ClaimTypes.Role).Value == "Admin")
+                    {
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="ProductCategories" asp-action="Index">Kategorien</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="PaymentOptions" asp-action="Index">Bezahlmethoden</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="DeliveryOptions" asp-action="Index">Liefermöglichkeiten</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Stores" asp-action="Index">Geschäfte</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Index">Benutzer</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="~/demofont/demo.html" target="_blank">Icons</a>
+                        </li>
+                    }
+                    else if (User.Identity.IsAuthenticated && User.FindFirst(ClaimTypes.Role).Value == "Shop")
+                    {
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Karte</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Appointments" asp-action="Index">Termine</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Stores" asp-action="StoreData">Einstellungen</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.youtube.com/watch?v=hUrJfUyv2tc" target="_blank">Geschäftsvideo</a>
+                        </li>
+                    }
+                    else if (User.Identity.IsAuthenticated && User.FindFirst(ClaimTypes.Role).Value == "User")
+                    {
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Karte</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="MyAppointments" asp-action="Index">Termine</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="MyData" asp-action="Index">Ich</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/assets/Info_Kunden.pdf" target="_blank">So geht's</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.youtube.com/watch?v=NfXa7Q07VsY" target="_blank">Kundenvideo</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/assets/Info_Kunden.pdf" target="_blank">So geht's</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.youtube.com/watch?v=NfXa7Q07VsY" target="_blank">Kundenvideo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.youtube.com/watch?v=hUrJfUyv2tc" target="_blank">Geschäftsvideo</a>
+                        </li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Abmelden</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <li>
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="LoginUser">Kundenlogin</a>
+                            </li>
+                        </li>
+                        <li class="nav-item">
+                            <li>
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="LoginShop">Geschäftslogin</a>
+                            </li>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+@if (ViewData["message"] != null)
+{
+    <div class="container">
+        <div class="alert alert-info mt">
+            @ViewData["message"].ToString()
+        </div>
+    </div>
+}
+
+
+@if (ViewData["message"] == null && ViewBag.Message != null)
+{
+    <div class="container">
+        <div class="alert alert-info mt">
+            @ViewBag.Message.ToString()
+        </div>
+    </div>
+}
+
+@*<partial name="_Messages" />*@
+
+@RenderBody()
+
+<div class="container-fluid">
+    <hr/>
+    <div class="container">
+        <footer>
+            <p>Version @Constants.CurrentAppSettings.AppVersion | <a class="alert-link" href="~/assets/AGB_Datenschutz.pdf">AGB und Datenschutz</a> | <a class="alert-link" href="mailto:info@meinschaufenster.at">Kontakt</a> | <span style="color: red;">ACHTUNG: Die Seite befindet sich noch in der Entwicklungsphase!</span></p>
+            <p>
+                <a href="https://dih-ost.at/" target="_blank">
+                    <img style="height: 80px;" src="~/images/dihost.png"/>
+                </a>
+                <a href="https://www.ecoplus.at/" target="_blank">
+                    <img style="height: 80px;" src="~/images/ecoplus.png"/>
+                </a>
+                <a href="https://www.noe.gv.at/" target="_blank">
+                    <img style="height: 80px;" src="~/images/N.png"/>
+                </a>
+            </p>
+        </footer>
+    </div>
+</div>
+
+
+@RenderSection("Scripts", false)
+
+</body>
+</html>
